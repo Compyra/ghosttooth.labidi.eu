@@ -154,11 +154,53 @@ let packetsReceived = 0;
 /** Watchdog timer: warns the user if a scan produces no packets. */
 let scanWatchdog = null;
 
-/** How long to wait for the first packet before showing troubleshooting help (ms). */
+/** Second-stage watchdog: escalates the message if silence persists. */
+let scanWatchdogEscalate = null;
+
+/** First-packet gentle nudge (ms) — keeps the user informed quickly. */
+const WATCHDOG_FIRST_MS = 4000;
+
+/** Escalated troubleshooting help if still no packets (ms). */
 const WATCHDOG_DELAY_MS = 10000;
 
 /** Currently active BluetoothLEScan (from requestLEScan), or null. */
 let activeScan = null;
+
+// ---- Scan lifecycle diagnostics & auto-restart (Web Bluetooth) ----
+
+/** Epoch ms when the current scan session began, or 0 when idle. */
+let scanStartedAt = 0;
+
+/** Epoch ms of the most recent advertisement packet, or 0. */
+let lastPacketAt = 0;
+
+/** How many times the passive scan was auto-restarted this session. */
+let scanRestarts = 0;
+
+/** Human-readable label for the active scan transport (for diagnostics UI). */
+let scanModeLabel = '\u2014';
+
+/** Interval handle that keeps the passive scan alive / restarts stalled scans. */
+let scanKeepalive = null;
+
+/** Interval handle that refreshes the live diagnostics readout. */
+let diagTimer = null;
+
+/** True while a passive-scan auto-restart is in flight (avoids overlap). */
+let restarting = false;
+
+/** How often to check that the passive scan is still alive (ms). */
+const SCAN_KEEPALIVE_MS = 4000;
+
+/**
+ * If no advertisement packet arrives for this long while a passive scan is
+ * supposed to be active, assume Chromium tore the scan down and restart it.
+ * Real BLE beacons advertise well under 2 s apart, so this only fires on stalls.
+ */
+const SCAN_QUIET_RESTART_MS = 7000;
+
+/** Whether the Page Visibility handler has been attached (bind once). */
+let visibilityBound = false;
 
 /**
  * WebSocket URL for the local bridge.
@@ -326,6 +368,7 @@ function formatDistance(meters) {
  */
 function handleAdvertisement(event) {
     packetsReceived++;
+    lastPacketAt = Date.now();
     const deviceId = event.device.id;
     const classification = classifyAdvertisement(event);
 
@@ -1102,6 +1145,186 @@ function flashButton(btn, symbol) {
 // ================================================================
 
 /**
+ * Timestamped console logger for capturing a real scan session
+ * (permission granted -> first packet -> last packet -> restarts).
+ * Always on so a failing session can be copied straight from DevTools.
+ */
+function btLog(...args) {
+    const t = new Date().toISOString().substr(11, 12);
+    // eslint-disable-next-line no-console
+    console.log(`[ghosttooth ${t}]`, ...args);
+}
+
+/** True on Windows, where Chromium Web Bluetooth passive scanning is unreliable. */
+function isWindows() {
+    const ua = navigator.userAgentData?.platform || navigator.platform || navigator.userAgent || '';
+    return /win/i.test(ua);
+}
+
+/** Short "Browser x.y on OS" label for diagnostics/logging. */
+function browserLabel() {
+    const ua = navigator.userAgent || '';
+    let name = 'Chromium';
+    let m;
+    if ((m = ua.match(/Edg\/(\d+)/)))        name = `Edge ${m[1]}`;
+    else if ((m = ua.match(/OPR\/(\d+)/)))    name = `Opera ${m[1]}`;
+    else if ((m = ua.match(/Brave\/(\d+)/)))  name = `Brave ${m[1]}`;
+    else if ((m = ua.match(/Chrome\/(\d+)/))) name = `Chrome ${m[1]}`;
+    const os = isWindows() ? 'Windows'
+        : /android/i.test(ua) ? 'Android'
+        : /cros/i.test(ua) ? 'ChromeOS'
+        : /mac/i.test(ua) ? 'macOS'
+        : /linux/i.test(ua) ? 'Linux' : 'unknown OS';
+    return `${name} on ${os}`;
+}
+
+/** Open the collapsible troubleshooting grimoire (used when a scan struggles). */
+function openTroubleshoot() {
+    document.getElementById('troubleshoot')?.setAttribute('open', '');
+}
+
+/** Copy the bridge launch command to the clipboard, with button feedback. */
+async function copyBridgeCommand(btn) {
+    const cmd = 'python bt-bridge.py';
+    try {
+        await navigator.clipboard.writeText(cmd);
+        if (btn) flashButton(btn, 'COPIED \u2713');
+    } catch (_) {
+        // Clipboard blocked (e.g. insecure context) — select fallback text instead.
+        const el = document.getElementById('bridge-cmd');
+        if (el) {
+            const range = document.createRange();
+            range.selectNodeContents(el);
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(range);
+        }
+    }
+}
+
+// ---- Live scan diagnostics readout ----
+
+/** Show the diagnostics row and begin refreshing it once per second. */
+function startDiagnostics(modeLabel) {
+    scanModeLabel = modeLabel;
+    scanStartedAt = Date.now();
+    packetsReceived = 0;
+    lastPacketAt = 0;
+    scanRestarts = 0;
+    document.getElementById('scan-diag')?.classList.remove('hidden');
+    updateDiagnostics();
+    clearInterval(diagTimer);
+    diagTimer = setInterval(updateDiagnostics, 1000);
+}
+
+/** Stop refreshing and hide the diagnostics row. */
+function stopDiagnostics() {
+    clearInterval(diagTimer);
+    diagTimer = null;
+    scanModeLabel = '\u2014';
+    document.getElementById('scan-diag')?.classList.add('hidden');
+}
+
+/** Push current scan counters into the diagnostics UI. */
+function updateDiagnostics() {
+    const set = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    set('diag-mode', scanModeLabel);
+    set('diag-packets', String(packetsReceived));
+    set('diag-unique', String(devices.size));
+    set('diag-restarts', String(scanRestarts));
+
+    if (lastPacketAt === 0) {
+        set('diag-lastpkt', '\u2014');
+    } else {
+        const secs = Math.round((Date.now() - lastPacketAt) / 1000);
+        set('diag-lastpkt', secs <= 0 ? 'now' : `${secs}s ago`);
+    }
+
+    const activeEl = document.getElementById('diag-active');
+    if (activeEl) {
+        if (activeScan) {
+            const alive = activeScan.active !== false;
+            activeEl.textContent = alive ? 'ACTIVE' : 'STALLED';
+            activeEl.classList.toggle('threat', !alive);
+        } else if (bridgeWs || bridgeTimer) {
+            activeEl.textContent = 'BRIDGE';
+            activeEl.classList.remove('threat');
+        } else {
+            activeEl.textContent = '\u2014';
+            activeEl.classList.remove('threat');
+        }
+    }
+}
+
+// ---- Passive-scan keepalive & auto-restart ----
+
+/**
+ * Restart the Web Bluetooth passive scan. Chromium silently tears BLE scans
+ * down after a short interval (the "stops after a few seconds" symptom), so we
+ * stop and re-issue requestLEScan. The permission is already granted for the
+ * session, so this does NOT prompt the user again.
+ */
+async function restartPassiveScan(reason) {
+    if (!activeScan || restarting) return;
+    restarting = true;
+    try {
+        try { activeScan.stop(); } catch (_) { /* ignore */ }
+        activeScan = null;
+        activeScan = await navigator.bluetooth.requestLEScan({
+            acceptAllAdvertisements: true,
+            keepRepeatedDevices: true,
+        });
+        scanRestarts++;
+        btLog(`Passive scan restarted (#${scanRestarts}) — ${reason}.`);
+    } catch (err) {
+        btLog(`Passive scan restart failed: ${err.name} ${err.message}`);
+        // Surface once; keepalive will keep trying on the next tick.
+        setStatus('SCAN STALLED', 'error');
+    } finally {
+        restarting = false;
+    }
+}
+
+/** Begin watching the passive scan and auto-restart it when it stalls. */
+function startScanKeepalive() {
+    clearInterval(scanKeepalive);
+    scanKeepalive = setInterval(() => {
+        if (!activeScan || restarting || document.hidden) return;
+        const quietFor = lastPacketAt ? Date.now() - lastPacketAt : Date.now() - scanStartedAt;
+        if (activeScan.active === false) {
+            restartPassiveScan('browser deactivated the scan');
+        } else if (quietFor > SCAN_QUIET_RESTART_MS && packetsReceived > 0) {
+            restartPassiveScan(`no packets for ${Math.round(quietFor / 1000)}s`);
+        }
+    }, SCAN_KEEPALIVE_MS);
+}
+
+/** Stop the passive-scan keepalive loop. */
+function stopScanKeepalive() {
+    clearInterval(scanKeepalive);
+    scanKeepalive = null;
+}
+
+/**
+ * Resume/verify the scan when the tab becomes visible again. Chromium throttles
+ * and can pause BLE scanning for backgrounded tabs, so a returning user gets a
+ * fresh scan instead of a silently-dead one. Bound once.
+ */
+function bindVisibilityHandler() {
+    if (visibilityBound) return;
+    visibilityBound = true;
+    document.addEventListener('visibilitychange', () => {
+        if (!activeScan) return;
+        if (document.hidden) {
+            btLog('Tab hidden — Chromium may pause BLE scanning.');
+        } else {
+            btLog('Tab visible again — verifying passive scan.');
+            restartPassiveScan('tab returned to foreground');
+        }
+    });
+}
+
+/**
  * Start scanning. Prefers the local scanner bridge (bt-bridge.py), which
  * performs a native BLE scan — required on Windows, where Chromium's
  * requestLEScan never starts radio discovery. Falls back to Web Bluetooth
@@ -1111,6 +1334,7 @@ async function startScan() {
     clearNotice();
     setStatus('REQUESTING...', 'scanning');
     document.getElementById('btn-scan').disabled = true;
+    btLog(`Start scan requested — ${browserLabel()}, HTTPS=${location.protocol === 'https:'}`);
 
     // 1) Local scanner bridge — full native scan, no browser limitations
     if (await startBridgeScan()) return;
@@ -1121,6 +1345,7 @@ async function startScan() {
         showNotice('error',
             'Web Bluetooth API is not available and no local scanner bridge was found. ' +
             'Run "python bt-bridge.py" on this machine, then click [ START SCAN ] again.');
+        openTroubleshoot();
         document.getElementById('btn-scan').disabled = false;
         return;
     }
@@ -1136,9 +1361,15 @@ async function startScan() {
                 'Alternatively enable chrome://flags/#enable-experimental-web-platform-features ' +
                 'or use [ + ADD DEVICE ] to add devices one at a time.'
             );
+            openTroubleshoot();
             document.getElementById('btn-scan').disabled = false;
             return;
         }
+
+        // Reset diagnostics counters for a fresh session.
+        packetsReceived = 0;
+        lastPacketAt = 0;
+        scanRestarts = 0;
 
         // Attach the listener BEFORE starting the scan so the initial
         // burst of advertisement packets is not missed.
@@ -1149,22 +1380,48 @@ async function startScan() {
             keepRepeatedDevices: true,
         });
 
+        const onWindows = isWindows();
         setStatus('SCANNING', 'scanning');
+        btLog(`Passive scan started (requestLEScan). ${onWindows ? 'Windows detected — reliability is poor here.' : ''}`);
         showNotice('info', 'Passive BLE scan active — all nearby advertisement packets will appear below. Click [ STOP SCAN ] when done.');
+
+        // On Windows, Chromium's passive scan is unreliable. Nudge the user
+        // toward the bridge up front instead of waiting for silence.
+        if (onWindows) {
+            openTroubleshoot();
+            showNotice(
+                'warn',
+                'Heads up: on Windows, Chromium\u2019s Web Bluetooth scan is unreliable — it often stops after a few ' +
+                'seconds or returns nothing. For a full, continuous scan, run the local bridge: "python bt-bridge.py", ' +
+                'then scan again. (Ghosttooth will keep auto-restarting the browser scan in the meantime.)'
+            );
+        }
 
         document.getElementById('btn-stop').disabled = false;
 
-        // Watchdog: if no packets arrive, surface troubleshooting help
-        packetsReceived = 0;
+        // Live diagnostics + keepalive/auto-restart + visibility handling.
+        startDiagnostics(onWindows ? 'WEB BT (WIN)' : 'WEB BT');
+        startScanKeepalive();
+        bindVisibilityHandler();
+
+        // Escalating watchdog: a quick gentle nudge, then real troubleshooting.
         clearTimeout(scanWatchdog);
+        clearTimeout(scanWatchdogEscalate);
         scanWatchdog = setTimeout(() => {
             if (activeScan && packetsReceived === 0) {
+                btLog('Watchdog: no packets after first window.');
+                showNotice('warn', 'Scan is running but no advertisements have arrived yet\u2026 still listening. Only BLE devices actively ADVERTISING are visible.');
+            }
+        }, WATCHDOG_FIRST_MS);
+        scanWatchdogEscalate = setTimeout(() => {
+            if (activeScan && packetsReceived === 0) {
+                btLog('Watchdog escalated: still no packets — likely a Windows/browser limitation.');
+                openTroubleshoot();
                 showNotice(
                     'warn',
-                    'Scan is running but no advertisement packets have been received. ' +
-                    'On Windows, Chromium\u2019s Web Bluetooth scanning is known to be non-functional — ' +
-                    'run the local scanner bridge instead: "python bt-bridge.py", then click [ STOP SCAN ] and [ START SCAN ] again. ' +
-                    'Also note that only BLE devices actively ADVERTISING are visible.'
+                    'Still no advertisement packets. The browser granted permission but is not delivering data \u2014 ' +
+                    'this is the known Windows Chromium limitation (and can also happen if the experimental flag is off). ' +
+                    'Run the local scanner bridge instead: "python bt-bridge.py", then click [ STOP SCAN ] and [ START SCAN ] again.'
                 );
             }
         }, WATCHDOG_DELAY_MS);
@@ -1172,13 +1429,16 @@ async function startScan() {
     } catch (err) {
         navigator.bluetooth.removeEventListener('advertisementreceived', handleAdvertisement);
         document.getElementById('btn-scan').disabled = false;
+        btLog(`Scan start failed: ${err.name} ${err.message}`);
 
         if (err.name === 'NotAllowedError') {
             setStatus('DENIED', 'error');
             showNotice('error', 'Bluetooth permission was denied. Allow access and try again.');
+            openTroubleshoot();
         } else if (err.name === 'InvalidStateError') {
             setStatus('BT OFF', 'error');
             showNotice('error', 'Bluetooth is turned off. Enable Bluetooth and try again.');
+            openTroubleshoot();
         } else if (err.name === 'NotSupportedError') {
             setStatus('UNSUPPORTED', 'error');
             showNotice(
@@ -1186,9 +1446,11 @@ async function startScan() {
                 'Your browser does not support BLE scanning. ' +
                 'Enable chrome://flags/#enable-experimental-web-platform-features or use [ + ADD DEVICE ].'
             );
+            openTroubleshoot();
         } else {
             setStatus('ERROR', 'error');
             showNotice('error', `Scan error: ${err.message}`);
+            openTroubleshoot();
         }
     }
 }
@@ -1199,6 +1461,10 @@ function stopScan() {
 
     clearTimeout(scanWatchdog);
     scanWatchdog = null;
+    clearTimeout(scanWatchdogEscalate);
+    scanWatchdogEscalate = null;
+    stopScanKeepalive();
+    stopDiagnostics();
 
     if (bridgeWs !== null) {
         bridgeWs.onclose = null; // suppress disconnect notice — this is an intentional stop
@@ -1220,6 +1486,7 @@ function stopScan() {
     // Also stop all watched devices
     stopWatchingDevices();
 
+    if (wasActive) btLog('Scan stopped by user.');
     setStatus('STOPPED', '');
     document.getElementById('btn-scan').disabled  = false;
     document.getElementById('btn-stop').disabled  = true;
@@ -1276,6 +1543,8 @@ function startBridgeWsScan() {
                 clearTimeout(timeout);
                 bridgeWs = ws;
                 setStatus('SCANNING (BRIDGE)', 'scanning');
+                startDiagnostics('BRIDGE (WS)');
+                btLog('Connected to local bridge via WebSocket.');
                 showNotice('info',
                     'Connected to the local scanner bridge — live native BLE scan active. ' +
                     'All nearby advertising devices will appear below. Click [ STOP SCAN ] when done.');
@@ -1320,6 +1589,8 @@ async function startBridgeScan() {
 
     processBridgeDevices(list);
     setStatus('SCANNING (BRIDGE)', 'scanning');
+    startDiagnostics('BRIDGE (HTTP)');
+    btLog('Connected to local bridge via HTTP polling.');
     showNotice('info',
         'Connected to the local scanner bridge — live native BLE scan active. ' +
         'All nearby advertising devices will appear below. Click [ STOP SCAN ] when done.');
@@ -1494,6 +1765,9 @@ function escapeHTML(str) {
 
     // Card action buttons (copy / search / notes) via delegation
     document.getElementById('device-list').addEventListener('click', handleCardAction);
+
+    // Troubleshooting: copy the bridge launch command
+    document.getElementById('btn-copy-cmd')?.addEventListener('click', (e) => copyBridgeCommand(e.currentTarget));
 
     // Re-apply the staleness filter periodically while it is active
     setInterval(() => {

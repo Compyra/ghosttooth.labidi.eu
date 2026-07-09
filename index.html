@@ -74,6 +74,34 @@
                 </div>
             </div>
 
+            <!-- Live Scan Diagnostics (shown only while scanning) -->
+            <div id="scan-diag" class="status-bar status-bar-diag hidden" aria-live="polite" aria-label="Live scan diagnostics">
+                <div class="status-item">
+                    <span class="status-label">MODE</span>
+                    <span id="diag-mode" class="status-value">&mdash;</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">PACKETS</span>
+                    <span id="diag-packets" class="status-value">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">UNIQUE</span>
+                    <span id="diag-unique" class="status-value">0</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">LAST PKT</span>
+                    <span id="diag-lastpkt" class="status-value">&mdash;</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">SCAN</span>
+                    <span id="diag-active" class="status-value">&mdash;</span>
+                </div>
+                <div class="status-item">
+                    <span class="status-label">RESTARTS</span>
+                    <span id="diag-restarts" class="status-value">0</span>
+                </div>
+            </div>
+
                 <!-- Alert Banner -->
                 <div id="alert-banner" class="alert-banner hidden" role="alert">
                     <span class="alert-icon" aria-hidden="true">⚠</span>
@@ -136,6 +164,43 @@
 
             <!-- Notice Box -->
             <div id="notice-box" class="notice-box hidden" aria-live="polite"></div>
+
+            <!-- Troubleshooting grimoire (auto-opens when a scan struggles) -->
+            <details id="troubleshoot" class="troubleshoot">
+                <summary><span class="section-label">⚗ SCANNING NOT WORKING? OPEN THE TROUBLESHOOTING GRIMOIRE</span></summary>
+                <div class="troubleshoot-body">
+                    <p class="dim small">A few incantations behave differently across enchantments (browsers) and realms (operating systems). Work through these in order:</p>
+
+                    <ol class="troubleshoot-list">
+                        <li>
+                            <strong>On Windows, summon the local bridge.</strong> Chromium&rsquo;s in-browser Bluetooth scan is unreliable on Windows — it often returns an empty list or falls silent after a few seconds. The bridge performs a full native scan. In a terminal on this machine run:
+                            <div class="cmd-row">
+                                <code id="bridge-cmd" class="cmd">python bt-bridge.py</code>
+                                <button id="btn-copy-cmd" class="terminal-btn secondary" type="button" title="Copy the command">[ COPY ]</button>
+                            </div>
+                            <span class="dim small">Then click <strong>[ START SCAN ]</strong> again — the status will read <strong>SCANNING (BRIDGE)</strong>.</span>
+                        </li>
+                        <li>
+                            <strong>Grant the Bluetooth spell.</strong> When the browser asks to &ldquo;access other apps and services on this device&rdquo; or to &ldquo;scan for nearby Bluetooth devices,&rdquo; choose <strong>Allow</strong>. An empty device list in that popup is normal — permission is still granted.
+                        </li>
+                        <li>
+                            <strong>Enable the experimental rite (Android / ChromeOS).</strong> Open <code class="cmd">chrome://flags/#enable-experimental-web-platform-features</code>, set it to <strong>Enabled</strong>, and restart the browser. Required for in-browser passive scanning.
+                        </li>
+                        <li>
+                            <strong>Check the realm&rsquo;s Bluetooth.</strong> Make sure Bluetooth is switched on at the OS level and that no other app holds the adapter exclusively.
+                        </li>
+                        <li>
+                            <strong>Serve over HTTPS.</strong> Web Bluetooth only works on <code class="cmd">https://</code> (or <code class="cmd">localhost</code>).
+                        </li>
+                        <li>
+                            <strong>Add a single device by hand.</strong> If passive scanning is blocked, use <strong>[ + ADD DEVICE ]</strong> to pick one device at a time from the browser&rsquo;s chooser.
+                        </li>
+                        <li>
+                            <strong>Watch the runes (diagnostics).</strong> While scanning, the <strong>PACKETS</strong>, <strong>LAST PKT</strong> and <strong>SCAN</strong> readings above show whether data is flowing. <strong>STALLED</strong> or a growing <strong>LAST PKT</strong> means the browser stopped delivering packets — Ghosttooth auto-restarts the scan, but the bridge is the reliable fix. Open the console (F12) for a timestamped log to share when reporting a problem.
+                        </li>
+                    </ol>
+                </div>
+            </details>
 
             <!-- Device List -->
             <div id="device-list" class="device-list"></div>

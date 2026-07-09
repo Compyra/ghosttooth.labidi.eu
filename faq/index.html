@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="GHOSTTOOTH help &amp; FAQ — how the Bluetooth surveillance &amp; tracker detector works, what it can and cannot see, and how to read the results.">
+<title>GHOSTTOOTH — Help &amp; FAQ</title>
+<style>
+  /* ==========================================================
+     GHOSTTOOTH — Help / FAQ
+     Single-file, offline-safe. No external CSS/JS/fonts/CDN.
+     Dark-first, responsive, safe-area aware.
+     ========================================================== */
+
+  :root {
+    --bg: #0b0d1a;
+    --bg-2: #12152a;
+    --surface: #161a30;
+    --surface-2: #1d2340;
+    --border: #2a3157;
+    --ink: #e8e9f0;
+    --ink-dim: #a7adc9;
+    --ink-faint: #7b81a3;
+    --gold: #e3c46a;
+    --gold-soft: #f0d98f;
+    --accent: #8fb8ff;
+    --danger: #ff5a6e;
+    --warn: #f5b942;
+    --ok: #5fd3a6;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Light mode for users/devices that prefer it. */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb;
+      --bg-2: #eaecf6;
+      --surface: #ffffff;
+      --surface-2: #f0f2fb;
+      --border: #d6d9ec;
+      --ink: #191c2c;
+      --ink-dim: #4a5170;
+      --ink-faint: #6b7290;
+      --gold: #9a7b16;
+      --gold-soft: #7d6410;
+      --accent: #2f5fd0;
+      --danger: #c62839;
+      --warn: #a5720a;
+      --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.65;
+    padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 40px) clamp(16px, 5vw, 32px) 64px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    text-align: center;
+    padding: clamp(20px, 6vw, 44px) 0 clamp(12px, 3vw, 20px);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    letter-spacing: .12em;
+    font-weight: 700;
+    font-size: clamp(26px, 7vw, 44px);
+    color: var(--gold);
+    margin: 0;
+  }
+  .brand .glyph {
+    display: inline-grid;
+    place-items: center;
+    width: clamp(38px, 9vw, 54px);
+    height: clamp(38px, 9vw, 54px);
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--surface-2), var(--bg-2));
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: clamp(20px, 5vw, 30px);
+  }
+  .tagline {
+    color: var(--ink-dim);
+    font-size: clamp(14px, 3.5vw, 18px);
+    margin: 10px auto 0;
+    max-width: 52ch;
+  }
+  .byline {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: .04em;
+  }
+
+  /* ---------- Intro ---------- */
+  .intro {
+    background: linear-gradient(180deg, var(--surface), var(--bg-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(16px, 4vw, 24px);
+    box-shadow: var(--shadow);
+    margin-top: 8px;
+  }
+  .intro p { margin: 0; }
+  .intro p + p { margin-top: 12px; }
+
+  /* ---------- Sections ---------- */
+  main { margin-top: 8px; }
+  section { margin-top: clamp(28px, 6vw, 44px); }
+  h2 {
+    font-size: clamp(20px, 4.6vw, 27px);
+    margin: 0 0 6px;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: .62em;
+    color: var(--gold);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px 8px;
+    flex: none;
+  }
+  h3 { font-size: clamp(16px, 4vw, 20px); margin: 18px 0 6px; }
+  .section-lead { color: var(--ink-dim); margin: 2px 0 10px; }
+
+  /* ---------- Accordions ---------- */
+  details {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin: 10px 0;
+    overflow: hidden;
+  }
+  details[open] { background: var(--bg-2); }
+  summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 14px 46px 14px 16px;
+    font-weight: 600;
+    position: relative;
+    color: var(--ink);
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after {
+    content: "+";
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--mono);
+    font-size: 22px;
+    line-height: 1;
+    color: var(--gold);
+    transition: transform .18s ease;
+  }
+  details[open] > summary::after { content: "\2013"; }
+  summary:hover { color: var(--gold-soft); }
+  .details-body { padding: 0 16px 16px; color: var(--ink); }
+  .details-body > :first-child { margin-top: 4px; }
+  .details-body p:first-child { margin-top: 2px; }
+
+  ul, ol { padding-left: 1.25em; }
+  li { margin: 6px 0; }
+
+  code, kbd {
+    font-family: var(--mono);
+    font-size: .88em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 6px;
+  }
+
+  /* ---------- Callout boxes ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: clamp(16px, 4vw, 22px);
+    border: 1px solid var(--border);
+    margin: 14px 0;
+    background: var(--surface);
+  }
+  .callout h2, .callout h3 { margin-top: 0; }
+  .callout .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .callout.honesty {
+    border-color: color-mix(in srgb, var(--warn) 55%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--warn) 12%, var(--surface)), var(--surface));
+  }
+  .callout.honesty .tag { background: color-mix(in srgb, var(--warn) 25%, transparent); color: var(--warn); }
+  .callout.legal {
+    border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--danger) 10%, var(--surface)), var(--surface));
+  }
+  .callout.legal .tag { background: color-mix(in srgb, var(--danger) 22%, transparent); color: var(--danger); }
+  .callout.privacy {
+    border-color: color-mix(in srgb, var(--ok) 45%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--ok) 10%, var(--surface)), var(--surface));
+  }
+  .callout.privacy .tag { background: color-mix(in srgb, var(--ok) 22%, transparent); color: var(--ok); }
+
+  /* ---------- Signal reference table ---------- */
+  .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 12px 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 420px;
+    font-size: 15px;
+  }
+  caption { text-align: left; color: var(--ink-faint); font-size: 13px; padding-bottom: 8px; }
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  thead th {
+    color: var(--gold);
+    font-size: 13px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+
+  .bar {
+    position: relative;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--danger), var(--warn) 45%, var(--ok));
+    margin: 14px 0 4px;
+  }
+  .bar-labels {
+    display: flex; justify-content: space-between;
+    font-family: var(--mono); font-size: 12px; color: var(--ink-faint);
+  }
+
+  /* ---------- Field list ---------- */
+  .fields { display: grid; gap: 10px; margin-top: 12px; }
+  .field {
+    display: grid;
+    grid-template-columns: minmax(120px, 190px) 1fr;
+    gap: 4px 16px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .field .k { font-family: var(--mono); color: var(--gold); font-size: 14px; }
+  .field .v { color: var(--ink-dim); }
+  @media (max-width: 520px) {
+    .field { grid-template-columns: 1fr; }
+    .field .v { color: var(--ink); }
+  }
+
+  /* ---------- Steps ---------- */
+  ol.steps { counter-reset: step; list-style: none; padding-left: 0; }
+  ol.steps > li {
+    position: relative;
+    padding: 12px 12px 12px 52px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    margin: 10px 0;
+  }
+  ol.steps > li::before {
+    counter-increment: step;
+    content: counter(step);
+    position: absolute;
+    left: 12px; top: 12px;
+    width: 28px; height: 28px;
+    display: grid; place-items: center;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-weight: 700;
+    border-radius: 8px;
+  }
+
+  /* ---------- Glossary ---------- */
+  dl.glossary { margin: 12px 0 0; }
+  dl.glossary > div {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  dl.glossary > div:last-child { border-bottom: none; }
+  dl.glossary dt { font-weight: 700; color: var(--gold-soft); }
+  dl.glossary dd { margin: 4px 0 0; color: var(--ink-dim); }
+
+  /* ---------- TOC ---------- */
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 20px;
+  }
+  nav.toc strong { display: block; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  nav.toc ol { columns: 2; column-gap: 24px; margin: 0; padding-left: 1.1em; }
+  @media (max-width: 520px) { nav.toc ol { columns: 1; } }
+  nav.toc li { margin: 4px 0; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: clamp(36px, 8vw, 60px);
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 14px;
+  }
+  footer .ft-brand { font-family: var(--mono); color: var(--gold); letter-spacing: .1em; }
+
+  .pill {
+    display: inline-block; font-family: var(--mono); font-size: 12px;
+    padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--surface-2); color: var(--ink-dim);
+  }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <h1 class="brand"><span class="glyph" aria-hidden="true">👻</span>GHOSTTOOTH</h1>
+    <p class="tagline">A Bluetooth scanner that helps you discover nearby devices — including potential surveillance gadgets and hidden trackers.</p>
+    <p class="byline">Help &amp; FAQ · a labidi.eu project</p>
+  </header>
+
+  <!-- ===================== INTRO ===================== -->
+  <div class="intro">
+    <p><strong>GHOSTTOOTH listens for the little radio “hellos” that Bluetooth devices broadcast</strong> and shows them to you in a clear, live list — the device’s name, signal strength, an estimated distance, its maker, and when it was last seen. It’s built to help you notice things like tag-style trackers or covert recording devices in your space.</p>
+    <p>This page explains, in plain language, <strong>how it works, how to read the results, and — just as importantly — what it honestly <em>can’t</em> see.</strong> Bluetooth is powerful but imperfect, and an honest tool tells you where its limits are.</p>
+  </div>
+
+  <!-- ===================== TOC ===================== -->
+  <nav class="toc" aria-label="On this page">
+    <strong>On this page</strong>
+    <ol>
+      <li><a href="#what">What GHOSTTOOTH is</a></li>
+      <li><a href="#how">How it works, step by step</a></li>
+      <li><a href="#permissions">Permissions &amp; prerequisites</a></li>
+      <li><a href="#rssi">Signal strength (dBm / RSSI)</a></li>
+      <li><a href="#distance">Distance estimation</a></li>
+      <li><a href="#limits">Why we can’t detect 100%</a></li>
+      <li><a href="#mfr">Manufacturer / Company IDs</a></li>
+      <li><a href="#list">Reading the device list</a></li>
+      <li><a href="#locate">Locating a suspicious device</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#legal">Legal &amp; ethical use</a></li>
+      <li><a href="#trouble">Troubleshooting</a></li>
+      <li><a href="#glossary">Glossary</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ===================== 1. WHAT ===================== -->
+    <section id="what">
+      <h2><span class="num">01</span> What is GHOSTTOOTH?</h2>
+      <p class="section-lead">A Bluetooth Low Energy (BLE) scanner and detector for everyday awareness.</p>
+      <p>GHOSTTOOTH is a <strong>Bluetooth (BLE) scanner/detector</strong>. It discovers nearby Bluetooth devices that are broadcasting and presents them so you can review what’s around you. That includes ordinary gadgets (earbuds, watches, TVs, sensors) as well as devices worth a second look, such as:</p>
+      <ul>
+        <li><strong>Tag-style trackers</strong> — small location tags people attach to keys, bags… or, misused, to a person or vehicle.</li>
+        <li><strong>Potential surveillance devices</strong> — some hidden cameras, wearable recorders and smart glasses advertise over Bluetooth.</li>
+      </ul>
+      <p>Think of it as a <strong>radio “who’s nearby” list</strong>. It doesn’t connect to, control, or interfere with other devices — it just <em>listens</em> to the public announcements they already send out.</p>
+    </section>
+
+    <!-- ===================== 2. HOW ===================== -->
+    <section id="how">
+      <h2><span class="num">02</span> How the app works, step by step</h2>
+      <p class="section-lead">It passively listens for BLE advertisement packets and turns them into a readable list.</p>
+      <ol class="steps">
+        <li><strong>Devices broadcast.</strong> Most BLE devices periodically send tiny radio messages called <strong>advertisement packets</strong> — a public “I’m here” beacon that any nearby receiver can hear.</li>
+        <li><strong>GHOSTTOOTH listens.</strong> When you start a scan, your phone’s Bluetooth radio passively captures those packets. No pairing, no connection, no data sent to the device.</li>
+        <li><strong>It parses each packet.</strong> The app reads the fields inside: any broadcast <em>name</em>, the device <em>address</em>, <em>manufacturer-specific data</em> (including a Company Identifier), advertised <em>service UUIDs</em>, and the <em>signal strength</em> (RSSI).</li>
+        <li><strong>It classifies &amp; lists.</strong> Each device becomes a row showing name, maker, signal, an estimated distance, and a last-seen time. Known tracker/surveillance signatures are flagged.</li>
+        <li><strong>It keeps updating.</strong> As packets keep arriving, rows refresh live — signal rises and falls as devices (or you) move around.</li>
+      </ol>
+      <details>
+        <summary>A bit more technical detail</summary>
+        <div class="details-body">
+          <p>BLE advertising happens on three dedicated channels. Your phone “scans” by hopping across them and reporting each packet it hears, along with the RSSI measured by its radio. GHOSTTOOTH reads the advertisement (and, where present, the scan-response) payload — it does <strong>not</strong> open a GATT connection to interrogate the device. Everything shown comes from what the device already chose to broadcast.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ===================== 3. PERMISSIONS ===================== -->
+    <section id="permissions">
+      <h2><span class="num">03</span> Permissions &amp; prerequisites</h2>
+      <p class="section-lead">A few switches must be on before your phone will reveal nearby Bluetooth devices.</p>
+      <ul>
+        <li><strong>Bluetooth must be ON.</strong> The scanner uses your phone’s Bluetooth radio; if it’s off, nothing can be heard.</li>
+        <li><strong>“Nearby devices” / Bluetooth scan permission.</strong> On modern Android (12+), the app asks for the <em>Nearby devices</em> permission to scan.</li>
+        <li><strong>Location permission on older Android (6–11).</strong> These versions require <em>Location</em> access before they’ll return Bluetooth scan results.</li>
+      </ul>
+      <details>
+        <summary>Why does a Bluetooth scanner need location permission?</summary>
+        <div class="details-body">
+          <p>It’s an Android rule, not a data grab. Because Bluetooth beacons <em>can</em> be used to infer where you are (beacons sit in fixed places), older Android versions gate BLE scanning behind the Location permission as a privacy safeguard. GHOSTTOOTH does not use GPS or track your location — on Android 12+ it declares its scan as <code>neverForLocation</code> precisely to make that explicit. Granting it simply unlocks the ability to <em>see</em> advertisement packets.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ===================== 4. RSSI ===================== -->
+    <section id="rssi">
+      <h2><span class="num">04</span> Signal strength (dBm / RSSI) explained</h2>
+      <p class="section-lead">RSSI is how loudly your phone hears a device. It’s measured in dBm and it’s always negative.</p>
+      <p><strong>RSSI</strong> (Received Signal Strength Indicator) is reported in <strong>dBm</strong>, and the numbers are <strong>negative</strong>. The key rule:</p>
+      <ul>
+        <li><strong>Closer to 0</strong> (e.g. <code>−40 dBm</code>) → <strong>stronger signal → usually closer.</strong></li>
+        <li><strong>More negative</strong> (e.g. <code>−90 dBm</code>) → <strong>weaker signal → usually farther.</strong></li>
+      </ul>
+      <div class="bar" role="img" aria-label="Signal scale from about minus 40 dBm (strong, close) to minus 100 dBm (very weak, far)"></div>
+      <div class="bar-labels"><span>−40 (strong / near)</span><span>−100 (weak / far)</span></div>
+      <div class="table-scroll">
+        <table>
+          <caption>A rough reference — real values vary by device and environment.</caption>
+          <thead>
+            <tr><th>RSSI (dBm)</th><th>Signal</th><th>Rough meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="dot" style="background:var(--ok)"></span>−30 to −55</td><td>Excellent</td><td>Very close — often within a metre or two.</td></tr>
+            <tr><td><span class="dot" style="background:var(--ok)"></span>−55 to −70</td><td>Good</td><td>Nearby, same room.</td></tr>
+            <tr><td><span class="dot" style="background:var(--warn)"></span>−70 to −85</td><td>Fair</td><td>Farther, or through a wall/obstacle.</td></tr>
+            <tr><td><span class="dot" style="background:var(--danger)"></span>−85 to −100</td><td>Weak</td><td>Far away or heavily obstructed; may drop out.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== 5. DISTANCE ===================== -->
+    <section id="distance">
+      <h2><span class="num">05</span> Distance estimation — and why it’s approximate</h2>
+      <p class="section-lead">The distance shown is an educated guess from signal strength, not a measurement.</p>
+      <p>GHOSTTOOTH <strong>estimates</strong> distance from RSSI using a <strong>path-loss model</strong> (signal fades in a predictable way as it travels). It’s a helpful <em>rough guide</em> — think “hotter / colder,” not a tape measure.</p>
+      <p><strong>Why it’s only approximate — things that skew it:</strong></p>
+      <ul>
+        <li><strong>Walls, furniture and metal</strong> absorb or block the signal, making devices look farther than they are.</li>
+        <li><strong>Human bodies</strong> (including yours) are mostly water and dampen 2.4&nbsp;GHz signals — turning around can change the reading.</li>
+        <li><strong>Reflections / multipath</strong> — signals bounce off walls and floors and arrive by several paths at once.</li>
+        <li><strong>Transmit power differs</strong> between devices; a low-power tag and a high-power beacon at the same distance read very differently.</li>
+        <li><strong>Phone chipset differences</strong> — every phone’s radio calibrates RSSI a little differently.</li>
+        <li><strong>Orientation</strong> of both the device and your phone (antennas are directional).</li>
+        <li><strong>Interference</strong> from Wi-Fi, other Bluetooth, microwaves and crowds sharing the 2.4&nbsp;GHz band.</li>
+      </ul>
+      <p>Bottom line: use distance as a <strong>trend</strong>. Watching how it changes as you move is far more reliable than any single number.</p>
+    </section>
+
+    <!-- ===================== 6. HONESTY / LIMITS ===================== -->
+    <section id="limits">
+      <div class="callout honesty">
+        <span class="tag">Please read · honest limits</span>
+        <h2 style="border:0;padding:0;"><span class="num">06</span> Why we can’t detect 100% of devices</h2>
+        <p>No Bluetooth scanner — on any phone, from anyone — can guarantee it will find every device. GHOSTTOOTH shows you a lot, but here’s exactly where the ceiling is:</p>
+        <ul>
+          <li><strong>Off, asleep, or silent.</strong> A device that isn’t currently advertising is invisible. Many devices sleep to save battery and only “wake” occasionally, or stop advertising once paired to something.</li>
+          <li><strong>Classic Bluetooth vs BLE.</strong> GHOSTTOOTH focuses on <strong>BLE</strong> advertisements. Older <strong>Classic Bluetooth (BR/EDR)</strong> devices that aren’t in discoverable mode may not appear.</li>
+          <li><strong>Randomized / rotating MAC addresses.</strong> For privacy, many devices change their Bluetooth address every few minutes. The <em>same</em> tracker can therefore show up as several different entries, and can’t always be re-identified across time.</li>
+          <li><strong>Non-Bluetooth trackers are invisible.</strong> A bug that reports over <strong>GPS, cellular (SIM), or Wi-Fi only</strong> emits no Bluetooth signal — a Bluetooth scanner simply cannot see it.</li>
+          <li><strong>Operating-system limits.</strong> Background-scan throttling, Doze/battery optimisation, and per-app quotas can reduce how many packets your phone reports.</li>
+          <li><strong>Encrypted / opaque payloads.</strong> Some advertisements are deliberately obfuscated, so little can be read beyond “something is here.”</li>
+        </ul>
+        <p style="margin-bottom:0;"><strong>Treat a clean scan as “nothing obvious right now,” not “definitely nothing.”</strong> GHOSTTOOTH is an awareness aid, not a guarantee.</p>
+      </div>
+    </section>
+
+    <!-- ===================== 7. MANUFACTURER ===================== -->
+    <section id="mfr">
+      <h2><span class="num">07</span> Manufacturer codes / Company Identifiers</h2>
+      <p class="section-lead">A number inside the packet that often (but not always) reveals the maker.</p>
+      <p>Advertisement packets can carry <strong>manufacturer-specific data</strong> that begins with a <strong>Company Identifier</strong> — a number assigned by the <strong>Bluetooth SIG</strong> to a specific vendor. GHOSTTOOTH maps that number to a company name wherever it can (from an embedded registry of thousands of vendors).</p>
+      <ul>
+        <li><strong>“Unknown” is normal.</strong> Not every device includes a Company Identifier, many chips are generic silicon vendors shared by thousands of unrelated products, and the registry can’t cover everything. Seeing <em>Unknown</em> is common and not suspicious by itself.</li>
+        <li><strong>A manufacturer ID is not proof of ownership or identity.</strong> IDs can be <strong>reused</strong> across many product lines, or <strong>spoofed</strong>. “Made by Company X” doesn’t mean “operated by Company X,” and a familiar brand name doesn’t confirm what the device actually is.</li>
+      </ul>
+      <p>Use the manufacturer as <strong>one clue among several</strong> (name, services, signal behaviour), never as a verdict.</p>
+    </section>
+
+    <!-- ===================== 8. READING THE LIST ===================== -->
+    <section id="list">
+      <h2><span class="num">08</span> Reading the device list</h2>
+      <p class="section-lead">What each field means — and how much to trust it.</p>
+      <div class="fields">
+        <div class="field"><span class="k">Name</span><span class="v">The broadcast device name. Often <strong>empty</strong>, generic, or freely set by the maker — and <strong>easily spoofed</strong>. Treat as a hint, not an identity.</span></div>
+        <div class="field"><span class="k">Address (MAC)</span><span class="v">The device’s Bluetooth address. May be a <strong>random, rotating</strong> value for privacy, so it can change over time for the same device.</span></div>
+        <div class="field"><span class="k">RSSI / dBm</span><span class="v">Signal strength (negative; closer to 0 = stronger/closer). See section&nbsp;04.</span></div>
+        <div class="field"><span class="k">Est. distance</span><span class="v">A rough guess from RSSI. Best used as a trend as you move. See section&nbsp;05.</span></div>
+        <div class="field"><span class="k">Manufacturer</span><span class="v">Vendor resolved from the Company Identifier, or <em>Unknown</em>. Not proof of ownership. See section&nbsp;07.</span></div>
+        <div class="field"><span class="k">Service UUIDs</span><span class="v">Codes for the Bluetooth services a device advertises (e.g. battery, find-my protocols). Hints at what the device <em>does</em>.</span></div>
+        <div class="field"><span class="k">Last seen</span><span class="v">When the most recent packet arrived. A device that stops advertising will go stale and eventually disappear.</span></div>
+      </div>
+    </section>
+
+    <!-- ===================== 9. LOCATE ===================== -->
+    <section id="locate">
+      <h2><span class="num">09</span> How to physically locate a suspicious device</h2>
+      <p class="section-lead">Play “hot and cold” with the signal.</p>
+      <ol class="steps">
+        <li><strong>Pick your target</strong> row and keep an eye on its <strong>RSSI</strong> and <strong>estimated distance</strong>.</li>
+        <li><strong>Walk slowly around the space.</strong> Move a few steps, pause, and watch the numbers settle.</li>
+        <li><strong>Follow the heat.</strong> As <strong>RSSI climbs toward 0</strong> (e.g. −80 → −55 → −40) and the estimated distance shrinks, you’re getting <em>closer</em>. If it drops, you’re moving away.</li>
+        <li><strong>Narrow it down.</strong> Sweep high and low, and check enclosed spots — bags, seats, vents, furniture, vehicle interiors.</li>
+        <li><strong>Expect wobble.</strong> Readings jump due to reflections and obstacles; trust the <em>overall trend</em> over several readings, not one spike.</li>
+      </ol>
+    </section>
+
+    <!-- ===================== 10. PRIVACY ===================== -->
+    <section id="privacy">
+      <div class="callout privacy">
+        <span class="tag">Your privacy</span>
+        <h2 style="border:0;padding:0;"><span class="num">10</span> Privacy</h2>
+        <p>GHOSTTOOTH scans <strong>locally, on your device.</strong> The Bluetooth advertisements it hears are processed on your phone to build the list you see.</p>
+        <ul>
+          <li><strong>No accounts, no ads, no third-party tracking SDKs.</strong></li>
+          <li><strong>Scan data is not sold or shared,</strong> and by default the device information you capture stays on your phone.</li>
+          <li>Any network use is limited to fetching the app’s public reference data (like the manufacturer registry) — <strong>never your scan results.</strong></li>
+        </ul>
+        <p style="margin-bottom:0;">In short: it’s a listener, not a reporter. For the exact, authoritative details, see the app’s in-store privacy policy.</p>
+      </div>
+    </section>
+
+    <!-- ===================== 11. LEGAL ===================== -->
+    <section id="legal">
+      <div class="callout legal">
+        <span class="tag">Important · legal &amp; ethical</span>
+        <h2 style="border:0;padding:0;"><span class="num">11</span> Legal &amp; ethical use</h2>
+        <p>GHOSTTOOTH is provided for <strong>personal safety, education, and awareness</strong>. By using it you agree to use it responsibly:</p>
+        <ul>
+          <li><strong>Obey local laws.</strong> Rules on radio monitoring, recording, and privacy differ by country and region — you are responsible for complying with yours.</li>
+          <li><strong>Don’t misuse it.</strong> Never use GHOSTTOOTH to stalk, harass, surveil, or track another person, or to interfere with devices you don’t own.</li>
+          <li><strong>It is not a certified security or forensics tool.</strong> Results are best-effort and probabilistic; do not rely on it as sole evidence or as a guarantee of safety.</li>
+          <li><strong>If you fear for your safety,</strong> contact local authorities or a professional sweep service.</li>
+        </ul>
+        <p style="margin-bottom:0;">The software is offered “as is,” without warranty of any kind.</p>
+      </div>
+    </section>
+
+    <!-- ===================== 12. TROUBLESHOOTING ===================== -->
+    <section id="trouble">
+      <h2><span class="num">12</span> Troubleshooting FAQ</h2>
+      <p class="section-lead">Quick answers to the most common questions.</p>
+
+      <details>
+        <summary>I see no devices at all</summary>
+        <div class="details-body">
+          <ul>
+            <li>Make sure <strong>Bluetooth is ON</strong> and the app has the <strong>Nearby devices</strong> (or Location, on older Android) permission granted.</li>
+            <li>Press <strong>Start scan</strong> and wait 10–30 seconds — some devices advertise infrequently.</li>
+            <li>Move to where devices are likely present; a truly empty radio environment is possible but rare.</li>
+            <li>Toggle Bluetooth off and on, or restart the app, to reset the radio.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>Everything shows “Unknown”</summary>
+        <div class="details-body">
+          <p>That’s normal. Many devices don’t include a Company Identifier, use a generic chipset vendor, or aren’t in the registry. Absence of a name isn’t suspicious — judge devices by their overall behaviour (signal, services, persistence), not the label alone.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>The distances jump around</summary>
+        <div class="details-body">
+          <p>Expected. Distance is estimated from a noisy signal that bounces off walls, bodies and metal. Don’t read a single value — watch the <strong>trend</strong> as you move (section&nbsp;05 &amp; 09).</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why does the same tracker show up twice (or many times)?</summary>
+        <div class="details-body">
+          <p>Privacy features. Many devices <strong>rotate their MAC address</strong> every few minutes, so one physical device can appear as several entries over time. It’s not a bug — it’s the device protecting against long-term tracking.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Why do I need location permission for a Bluetooth app?</summary>
+        <div class="details-body">
+          <p>On older Android versions the OS ties BLE scanning to the Location permission, because beacons can reveal location. GHOSTTOOTH doesn’t use GPS or track you (see section&nbsp;03). On Android 12+ it declares its scan as <code>neverForLocation</code>.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>A device disappeared from the list</summary>
+        <div class="details-body">
+          <p>It likely stopped advertising, went to sleep, moved out of range, or rotated to a new address. Rescan and move around; if it’s a rotating device, it may reappear under a different entry.</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>Can GHOSTTOOTH find hidden cameras or bugs that don’t use Bluetooth?</summary>
+        <div class="details-body">
+          <p>No. If a device communicates only over Wi-Fi, cellular, or GPS — or stores footage locally with no radio — it emits no Bluetooth signal and cannot be detected here. See section&nbsp;06.</p>
+        </div>
+      </details>
+    </section>
+
+    <!-- ===================== 13. GLOSSARY ===================== -->
+    <section id="glossary">
+      <h2><span class="num">13</span> Glossary</h2>
+      <p class="section-lead">The jargon, decoded.</p>
+      <dl class="glossary">
+        <div>
+          <dt>BLE (Bluetooth Low Energy)</dt>
+          <dd>A low-power flavour of Bluetooth used by trackers, wearables and sensors. It’s the technology GHOSTTOOTH primarily listens to.</dd>
+        </div>
+        <div>
+          <dt>Advertisement packet</dt>
+          <dd>The small, public broadcast a BLE device sends to announce its presence. GHOSTTOOTH reads these without connecting.</dd>
+        </div>
+        <div>
+          <dt>RSSI</dt>
+          <dd>Received Signal Strength Indicator — how strongly your phone hears a device, reported in dBm.</dd>
+        </div>
+        <div>
+          <dt>dBm</dt>
+          <dd>Decibel-milliwatts, the unit for RSSI. Values are negative; closer to 0 means a stronger signal.</dd>
+        </div>
+        <div>
+          <dt>MAC address</dt>
+          <dd>A device’s Bluetooth hardware address. Often randomized/rotating for privacy, so it may change over time.</dd>
+        </div>
+        <div>
+          <dt>Company Identifier</dt>
+          <dd>A number assigned by the Bluetooth SIG to a vendor, embedded in manufacturer data. Maps to a maker — but can be reused or spoofed.</dd>
+        </div>
+        <div>
+          <dt>Service UUID</dt>
+          <dd>An identifier for a Bluetooth “service” (a capability) that a device advertises, hinting at what it does.</dd>
+        </div>
+        <div>
+          <dt>GATT</dt>
+          <dd>Generic Attribute Profile — the structure BLE uses to exchange data <em>after</em> connecting. GHOSTTOOTH stays passive and does not connect.</dd>
+        </div>
+        <div>
+          <dt>Path loss</dt>
+          <dd>The predictable way a radio signal weakens with distance and obstacles — the basis for turning RSSI into an estimated distance.</dd>
+        </div>
+        <div>
+          <dt>Bluetooth SIG</dt>
+          <dd>The Special Interest Group that maintains Bluetooth standards and assigns Company Identifiers.</dd>
+        </div>
+      </dl>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p><span class="ft-brand">GHOSTTOOTH</span> — a <a href="https://labidi.eu">labidi.eu</a> project</p>
+    <p><span class="pill">Awareness tool · not a guarantee</span></p>
+    <p>Last updated: 2026-07-09</p>
+  </footer>
+
+</div>
+</body>
+</html>

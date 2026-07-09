@@ -445,6 +445,92 @@ body.terminal-bg::before {
 .notice-box.info-warn    { background: #221a08; border: 1px solid var(--amber); color: var(--amber); }
 .notice-box.info-error   { background: #200810; border: 1px solid var(--red-dim); color: var(--red); }
 
+/* ---- Live Scan Diagnostics Row ---- */
+.status-bar-diag {
+    background: linear-gradient(180deg, #14112a 0%, #0d0a1e 100%);
+    border: 1px solid var(--border);
+    box-shadow: inset 0 0 20px #00000066, 0 0 10px #e3c46a11;
+}
+.status-bar-diag .status-value { font-size: 0.85rem; }
+.status-bar-diag #diag-active.threat { color: var(--red); animation: pulse-red 1s ease-in-out infinite; }
+
+/* ---- Troubleshooting Grimoire ---- */
+details.troubleshoot {
+    margin-bottom: 14px;
+    background:
+        radial-gradient(120% 100% at 0% 0%, #1a1330 0%, #0d0a1e 70%),
+        var(--panel-ink);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: inset 0 0 26px #00000066, 0 0 12px #e3c46a12;
+}
+details.troubleshoot > summary {
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    padding: 12px 16px;
+}
+details.troubleshoot > summary::-webkit-details-marker { display: none; }
+details.troubleshoot > summary .section-label {
+    display: inline;
+    margin-bottom: 0;
+    color: var(--amber);
+    transition: color 0.15s, text-shadow 0.15s;
+}
+details.troubleshoot > summary::before {
+    content: '\25B8  ';
+    color: var(--text-dim);
+}
+details.troubleshoot[open] > summary::before { content: '\25BE  '; }
+details.troubleshoot > summary:hover .section-label {
+    color: var(--green);
+    text-shadow: 0 0 10px #e3c46a44;
+}
+details.troubleshoot > summary:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+
+.troubleshoot-body {
+    padding: 4px 18px 16px;
+    border-top: 1px solid var(--rule);
+}
+.troubleshoot-body p { margin: 12px 0; line-height: 1.7; }
+
+.troubleshoot-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.troubleshoot-list li {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: var(--text);
+}
+.troubleshoot-list li::marker {
+    color: var(--amber);
+    font-family: var(--font-rune);
+}
+.troubleshoot-list strong { color: var(--green-dim); }
+
+.cmd-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0;
+}
+code.cmd {
+    display: inline-block;
+    background: var(--panel-ink);
+    border: 1px solid var(--rule);
+    color: var(--amber);
+    font-family: var(--font-rune);
+    font-size: 0.85rem;
+    padding: 4px 9px;
+    border-radius: 4px;
+}
+#bridge-cmd { box-shadow: 0 0 10px #e3c46a1c; }
+
 /* ---- Device List ---- */
 .device-list {
     min-height: 120px;
