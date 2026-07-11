@@ -665,6 +665,14 @@
           <p>No. If a device communicates only over Wi-Fi, cellular, or GPS — or stores footage locally with no radio — it emits no Bluetooth signal and cannot be detected here. See section&nbsp;06.</p>
         </div>
       </details>
+
+      <details>
+        <summary>Can you make an AirTag or SmartTag ring?</summary>
+        <div class="details-body">
+          <p><strong>No — not in a general way.</strong> Making a tracker play a sound is a private, vendor-controlled feature. On an AirTag, a SmartTag or a Tile, the “ring” command is part of that vendor’s own protocol (Apple Find&nbsp;My, Samsung SmartThings Find, Tile’s app) and is <em>cryptographically authenticated</em>, so only the owner’s account and app can trigger it. There is no public, standard Bluetooth command a third-party scanner can send to make an arbitrary tracker beep.</p>
+          <p class="tech"><strong>The technical bit:</strong> a rare, standardised exception exists — the Bluetooth <em>Immediate Alert Service</em> (UUID&nbsp;<code>0x1802</code>), used by simple “find-me” key finders. If a device genuinely exposes IAS and leaves it writable without pairing, a beep is technically possible. In practice, mainstream consumer trackers (AirTag, SmartTag, Tile) do <strong>not</strong> expose it — they use their proprietary, authenticated protocols instead — so GHOSTTOOTH deliberately does not attempt it. GHOSTTOOTH’s optional experimental GATT probe is strictly <strong>read-only</strong>: it never writes to a device.</p>
+        </div>
+      </details>
     </section>
 
     <!-- ===================== 13. GLOSSARY ===================== -->
