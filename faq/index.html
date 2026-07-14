@@ -9,8 +9,8 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0b0d1a">
 <link rel="canonical" href="https://ghosttooth.labidi.eu/faq/">
-<link rel="icon" type="image/png" href="../media/GhostTooth.png">
-<link rel="apple-touch-icon" href="../media/GhostTooth.png">
+<link rel="icon" type="image/png" href="../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../media/app-icon-512.png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -18,15 +18,18 @@
 <meta property="og:title" content="GHOSTTOOTH — Help &amp; FAQ">
 <meta property="og:description" content="How the Bluetooth surveillance &amp; tracker detector works, what it can and cannot see, and how to read the results.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/faq/">
-<meta property="og:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
 <meta property="og:image:alt" content="GHOSTTOOTH logo">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
 <meta property="og:locale" content="en">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GHOSTTOOTH — Help &amp; FAQ">
 <meta name="twitter:description" content="How the Bluetooth surveillance &amp; tracker detector works, what it can and cannot see, and how to read the results.">
-<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
 <title>GHOSTTOOTH — Help &amp; FAQ</title>
@@ -142,6 +145,13 @@
     border: 1px solid var(--border);
     color: var(--gold);
     font-size: clamp(20px, 5vw, 30px);
+    overflow: hidden;
+  }
+  .brand .glyph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .tagline {
     color: var(--ink-dim);
@@ -410,13 +420,62 @@
     * { transition: none !important; }
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://ghosttooth.labidi.eu/" },
+    { "@type": "ListItem", "position": 2, "name": "Help & FAQ", "item": "https://ghosttooth.labidi.eu/faq/" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "en",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is GHOSTTOOTH?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GHOSTTOOTH is a Bluetooth Low Energy (BLE) scanner and detector. It passively listens for the advertisement packets nearby Bluetooth devices broadcast and lists them, including tag-style location trackers and some covert recording devices. It does not connect to or interfere with other devices." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does a Bluetooth scanner need location permission?",
+      "acceptedAnswer": { "@type": "Answer", "text": "On many Android versions the operating system ties Bluetooth scanning to location permission, because BLE beacons can be used to infer location. GHOSTTOOTH does not collect, store, or transmit your location; the permission exists only because Android requires it to enable scanning." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can't GHOSTTOOTH detect 100% of devices?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only BLE devices that are actively advertising are visible. Classic Bluetooth devices that never advertise over BLE, devices already connected to a phone, and devices with Bluetooth off cannot be seen. Trackers such as AirTags advertise only intermittently, so detection is best-effort awareness, not a guarantee." }
+    },
+    {
+      "@type": "Question",
+      "name": "I see no devices at all — what should I check?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Make sure Bluetooth is on, grant the scan permission, and use HTTPS. On Windows the in-browser Web Bluetooth scan is unreliable, so run the local Python bridge instead. Only advertising BLE devices appear, so nearby idle or classic-Bluetooth devices may not show up." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the same tracker show up more than once?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Many devices rotate their Bluetooth MAC address for privacy, so a single physical device can appear under several entries over time. The optional 'bundle rotating MACs' view groups nameless devices that share a manufacturer and reappear at a similar signal level, but this is a heuristic." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is GHOSTTOOTH legal and ethical to use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "GHOSTTOOTH only listens to public Bluetooth advertisements and is intended for personal awareness and anti-stalking safety. Detections can produce false positives, so you should never harass anyone based on a result. Always follow the laws that apply where you are." }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="wrap">
 
   <!-- ===================== HERO ===================== -->
   <header class="hero">
-    <h1 class="brand"><span class="glyph" aria-hidden="true">👻</span>GHOSTTOOTH</h1>
+    <h1 class="brand"><span class="glyph"><img src="../media/GhostTooth-mascot.png" alt="GHOSTTOOTH logo" width="54" height="54"></span>GHOSTTOOTH</h1>
     <p class="tagline">A Bluetooth scanner that helps you discover nearby devices — including potential surveillance gadgets and hidden trackers.</p>
     <p class="byline">Help &amp; FAQ · a labidi.eu project</p>
   </header>

@@ -770,6 +770,26 @@ details.info-section > summary .section-label {
 
 .hidden { display: none !important; }
 
+/* ---- Skip link (a11y / SEO) ---- */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 1000;
+    background: var(--green);
+    color: #12152b;
+    padding: 8px 14px;
+    border-radius: 0 0 4px 0;
+    font-family: var(--font-arcane);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+}
+.skip-link:focus {
+    left: 0;
+    outline: 2px solid var(--amber);
+    outline-offset: 2px;
+}
+
 /* ---- Reduced Motion ---- */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
@@ -799,6 +819,13 @@ details.info-section > summary .section-label {
 }
 
 /* ---- App / reliability callout ---- */
+.brand-logo {
+    display: block;
+    width: clamp(96px, 22vw, 148px);
+    height: auto;
+    margin: 4px auto 10px;
+    filter: drop-shadow(0 0 22px #e3c46a2e);
+}
 .app-callout { margin-bottom: 16px; }
 .app-callout-lead { margin: 0 0 8px; }
 .app-callout-logo {
@@ -842,4 +869,43 @@ a.terminal-btn:hover { text-decoration: none; }
 }
 .footer-sep { color: var(--text-dim); }
 .footer-note { margin: 10px auto 0; max-width: 60ch; line-height: 1.55; }
+
+/* ---- 404 page ---- */
+.notfound {
+    text-align: center;
+    padding: clamp(24px, 8vw, 64px) 16px;
+    max-width: 60ch;
+    margin: 0 auto;
+}
+.notfound-logo {
+    width: clamp(72px, 18vw, 104px);
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 0 18px #e3c46a2a);
+}
+.notfound-code {
+    font-family: var(--font-arcane);
+    font-size: clamp(3.5rem, 18vw, 7rem);
+    line-height: 1;
+    margin: 0;
+    color: var(--green);
+    letter-spacing: 0.06em;
+    text-shadow: 0 0 24px #e3c46a33;
+}
+.notfound-title {
+    font-family: var(--font-arcane);
+    letter-spacing: 0.2em;
+    color: var(--amber);
+    margin: 6px 0 14px;
+    font-size: 1rem;
+}
+.notfound-msg { margin: 0 auto 22px; line-height: 1.6; }
+.notfound-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
 

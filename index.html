@@ -13,8 +13,8 @@
     <link rel="canonical" href="https://ghosttooth.labidi.eu/">
 
     <!-- Favicons (based on the GHOSTTOOTH logo) -->
-    <link rel="icon" type="image/png" href="media/GhostTooth.png">
-    <link rel="apple-touch-icon" href="media/GhostTooth.png">
+    <link rel="icon" type="image/png" href="media/app-icon-512.png">
+    <link rel="apple-touch-icon" href="media/app-icon-512.png">
     <link rel="manifest" href="site.webmanifest">
 
     <!-- Open Graph -->
@@ -23,15 +23,18 @@
     <meta property="og:title" content="GHOSTTOOTH // Bluetooth Surveillance &amp; Tracker Detector">
     <meta property="og:description" content="Scan for nearby Bluetooth (BLE) devices to help find hidden trackers and surveillance gadgets. Free, privacy-first, and works offline.">
     <meta property="og:url" content="https://ghosttooth.labidi.eu/">
-    <meta property="og:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+    <meta property="og:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
     <meta property="og:image:alt" content="GHOSTTOOTH logo">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
     <meta property="og:locale" content="en">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GHOSTTOOTH // Bluetooth Surveillance &amp; Tracker Detector">
     <meta name="twitter:description" content="Scan for nearby Bluetooth (BLE) devices to help find hidden trackers and surveillance gadgets. Free, privacy-first, and works offline.">
-    <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+    <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
     <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +52,7 @@
       "description": "GHOSTTOOTH scans for nearby Bluetooth (BLE) devices to help you find hidden trackers and surveillance gadgets. Privacy-first and works offline.",
       "applicationCategory": "SecurityApplication",
       "operatingSystem": "Android, Web",
-      "image": "https://ghosttooth.labidi.eu/media/GhostTooth.png",
+      "image": "https://ghosttooth.labidi.eu/media/app-icon-1024.png",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -67,8 +70,32 @@
       }
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://ghosttooth.labidi.eu/#organization",
+          "name": "labidi.eu",
+          "url": "https://labidi.eu",
+          "logo": "https://ghosttooth.labidi.eu/media/app-icon-1024.png"
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://ghosttooth.labidi.eu/#website",
+          "name": "GHOSTTOOTH",
+          "url": "https://ghosttooth.labidi.eu/",
+          "description": "Bluetooth (BLE) scanner that helps find hidden trackers and surveillance devices.",
+          "inLanguage": "en",
+          "publisher": { "@id": "https://ghosttooth.labidi.eu/#organization" }
+        }
+      ]
+    }
+    </script>
 </head>
 <body class="terminal-bg">
+    <a href="#main-content" class="skip-link">Skip to content</a>
     <div class="terminal-window">
 
         <!-- Header -->
@@ -78,7 +105,10 @@
             <span class="prompt-blink" aria-hidden="true">█</span>
         </header>
 
-        <main class="terminal-body">
+        <main class="terminal-body" id="main-content">
+
+            <!-- Brand logo -->
+            <img src="media/GhostTooth-mascot.png" alt="GHOSTTOOTH logo" class="brand-logo" width="140" height="140">
 
             <!-- Title -->
             <h1 class="tool-title">
@@ -92,7 +122,7 @@
             <!-- App / reliability callout -->
             <section class="app-callout notice-box info-info" aria-label="Get the app">
                 <p class="app-callout-lead">
-                    <img src="media/GhostTooth.png" alt="" class="app-callout-logo" width="22" height="22" aria-hidden="true">
+                    <img src="media/GhostTooth-mascot.png" alt="" class="app-callout-logo" width="22" height="22" aria-hidden="true">
                     <strong>GHOSTTOOTH finds nearby Bluetooth (BLE) devices</strong> — including hidden
                     trackers (AirTag, Tile, SmartTag) and covert surveillance gadgets (smart glasses, wearable
                     cameras) — by reading the advertisement packets they broadcast. It is privacy-first: scanning
