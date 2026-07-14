@@ -89,6 +89,30 @@
                 <strong>G</strong>athering <strong>H</strong>idden <strong>O</strong>bjects through <strong>S</strong>ignal <strong>T</strong>racking and <strong>T</strong>elemetry <strong>O</strong>bservation of <strong>O</strong>perational <strong>T</strong>racker <strong>H</strong>ardware — tracking trackers with Bluetooth.
             </p>
 
+            <!-- App / reliability callout -->
+            <section class="app-callout notice-box info-info" aria-label="Get the app">
+                <p class="app-callout-lead">
+                    <img src="media/GhostTooth.png" alt="" class="app-callout-logo" width="22" height="22" aria-hidden="true">
+                    <strong>GHOSTTOOTH finds nearby Bluetooth (BLE) devices</strong> — including hidden
+                    trackers (AirTag, Tile, SmartTag) and covert surveillance gadgets (smart glasses, wearable
+                    cameras) — by reading the advertisement packets they broadcast. It is privacy-first: scanning
+                    happens on your device and nothing is uploaded.
+                </p>
+                <p class="app-callout-note">
+                    ⚠ <strong>Browsers handle Bluetooth inconsistently.</strong> Web Bluetooth support varies
+                    wildly between browsers and operating systems, and in-page scanning is unreliable (it barely
+                    works on Windows at all). For results you can actually trust, we strongly recommend the
+                    <strong>native Android app</strong> or the <strong>local Python bridge</strong>.
+                </p>
+                <div class="app-actions">
+                    <!-- TODO: replace href with the real Google Play listing URL once the app is published -->
+                    <a id="btn-playstore" class="terminal-btn primary" href="#" data-play-placeholder="true"
+                       aria-label="Get GHOSTTOOTH on Google Play (coming soon)" rel="noopener">[ ▶ GET IT ON GOOGLE PLAY ]</a>
+                    <a class="terminal-btn secondary" href="faq/">[ ? HELP &amp; FAQ ]</a>
+                    <span class="dim small">Android app coming soon — until then, use the Python bridge below.</span>
+                </div>
+            </section>
+
             <!-- Status Panel (sticky on desktop) -->
             <div class="status-panel">
                 <div class="status-bar">
@@ -352,6 +376,22 @@
             </details>
 
         </main><!-- /terminal-body -->
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <nav class="footer-nav" aria-label="Site links">
+                <a href="faq/" class="terminal-link">HELP &amp; FAQ</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="privacy/" class="terminal-link">PRIVACY POLICY</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="https://labidi.eu" class="terminal-link">labidi.eu</a>
+            </nav>
+            <p class="dim small footer-note">
+                GHOSTTOOTH — an awareness tool, not a guarantee. Because browser Bluetooth support is
+                inconsistent, the <strong>Android app</strong> or the <strong>Python bridge</strong> is the
+                recommended way to run it.
+            </p>
+        </footer>
     </div><!-- /terminal-window -->
 
     <script src="media/long_company_identifiers.js"></script>

@@ -797,3 +797,49 @@ details.info-section > summary .section-label {
     .terminal-window { max-width: 1360px; }
     .device-list { grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); }
 }
+
+/* ---- App / reliability callout ---- */
+.app-callout { margin-bottom: 16px; }
+.app-callout-lead { margin: 0 0 8px; }
+.app-callout-logo {
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 4px;
+    vertical-align: -0.28em;
+    margin-right: 4px;
+}
+.app-callout-note { margin: 0 0 10px; color: var(--amber); }
+.app-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+/* Anchors styled as terminal buttons */
+a.terminal-btn {
+    display: inline-block;
+    text-decoration: none;
+    line-height: 1.2;
+}
+a.terminal-btn:hover { text-decoration: none; }
+#btn-playstore[data-play-placeholder="true"] { position: relative; }
+
+/* ---- Footer ---- */
+.site-footer {
+    border-top: 1px solid #b8934a22;
+    padding: 16px 24px 22px;
+    text-align: center;
+}
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-arcane);
+    letter-spacing: 0.06em;
+    font-size: 0.8rem;
+}
+.footer-sep { color: var(--text-dim); }
+.footer-note { margin: 10px auto 0; max-width: 60ch; line-height: 1.55; }
+
