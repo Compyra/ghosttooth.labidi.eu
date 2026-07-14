@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="GHOSTTOOTH privacy policy — we do not collect, store, or share personal data. The app works fully offline; your public IP is only ever visible if you choose to fetch optional definition updates.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/privacy/">
+<link rel="icon" type="image/png" href="../media/GhostTooth.png">
+<link rel="apple-touch-icon" href="../media/GhostTooth.png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="GHOSTTOOTH — Privacy Policy">
+<meta property="og:description" content="We do not collect, store, or share personal data. GHOSTTOOTH works fully offline and is privacy-first by design.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/privacy/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+<meta property="og:image:alt" content="GHOSTTOOTH logo">
+<meta property="og:locale" content="en">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GHOSTTOOTH — Privacy Policy">
+<meta name="twitter:description" content="We do not collect, store, or share personal data. GHOSTTOOTH works fully offline and is privacy-first by design.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/GhostTooth.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>GHOSTTOOTH — Privacy Policy</title>
+<style>
+  /* ==========================================================
+     GHOSTTOOTH — Privacy Policy
+     Single-file, offline-safe. No external CSS/JS/fonts/CDN.
+     Dark-first, responsive, safe-area aware.
+     ========================================================== */
+
+  :root {
+    --bg: #0b0d1a;
+    --bg-2: #12152a;
+    --surface: #161a30;
+    --surface-2: #1d2340;
+    --border: #2a3157;
+    --ink: #e8e9f0;
+    --ink-dim: #a7adc9;
+    --ink-faint: #7b81a3;
+    --gold: #e3c46a;
+    --gold-soft: #f0d98f;
+    --accent: #8fb8ff;
+    --danger: #ff5a6e;
+    --warn: #f5b942;
+    --ok: #5fd3a6;
+    --radius: 14px;
+    --radius-sm: 10px;
+    --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+
+  /* Light mode for users/devices that prefer it. */
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb;
+      --bg-2: #eaecf6;
+      --surface: #ffffff;
+      --surface-2: #f0f2fb;
+      --border: #d6d9ec;
+      --ink: #191c2c;
+      --ink-dim: #4a5170;
+      --ink-faint: #6b7290;
+      --gold: #9a7b16;
+      --gold-soft: #7d6410;
+      --accent: #2f5fd0;
+      --danger: #c62839;
+      --warn: #a5720a;
+      --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%),
+      var(--bg);
+    color: var(--ink);
+    font-family: var(--font);
+    font-size: 17px;
+    line-height: 1.65;
+    padding:
+      env(safe-area-inset-top)
+      env(safe-area-inset-right)
+      env(safe-area-inset-bottom)
+      env(safe-area-inset-left);
+  }
+
+  .wrap {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: clamp(16px, 4vw, 40px) clamp(16px, 5vw, 32px) 64px;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* ---------- Hero ---------- */
+  header.hero {
+    text-align: center;
+    padding: clamp(20px, 6vw, 44px) 0 clamp(12px, 3vw, 20px);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--mono);
+    letter-spacing: .12em;
+    font-weight: 700;
+    font-size: clamp(26px, 7vw, 44px);
+    color: var(--gold);
+    margin: 0;
+  }
+  .brand .glyph {
+    display: inline-grid;
+    place-items: center;
+    width: clamp(38px, 9vw, 54px);
+    height: clamp(38px, 9vw, 54px);
+    border-radius: 12px;
+    background: linear-gradient(160deg, var(--surface-2), var(--bg-2));
+    border: 1px solid var(--border);
+    color: var(--gold);
+    font-size: clamp(20px, 5vw, 30px);
+    overflow: hidden;
+  }
+  .brand .glyph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .tagline {
+    color: var(--ink-dim);
+    font-size: clamp(14px, 3.5vw, 18px);
+    margin: 10px auto 0;
+    max-width: 52ch;
+  }
+  .byline {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--ink-faint);
+    letter-spacing: .04em;
+  }
+
+  /* ---------- Intro ---------- */
+  .intro {
+    background: linear-gradient(180deg, var(--surface), var(--bg-2));
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(16px, 4vw, 24px);
+    box-shadow: var(--shadow);
+    margin-top: 8px;
+  }
+  .intro p { margin: 0; }
+  .intro p + p { margin-top: 12px; }
+
+  /* ---------- Sections ---------- */
+  main { margin-top: 8px; }
+  section { margin-top: clamp(28px, 6vw, 44px); }
+  h2 {
+    font-size: clamp(20px, 4.6vw, 27px);
+    margin: 0 0 6px;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  h2 .num {
+    font-family: var(--mono);
+    font-size: .62em;
+    color: var(--gold);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 2px 8px;
+    flex: none;
+  }
+  h3 { font-size: clamp(16px, 4vw, 20px); margin: 18px 0 6px; }
+  .section-lead { color: var(--ink-dim); margin: 2px 0 10px; }
+
+  p { margin: 12px 0; }
+
+  ul, ol { padding-left: 1.25em; }
+  li { margin: 6px 0; }
+
+  strong { color: var(--gold-soft); }
+
+  code {
+    font-family: var(--mono);
+    font-size: .88em;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 1px 6px;
+  }
+
+  /* ---------- Callout boxes ---------- */
+  .callout {
+    border-radius: var(--radius);
+    padding: clamp(16px, 4vw, 22px);
+    border: 1px solid var(--border);
+    margin: 14px 0;
+    background: var(--surface);
+  }
+  .callout h2, .callout h3 { margin-top: 0; }
+  .callout .tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .callout.privacy {
+    border-color: color-mix(in srgb, var(--ok) 45%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--ok) 10%, var(--surface)), var(--surface));
+  }
+  .callout.privacy .tag { background: color-mix(in srgb, var(--ok) 22%, transparent); color: var(--ok); }
+  .callout.honesty {
+    border-color: color-mix(in srgb, var(--warn) 55%, var(--border));
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--warn) 12%, var(--surface)), var(--surface));
+  }
+  .callout.honesty .tag { background: color-mix(in srgb, var(--warn) 25%, transparent); color: var(--warn); }
+
+  /* ---------- "At a glance" grid ---------- */
+  .glance { display: grid; gap: 10px; margin-top: 12px; }
+  .glance .row {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 4px 14px;
+    align-items: start;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .glance .mark { font-size: 18px; line-height: 1.4; }
+  .glance .mark.no { color: var(--ok); }
+  .glance .mark.opt { color: var(--warn); }
+  .glance .txt { color: var(--ink-dim); }
+  .glance .txt strong { color: var(--ink); }
+
+  /* ---------- Field list ---------- */
+  .fields { display: grid; gap: 10px; margin-top: 12px; }
+  .field {
+    display: grid;
+    grid-template-columns: minmax(120px, 190px) 1fr;
+    gap: 4px 16px;
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .field .k { font-family: var(--mono); color: var(--gold); font-size: 14px; }
+  .field .v { color: var(--ink-dim); }
+  @media (max-width: 520px) {
+    .field { grid-template-columns: 1fr; }
+    .field .v { color: var(--ink); }
+  }
+
+  /* ---------- TOC ---------- */
+  nav.toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin-top: 20px;
+  }
+  nav.toc strong { display: block; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 8px; }
+  nav.toc ol { columns: 2; column-gap: 24px; margin: 0; padding-left: 1.1em; }
+  @media (max-width: 520px) { nav.toc ol { columns: 1; } }
+  nav.toc li { margin: 4px 0; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: clamp(36px, 8vw, 60px);
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 14px;
+  }
+  footer .ft-brand { font-family: var(--mono); color: var(--gold); letter-spacing: .1em; }
+  footer nav { margin: 6px 0 12px; }
+  footer nav a { margin: 0 8px; }
+
+  .pill {
+    display: inline-block; font-family: var(--mono); font-size: 12px;
+    padding: 2px 8px; border-radius: 999px; border: 1px solid var(--border);
+    background: var(--surface-2); color: var(--ink-dim);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <header class="hero">
+    <h1 class="brand"><span class="glyph"><img src="../media/GhostTooth.png" alt="GHOSTTOOTH logo" width="54" height="54"></span>GHOSTTOOTH</h1>
+    <p class="tagline">Privacy Policy — built around a simple promise: your data stays on your device.</p>
+    <p class="byline">Privacy Policy · a labidi.eu project</p>
+  </header>
+
+  <!-- ===================== INTRO ===================== -->
+  <div class="intro">
+    <p>GHOSTTOOTH is developed with a commitment to user privacy and transparency. <strong>We do not track you, we do not collect personal data, and we do not use analytics.</strong> The application runs entirely on your device and is fully functional offline.</p>
+    <p>This policy explains — in plain language — what the app does and does not do with your information, and the one optional situation in which any data leaves your device.</p>
+  </div>
+
+  <!-- ===================== TOC ===================== -->
+  <nav class="toc" aria-label="Table of contents">
+    <strong>On this page</strong>
+    <ol>
+      <li><a href="#glance">At a glance</a></li>
+      <li><a href="#collection">Data we collect</a></li>
+      <li><a href="#network">Network activity</a></li>
+      <li><a href="#offline">Offline functionality</a></li>
+      <li><a href="#permissions">Device permissions</a></li>
+      <li><a href="#third-parties">Third parties &amp; sharing</a></li>
+      <li><a href="#children">Children’s privacy</a></li>
+      <li><a href="#rights">Your rights (GDPR)</a></li>
+      <li><a href="#changes">Changes to this policy</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <!-- ============ AT A GLANCE ============ -->
+    <section id="glance">
+      <h2><span class="num">01</span> At a glance</h2>
+      <p class="section-lead">The short version of everything below.</p>
+      <div class="glance">
+        <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>No personal data collected.</strong> The app does not gather, store, or transmit information that identifies you.</span></div>
+        <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>No tracking cookies, no analytics, no advertising IDs.</strong></span></div>
+        <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>No user profiling and no data sharing</strong> with third parties.</span></div>
+        <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>Works fully offline.</strong> All core features function with no internet connection.</span></div>
+        <div class="row"><span class="mark opt" aria-hidden="true">◐</span><span class="txt"><strong>One exception:</strong> the first time you run the app, it will — automatically if a network connection is possible — fetch the latest device definitions from our servers. During this, our server momentarily sees your device’s public IP address, as any server does when you connect to it. Without these definitions the app still works, but cannot recognise what each device is.</span></div>
+      </div>
+    </section>
+
+    <!-- ============ DATA COLLECTION ============ -->
+    <section id="collection">
+      <h2><span class="num">02</span> Data we collect</h2>
+      <div class="callout privacy">
+        <span class="tag">No collection</span>
+        <p style="margin-top:0"><strong>We do not collect, store, or share any user data.</strong></p>
+        <p style="margin-bottom:0">GHOSTTOOTH operates entirely on your device with no backend tracking mechanisms. Bluetooth scan results, device lists, signal readings, and any notes you make stay local to your phone. They are never uploaded to us or anyone else.</p>
+      </div>
+      <p>Specifically, the app does <strong>not</strong> collect any of the following:</p>
+      <ul>
+        <li>Personal identifiers (name, email, phone number, account IDs)</li>
+        <li>Location data or GPS coordinates</li>
+        <li>Advertising identifiers or device fingerprints</li>
+        <li>Usage analytics, crash telemetry, or behavioural data</li>
+        <li>Contacts, photos, files, or other content on your device</li>
+        <li>The results of your Bluetooth scans</li>
+      </ul>
+    </section>
+
+    <!-- ============ NETWORK ACTIVITY ============ -->
+    <section id="network">
+      <h2><span class="num">03</span> Network activity</h2>
+      <p class="section-lead">The app works without a network — but the first launch reaches out once, if it can.</p>
+      <p>GHOSTTOOTH does <strong>not</strong> need a network connection to work. The first time you run the app, it will — automatically, if a network connection is possible — fetch the latest device <strong>definitions</strong> (the reference lists used to recognise device makers and signal types) from our servers.</p>
+      <p>If no network is available, the app still works and scans normally; it simply cannot recognise what each detected device is until it is able to fetch these definitions.</p>
+      <div class="callout honesty">
+        <span class="tag">Full transparency</span>
+        <p style="margin-top:0">When the app fetches definitions, your device connects to our server over the internet. As with any web request, our server can momentarily see your device’s <strong>public IP address</strong>. This is a technical necessity of any internet connection, not something we track or profile.</p>
+        <p style="margin-bottom:0">We do not use this IP address to identify you, build a profile, or link requests together. No personal data and no scan results are ever sent.</p>
+      </div>
+      <div class="fields">
+        <div class="field"><span class="k">What is sent</span><span class="v">A standard request for the current definition files. No personal data or scan results are included.</span></div>
+        <div class="field"><span class="k">What is visible</span><span class="v">Your device’s public IP address, inherent to any internet connection.</span></div>
+        <div class="field"><span class="k">Purpose</span><span class="v">Solely to deliver the device definitions used for recognition.</span></div>
+        <div class="field"><span class="k">When</span><span class="v">On first launch, automatically if a network is possible, and thereafter to refresh definitions. The app runs fully without it.</span></div>
+        <div class="field"><span class="k">Legal basis (GDPR)</span><span class="v">Our legitimate interest in delivering the definitions that make the app useful (Art. 6(1)(f)).</span></div>
+      </div>
+    </section>
+
+    <!-- ============ OFFLINE ============ -->
+    <section id="offline">
+      <h2><span class="num">04</span> Offline functionality</h2>
+      <p>GHOSTTOOTH is designed to work completely offline. All core features — scanning for nearby Bluetooth devices, reading signal strength, and reviewing results — are available without any internet connection. Server connectivity is optional and used only for definition updates at your discretion.</p>
+    </section>
+
+    <!-- ============ PERMISSIONS ============ -->
+    <section id="permissions">
+      <h2><span class="num">05</span> Device permissions</h2>
+      <p class="section-lead">Why the app asks for what it asks for.</p>
+      <p>To scan for nearby Bluetooth devices, Android requires the app to request certain permissions. These are used <strong>only</strong> for the app’s scanning function and are processed on your device.</p>
+      <div class="fields">
+        <div class="field"><span class="k">Bluetooth / Nearby devices</span><span class="v">Required to discover and read advertisements from nearby Bluetooth devices. This is the app’s core function.</span></div>
+        <div class="field"><span class="k">Location (if requested)</span><span class="v">On many Android versions, the operating system ties Bluetooth scanning to location permission. The app does not collect, store, or transmit your location — this permission exists solely because Android requires it to enable Bluetooth scanning.</span></div>
+      </div>
+      <p>The app does not request access to your contacts, photos, files, camera, or microphone.</p>
+    </section>
+
+    <!-- ============ THIRD PARTIES ============ -->
+    <section id="third-parties">
+      <h2><span class="num">06</span> Third parties &amp; sharing</h2>
+      <p>We do not sell, rent, or share your data with third parties, because we do not collect it in the first place. GHOSTTOOTH contains <strong>no third-party analytics SDKs, no advertising networks, and no social media trackers.</strong></p>
+      <p>The application is distributed through the Google Play Store. Your interactions with the store listing itself (such as installing or reviewing the app) are governed by <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google’s Privacy Policy</a>, not this one.</p>
+    </section>
+
+    <!-- ============ CHILDREN ============ -->
+    <section id="children">
+      <h2><span class="num">07</span> Children’s privacy</h2>
+      <p>GHOSTTOOTH does not collect personal data from anyone, including children. The app is not directed at children, and because no data is collected, there is nothing gathered from users of any age.</p>
+    </section>
+
+    <!-- ============ RIGHTS ============ -->
+    <section id="rights">
+      <h2><span class="num">08</span> Your rights (GDPR)</h2>
+      <p>If you are located in the European Union or European Economic Area, the General Data Protection Regulation (GDPR) grants you rights over your personal data — including the rights of access, rectification, erasure, restriction, portability, and objection.</p>
+      <p>Because GHOSTTOOTH does <strong>not</strong> collect or store any personal data on our servers, we hold no personal information about you to access, correct, export, or delete. Any data the app generates (such as your scan history) lives only on your device and is fully under your control; uninstalling the app or clearing its data removes it entirely.</p>
+    </section>
+
+    <!-- ============ CHANGES ============ -->
+    <section id="changes">
+      <h2><span class="num">09</span> Changes to this policy</h2>
+      <p>We may update this privacy policy as needed — for example, to reflect changes in the app or in legal requirements. Any changes will be posted to this page, and the “Last updated” date below will be revised. We encourage you to review this page periodically.</p>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section id="contact">
+      <h2><span class="num">10</span> Contact</h2>
+      <p>If you have any questions about this privacy policy or the app’s handling of data, you can email us at <a href="mailto:security@compyra.com?subject=Regarding%20GhostTooth%20app">security@compyra.com</a>, reach us through the <strong>Google Play Store listing</strong> for GHOSTTOOTH, or via <a href="https://labidi.eu">labidi.eu</a>.</p>
+    </section>
+
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p><span class="ft-brand">GHOSTTOOTH</span> — a <a href="https://labidi.eu">labidi.eu</a> project</p>
+    <nav aria-label="Site links">
+      <a href="/">Home</a>
+      <a href="/faq/">Help &amp; FAQ</a>
+      <a href="/privacy/">Privacy</a>
+    </nav>
+    <p><span class="pill">Privacy-first · offline by design</span></p>
+    <p>Last updated: 2026-07-14</p>
+  </footer>
+
+</div>
+</body>
+</html>
