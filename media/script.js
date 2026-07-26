@@ -31,7 +31,7 @@ const SURVEILLANCE_COMPANIES = {
     0x0D53: 'Luxottica Group S.p.A (manufactures Meta Ray-Ban glasses)',
     0x03C2: 'Snap Inc. (Snap Spectacles)',
     0x0171: 'Amazon.com Services, LLC (Echo Frames)',
-    0x0057: 'Vuzix Corporation (smart glasses)',
+    0x060C: 'Vuzix Corporation (smart glasses)',   // was 0x0057 (= Harman/JBL) - changed 2026-07-26
     0x02A6: 'Epson (Moverio smart glasses)',
 };
 
