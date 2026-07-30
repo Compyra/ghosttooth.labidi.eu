@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/changelog/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/changelog/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/changelog/">
+<link rel="icon" type="image/png" href="../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../media/app-icon-512.png">
+<link rel="manifest" href="../site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="GHOSTTOOTH — Changelog">
+<meta property="og:description" content="What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/changelog/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GHOSTTOOTH — Changelog">
+<meta name="twitter:description" content="What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>Changelog — GHOSTTOOTH</title>
+<style>
+  :root {
+    --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
+    --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+    --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+    --danger: #ff5a6e; --warn: #f5b942; --ok: #5fd3a6;
+    --radius: 14px; --radius-sm: 10px; --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb; --bg-2: #eaecf6; --surface: #ffffff; --surface-2: #f0f2fb;
+      --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+      --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      --danger: #c62839; --warn: #a5720a; --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+    color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px,4vw,40px) clamp(16px,5vw,32px) 64px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip {
+    position: absolute; left: -9999px; top: 0; background: var(--surface);
+    color: var(--ink); padding: 10px 16px; border-radius: var(--radius-sm); z-index: 10;
+  }
+  .skip:focus { left: 12px; top: 12px; }
+  header.site { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  header.site img { width: 44px; height: 44px; border-radius: 10px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .12em; color: var(--gold); font-size: 15px; }
+  nav.langs { margin-left: auto; display: flex; gap: 6px; font-size: 13px; font-family: var(--mono); }
+  nav.langs a, nav.langs span {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+    min-height: 32px; display: inline-flex; align-items: center;
+  }
+  nav.langs [aria-current="true"] { background: var(--surface-2); color: var(--gold); border-color: var(--gold); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 18px 0 6px; color: var(--gold); }
+  h2 { font-size: clamp(20px, 3.5vw, 24px); margin: 36px 0 8px; color: var(--gold-soft); }
+  h3 { font-size: 18px; margin: 24px 0 6px; color: var(--ink); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lede { color: var(--ink-dim); font-size: 18px; }
+  .updated { color: var(--ink-faint); font-size: 13px; font-family: var(--mono); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(14px, 3vw, 20px); margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .card.warn { border-color: var(--warn); }
+  .card.danger { border-color: var(--danger); }
+  .card.ok { border-color: var(--ok); }
+  .card h2, .card h3 { margin-top: 0; }
+  .step { counter-increment: step; }
+  .step h2::before { content: counter(step) ". "; color: var(--gold); }
+  main { counter-reset: step; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gold-soft); font-weight: 600; }
+  code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; height: auto; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); display: block;
+  }
+  .shots figcaption { color: var(--ink-faint); font-size: 13px; margin-top: 6px; }
+  footer.site {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: 14px;
+  }
+  footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Changelog — GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/changelog/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<div class="wrap">
+
+<header class="site">
+  <a href="https://ghosttooth.labidi.eu/"><img src="../media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <span class="brand">GHOSTTOOTH</span>
+  <nav class="langs" aria-label="Language"><span aria-current="true" lang="en">EN</span></nav>
+</header>
+
+<main id="content">
+<h1>Changelog</h1>
+<p class="updated">Last updated 2026-07-30</p>
+<p class="lede">What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about.</p>
+<h2>1.3.1 — 30 July 2026</h2>
+<ul><li><strong>Nearby phones no longer inflate the tracker count.</strong> An Apple device sitting beside its owner broadcasts the same Find My frame whether it is an iPhone or a tag, so it is still listed — as a <em>possible</em> match that says in plain words it is most likely simply someone's phone. What changed is that weak matches like these are no longer counted in the headline “trackers” number and never raise an alarm. The number now only ever counts firm matches.</li><li><strong>Samsung Find on a Samsung device is now “possible”, not “likely”.</strong> Galaxy phones, watches and earbuds take part in Samsung Find too, not only SmartTags.</li><li><strong>You choose how readily something counts as travelling with you.</strong> Three settings, because only you know your situation: <em>fewer alerts</em> if you are around the same people every day, <em>balanced</em>, or <em>more alerts</em> if you are usually alone. The alert now also requires the device to have been genuinely close by, not merely somewhere within Bluetooth range.</li><li><strong>Your history is safe across updates.</strong> The sighting timeline could previously have been wiped by a routine app update. It cannot be any more.</li><li><strong>Hostile device names can no longer cause trouble.</strong> Device names come off the air and can contain anything at all. They are now length-limited and stripped of hidden characters that could disguise what you are reading, and the downloaded detection definitions are size-capped and screened.</li><li><strong>The locator now vibrates as well as beeps</strong>, so it works when you cannot hear it or cannot make a sound.</li><li><strong>Every explanation is now translated.</strong> The app was already in English, French and Dutch, but the sentence explaining <em>why</em> a device was flagged was always written in English, as were the device-type guesses and the “why is monitoring not working” panel. All of it now follows your phone's language — including findings that were already saved, and the CSV you export.</li><li><strong>“Tile” in a device name is no longer enough on its own</strong> — it is an ordinary English word and appeared in smart-home product names.</li></ul>
+<h2>1.3.0 — 28 July 2026</h2>
+<h3>Detection accuracy — the big one</h3>
+<ul><li><strong>Apple and Samsung devices are no longer flagged from the maker ID alone.</strong> Classification previously keyed off the manufacturer company ID, and <code>0x004C</code> is broadcast by every iPhone, iPad, Mac, Apple Watch and set of AirPods ever made. A train carriage produced a screen full of red badges. GhostTooth now decodes the Apple payload and distinguishes an accessory that is <em>separated from its owner</em> — what an unwanted tracker looks like — from an ordinary Apple device beside its owner.</li><li><strong>Google Find My Device Network detection.</strong> Chipolo, Pebblebee, Moto Tag and the rest of the fastest-growing tracker ecosystem are now recognised from their broadcast frames — including the frame a tag sends once it has been <em>separated from its owner</em> and has stopped rotating its address so that detectors can find it. That is the exact signal an unwanted tag gives off, and it is the one that matters most.</li><li><strong>Eddystone beacons are no longer trackers.</strong> Google's tracker network shares a service UUID with ordinary retail beacons, so every shop display used to be a false positive. Decided by frame type now.</li><li><strong>Samsung SmartTag</strong> is detected via the Samsung Find service rather than the Samsung company ID.</li><li><strong>Confidence levels.</strong> Every finding is now rated Possible, Likely or Confirmed, and says in plain language what that means. Weak evidence is never enough on its own to raise an alarm, and from 1.3.1 it is not counted in the headline totals either — it is shown in the list with its explanation.</li><li><strong>Unidentified-tracker heuristic.</strong> An anonymous device with no name and no vendor that stays with you across several separate time windows is now surfaced, which is the only way to catch cheap unbranded tags.</li><li><strong>Far more known devices</strong>: wearable AI recorders, camera glasses, body cameras, and a much wider range of tracking tags.</li></ul>
+<h3>New</h3>
+<ul><li><strong>Safety guidance.</strong> A dedicated, fully offline screen explaining what to do if you find a tracker — preserve evidence, stay safe, rule out innocent explanations, get real support. Reachable from the follow alert itself.</li><li><strong>Hot/cold locator.</strong> Long-press any device to open a full-screen proximity finder with a large signal reading and audio feedback that speeds up as you get closer.</li><li><strong>Definition freshness.</strong> Advanced settings now show how old your detection definitions are and let you force a check. Failed updates are no longer silent.</li></ul>
+<h3>Changed</h3>
+<ul><li>Scan power now defaults to <em>Balanced</em> rather than <em>High accuracy</em>, which noticeably reduces battery use. High accuracy is still one tap away, and the locator screen switches to it automatically.</li><li>CSV exports from the app and the web scanner now share one schema, with ISO-8601 timestamps, so a file from either can be compared directly.</li><li>The battery-optimisation helper is now a permanent settings row instead of a one-time dialog you could never get back.</li><li>Threat notifications are ranked by evidence strength as well as severity.</li></ul>
+<h3>Accessibility</h3>
+<ul><li>Threat badges now carry spoken descriptions for screen readers, so the most important fact about a device is no longer conveyed by a coloured symbol alone.</li><li>Device cards announce name, verdict, confidence and signal in a single summary.</li></ul>
+<h3>Security</h3>
+<ul><li>CSV exports are now hardened against spreadsheet formula injection. A BLE device name is entirely attacker-controlled, and a name like <code>=cmd|…</code> could previously be evaluated by Excel when the export was opened.</li><li>Detection definitions are verified against a published SHA-256 before use, so a truncated or tampered download is discarded rather than silently reducing what the app can see.</li><li>Definition updates now only download files that actually changed.</li></ul>
+<h2>1.2.0</h2>
+<ul><li>Background monitoring rebuilt without a foreground service, using the system-held scan API plus a WorkManager watchdog.</li><li>Ongoing notification with live device, surveillance and tracker counts that survive the app being closed.</li><li>"Travelling with you" follow detection, home-screen widget, Quick Settings tile, and a background self-test for diagnosing OEM battery killers.</li></ul>
+<h2>Detection definitions</h2>
+<p>The app checks for updated definitions roughly every 12 hours and applies them without needing an app update. Current definitions and their checksums are published at <code>/media/registry-index.json</code>.</p>
+<div class="card ok"><h3>Know a device we should recognise?</h3><p>If you have found a tracker or recording device GhostTooth does not flag, tell us what it advertises and we will add it — usually within a day, and it reaches every installed app without an update. <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a></p></div>
+</main>
+
+<footer class="site">
+  <nav aria-label="Site sections"><a href="https://ghosttooth.labidi.eu/">Scanner</a><a href="https://ghosttooth.labidi.eu/faq/">Help &amp; FAQ</a><a href="https://ghosttooth.labidi.eu/safety/">Found a tracker?</a><a href="https://ghosttooth.labidi.eu/privacy/">Privacy</a><a href="https://ghosttooth.labidi.eu/terms/">Terms</a><a href="https://ghosttooth.labidi.eu/accessibility/">Accessibility</a><a href="https://ghosttooth.labidi.eu/changelog/">Changelog</a></nav>
+  <p>GHOSTTOOTH is made by labidi.eu. Questions or a device we should recognise? Write to <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a>.</p>
+</footer>
+
+</div>
+<script>
+/* Offline support. Someone reading the safety guide may have deliberately gone
+   offline, and someone reading the FAQ is often there because their device is
+   misbehaving. Failure is silent: the site works perfectly well without it. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

@@ -36,16 +36,29 @@ const SURVEILLANCE_COMPANIES = {
 };
 
 /**
- * Company IDs associated with location tracking devices.
- * Note: These manufacturers also produce other non-tracker products.
- * Cross-reference with name patterns and service UUIDs for better accuracy.
+ * Company IDs that, on their own, identify a tracking tag — because these
+ * companies make nothing else.
  */
 const TRACKER_COMPANIES = {
-    0x004C: 'Apple, Inc. (possible AirTag / Find My device)',
     0x00D7: 'Tile, Inc.',
-    0x0075: 'Samsung Electronics Co., Ltd. (possible SmartTag)',
     0x0250: 'Chipolo (tracking tag)',
     0x0397: 'AIRTAG Solutions Ltd.',
+    0x0B26: 'Pebblebee',
+};
+
+/**
+ * Company IDs belonging to vendors that make trackers *and* ordinary consumer
+ * electronics.
+ *
+ * A bare match here means nothing: 0x004C is broadcast by every iPhone, iPad,
+ * Mac, Apple Watch and set of AirPods, and 0x0075 by every Galaxy device.
+ * Classifying on the ID alone turned any public place into a wall of false
+ * "TRACKER" badges. These are only escalated when the advertisement payload
+ * itself proves it — see decodeAppleAdvert() and classifyAdvertisement().
+ */
+const AMBIGUOUS_TRACKER_COMPANIES = {
+    0x004C: 'Apple, Inc.',
+    0x0075: 'Samsung Electronics Co., Ltd.',
 };
 
 // ================================================================
@@ -89,14 +102,35 @@ const TRACKER_NAME_PATTERNS = [
 // ================================================================
 
 /**
- * 128-bit service UUIDs associated with tracking protocols.
- * These appear in BLE advertisement service data.
+ * Service UUIDs that on their own identify a tracking tag.
+ *
+ * 0xFEAA is deliberately absent: Google's Find My Device Network shares the
+ * Eddystone UUID with ordinary retail beacons, so a flat match flagged every
+ * shop display and museum tag. It is decided by frame type in
+ * decodeEddystone() instead.
  */
 const TRACKER_SERVICE_UUIDS = new Set([
     '0000fd44-0000-1000-8000-00805f9b34fb', // Apple Find My (Offline Finding)
     '0000feed-0000-1000-8000-00805f9b34fb', // Tile
-    '0000feaa-0000-1000-8000-00805f9b34fb', // Eddystone / Google beacon
+    '0000feec-0000-1000-8000-00805f9b34fb', // Tile
 ]);
+
+/** 16-bit assigned numbers used by the payload decoders. */
+const SERVICE_EDDYSTONE = 'feaa';       // Eddystone / Find My Device Network
+const SERVICE_SAMSUNG_FIND = 'fd5a';    // Samsung Find / SmartTag
+
+/** Evidence strength, mirrored from the Android app's Confidence enum. */
+const CONFIDENCE = { POSSIBLE: 'possible', LIKELY: 'likely', CONFIRMED: 'confirmed' };
+
+/** Rank used when deciding whether new evidence beats what we already had. */
+const CONFIDENCE_RANK = { possible: 0, likely: 1, confirmed: 2 };
+
+/** Plain-language explanation of what each confidence level actually means. */
+const CONFIDENCE_EXPLANATION = {
+    possible: 'one weak signal only — quite possibly innocent',
+    likely: 'backed by the vendor or the service it advertises',
+    confirmed: 'read directly out of the tracking protocol itself',
+};
 
 // ================================================================
 // Company Identifier Registry
@@ -115,6 +149,7 @@ function companyName(companyId) {
     return companyNames.get(companyId)
         || SURVEILLANCE_COMPANIES[companyId]
         || TRACKER_COMPANIES[companyId]
+        || AMBIGUOUS_TRACKER_COMPANIES[companyId]
         || 'Unknown';
 }
 
@@ -261,42 +296,233 @@ const NOTES_STORAGE_KEY = 'btscan-notes';
 let deviceNotes = {};
 
 // ================================================================
+// Advertisement payload decoders
+// ================================================================
+
+/**
+ * Reduce a 128-bit base UUID to its 16-bit assigned number.
+ * Returns the input lower-cased when it is a vendor UUID.
+ */
+function shortUuid(uuid) {
+    const u = String(uuid).toLowerCase();
+    return (u.length === 36 && u.startsWith('0000') && u.endsWith('-0000-1000-8000-00805f9b34fb'))
+        ? u.slice(4, 8)
+        : u;
+}
+
+/** Read a DataView / ArrayBuffer / typed array as a plain byte array. */
+function toBytes(value) {
+    if (!value) return [];
+    if (value instanceof DataView) {
+        return Array.from(new Uint8Array(value.buffer, value.byteOffset, value.byteLength));
+    }
+    if (ArrayBuffer.isView(value)) return Array.from(new Uint8Array(value.buffer));
+    if (value instanceof ArrayBuffer) return Array.from(new Uint8Array(value));
+    return Array.from(value);
+}
+
+/**
+ * Decode Apple's manufacturer payload.
+ *
+ * Apple packs `[type][length][value…]` records into its advertisement. The
+ * distinction that matters is Find My *separated* (the accessory has lost
+ * contact with its owner and is calling out to the crowd-sourced network)
+ * versus everything else — AirPods pairing beacons, Handoff, Nearby, and so on,
+ * which are just somebody's phone or headphones.
+ *
+ * @returns {'find_my_separated'|'find_my_near_owner'|'proximity_pairing'|'consumer'|'unknown'}
+ */
+function decodeAppleAdvert(payload) {
+    const bytes = toBytes(payload);
+    if (bytes.length === 0) return 'unknown';
+
+    const RANK = { unknown: 0, consumer: 1, proximity_pairing: 2, find_my_near_owner: 3, find_my_separated: 4 };
+    let best = 'unknown';
+    const keep = (candidate) => { if (RANK[candidate] > RANK[best]) best = candidate; };
+
+    for (let i = 0; i + 1 < bytes.length;) {
+        const type = bytes[i];
+        const declared = bytes[i + 1];
+        const valueStart = i + 2;
+        const truncated = declared === 0 || valueStart + declared > bytes.length;
+        // Judge a truncated record on the bytes we actually received, never on
+        // the declared length. A packet claiming a 25-byte Find My record while
+        // carrying two bytes must not be reported as a *confirmed* separated
+        // tracker — that would alarm someone on the strength of data we never saw.
+        const len = truncated ? Math.max(0, bytes.length - valueStart) : declared;
+        let verdict;
+        switch (type) {
+            case 0x12: // Find My / offline finding
+                // 0x19 carries the full rotating public key, which an accessory
+                // only sends once it is away from its owner.
+                verdict = len >= 0x19 ? 'find_my_separated' : 'find_my_near_owner';
+                break;
+            case 0x07: verdict = 'proximity_pairing'; break;  // AirPods & friends
+            case 0x02: // iBeacon
+            case 0x05: // AirDrop
+            case 0x09: // AirPlay
+            case 0x0C: // Handoff
+            case 0x0F: // Nearby Action
+            case 0x10: // Nearby Info (iPhone / Mac presence)
+                verdict = 'consumer'; break;
+            default: verdict = 'unknown';
+        }
+        keep(verdict);
+        if (truncated) break;
+        i = valueStart + declared;
+    }
+    return best;
+}
+
+/**
+ * Decode 0xFEAA service data.
+ *
+ * @returns {'fmdn'|'fmdn-separated'|'beacon'|'unknown'} `fmdn` is a Google Find
+ *   My Device Network tag; `fmdn-separated` is one advertising in unwanted
+ *   tracking protection mode (Google's spec maps this to the DULT "separated
+ *   state" — the tag is away from its owner and has stopped rotating its
+ *   address so detectors can find it); `beacon` is an ordinary Eddystone beacon
+ *   such as a shop display.
+ */
+function decodeEddystone(payload) {
+    const bytes = toBytes(payload);
+    if (bytes.length === 0) return 'unknown';
+    switch (bytes[0]) {
+        case 0x40: return 'fmdn';
+        case 0x41: return 'fmdn-separated';
+        case 0x00: case 0x10: case 0x20: case 0x30: return 'beacon';
+        default: return 'unknown';
+    }
+}
+
+// ================================================================
 // Classification
 // ================================================================
 
 /**
- * Classify a BLE advertisement event into 'surveillance', 'tracker', or 'normal'.
+ * Classify a BLE advertisement event.
+ *
+ * Kept deliberately in step with `Classifier.kt` in the Android app: the same
+ * priority order, the same verdict names and the same confidence levels, so the
+ * two products never disagree about the same device.
+ *
  * @param {BluetoothAdvertisingEvent | object} event
- * @returns {{ type: string, reason: string|null }}
+ * @returns {{ type: string, reason: string|null, confidence: string }}
  */
 function classifyAdvertisement(event) {
     const name = (event.device?.name || '').trim();
+    const uuids = event.uuids || [];
+    const mfr = event.manufacturerData;
+    const svcData = event.serviceData;
 
-    // 1. Check Manufacturer Data company IDs (most reliable signal)
-    if (event.manufacturerData && event.manufacturerData.size > 0) {
-        for (const [companyId] of event.manufacturerData) {
+    const mfrGet = (companyId) => {
+        if (!mfr) return undefined;
+        return typeof mfr.get === 'function' ? mfr.get(companyId) : mfr[companyId];
+    };
+    const hasCompany = (companyId) => {
+        if (!mfr) return false;
+        return typeof mfr.has === 'function'
+            ? mfr.has(companyId)
+            : Object.prototype.hasOwnProperty.call(mfr, companyId);
+    };
+
+    // 1. Surveillance company IDs. These vendors' products record; there is no
+    //    ambiguous consumer case to separate out.
+    if (mfr && (mfr.size > 0 || Object.keys(mfr).length > 0)) {
+        const ids = typeof mfr.keys === 'function' ? Array.from(mfr.keys()) : Object.keys(mfr).map(Number);
+        for (const companyId of ids) {
             if (Object.prototype.hasOwnProperty.call(SURVEILLANCE_COMPANIES, companyId)) {
+                const corroborated = name && SURVEILLANCE_NAME_PATTERNS.some(p => p.test(name));
                 return {
                     type: 'surveillance',
                     reason: `Manufacturer ID ${formatCompanyId(companyId)}: ${SURVEILLANCE_COMPANIES[companyId]}`,
-                };
-            }
-            if (Object.prototype.hasOwnProperty.call(TRACKER_COMPANIES, companyId)) {
-                return {
-                    type: 'tracker',
-                    reason: `Manufacturer ID ${formatCompanyId(companyId)}: ${TRACKER_COMPANIES[companyId]}`,
+                    confidence: corroborated ? CONFIDENCE.CONFIRMED : CONFIDENCE.LIKELY,
                 };
             }
         }
     }
 
-    // 2. Check device name patterns
+    // 2. Decoded tracking protocols — the strongest evidence available.
+    const appleVerdict = decodeAppleAdvert(mfrGet(0x004C));
+    if (appleVerdict === 'find_my_separated') {
+        return {
+            type: 'tracker',
+            reason: 'Apple Find My accessory broadcasting in separated state — it is away from its owner. Consistent with an AirTag.',
+            confidence: CONFIDENCE.CONFIRMED,
+        };
+    }
+    if (appleVerdict === 'find_my_near_owner') {
+        return {
+            type: 'tracker',
+            reason: 'Apple Find My device near its owner — usually someone\u2019s iPhone or a tag with its owner present.',
+            confidence: CONFIDENCE.POSSIBLE,
+        };
+    }
+
+    if (svcData) {
+        for (const [uuid, data] of (typeof svcData.entries === 'function' ? svcData.entries() : Object.entries(svcData))) {
+            if (shortUuid(uuid) !== SERVICE_EDDYSTONE) continue;
+            const frame = decodeEddystone(data);
+            if (frame === 'fmdn-separated') {
+                return {
+                    type: 'tracker',
+                    reason: 'Google Find My Device Network tag, away from its owner — it is broadcasting so it can be found.',
+                    confidence: CONFIDENCE.CONFIRMED,
+                };
+            }
+            if (frame === 'fmdn') {
+                return {
+                    type: 'tracker',
+                    reason: 'Google Find My Device Network tag — broadcasting to be located by nearby Android phones.',
+                    confidence: CONFIDENCE.CONFIRMED,
+                };
+            }
+        }
+    }
+
+    if (uuids.some(u => shortUuid(u) === SERVICE_SAMSUNG_FIND)) {
+        const isSamsung = hasCompany(0x0075);
+        const namedTag = /smart.?tag/i.test(name);
+        return {
+            type: 'tracker',
+            reason: `Samsung Find / SmartTag service${isSamsung ? ' from a Samsung device' : ''}`,
+            confidence: namedTag ? CONFIDENCE.CONFIRMED : CONFIDENCE.LIKELY,
+        };
+    }
+
+    // 3. Tracker-only vendors: the company ID alone is meaningful here.
+    if (mfr) {
+        const ids = typeof mfr.keys === 'function' ? Array.from(mfr.keys()) : Object.keys(mfr).map(Number);
+        for (const companyId of ids) {
+            if (Object.prototype.hasOwnProperty.call(TRACKER_COMPANIES, companyId)) {
+                return {
+                    type: 'tracker',
+                    reason: `Manufacturer ID ${formatCompanyId(companyId)}: ${TRACKER_COMPANIES[companyId]}`,
+                    confidence: CONFIDENCE.LIKELY,
+                };
+            }
+        }
+    }
+
+    // 4. Curated known devices (media/known-devices.js), then name patterns.
     if (name) {
+        if (typeof KNOWN_DEVICE_NAME_PATTERNS !== 'undefined') {
+            for (const entry of KNOWN_DEVICE_NAME_PATTERNS) {
+                if (entry.pattern.test(name)) {
+                    return {
+                        type: entry.type,
+                        reason: entry.reason,
+                        confidence: entry.confidence || CONFIDENCE.LIKELY,
+                    };
+                }
+            }
+        }
         for (const pattern of SURVEILLANCE_NAME_PATTERNS) {
             if (pattern.test(name)) {
                 return {
                     type: 'surveillance',
                     reason: `Device name matches surveillance pattern: "${name}"`,
+                    confidence: CONFIDENCE.LIKELY,
                 };
             }
         }
@@ -305,32 +531,25 @@ function classifyAdvertisement(event) {
                 return {
                     type: 'tracker',
                     reason: `Device name matches tracker pattern: "${name}"`,
+                    // A name is freely settable and easily coincidental.
+                    confidence: CONFIDENCE.POSSIBLE,
                 };
-            }
-        }
-        // Curated real-world findings (media/known-devices.js) that generic
-        // MFR-ID or built-in name-pattern rules above don't catch.
-        if (typeof KNOWN_DEVICE_NAME_PATTERNS !== 'undefined') {
-            for (const entry of KNOWN_DEVICE_NAME_PATTERNS) {
-                if (entry.pattern.test(name)) {
-                    return { type: entry.type, reason: entry.reason };
-                }
             }
         }
     }
 
-    // 3. Check service UUIDs
-    const uuids = event.uuids || [];
+    // 5. Tracker service UUIDs.
     for (const uuid of uuids) {
-        if (TRACKER_SERVICE_UUIDS.has(uuid.toLowerCase())) {
+        if (TRACKER_SERVICE_UUIDS.has(String(uuid).toLowerCase())) {
             return {
                 type: 'tracker',
                 reason: `Known tracker service UUID: ${uuid}`,
+                confidence: CONFIDENCE.LIKELY,
             };
         }
     }
 
-    return { type: 'normal', reason: null };
+    return { type: 'normal', reason: null, confidence: CONFIDENCE.CONFIRMED };
 }
 
 /** Format a numeric company ID as a 0x-prefixed hex string. */
@@ -380,13 +599,13 @@ function handleAdvertisement(event) {
         }
     }
 
-    // Merge with existing data (prefer upgraded classification for surveillance/tracker)
+    // Merge with existing data. A higher threat type always wins; at the same
+    // threat type, stronger evidence wins — so a tag first seen beside its
+    // owner and later seen separated is upgraded rather than ignored.
     const existing = devices.get(deviceId);
-    const previousType = existing?.classification?.type;
-    const finalClassification =
-        shouldUpgrade(previousType, classification.type)
-            ? classification
-            : (existing?.classification ?? classification);
+    const finalClassification = shouldReplaceClassification(existing?.classification, classification)
+        ? classification
+        : (existing?.classification ?? classification);
 
     const deviceData = {
         id: deviceId,
@@ -404,8 +623,10 @@ function handleAdvertisement(event) {
     devices.set(deviceId, deviceData);
     scheduleRender();
 
-    // Show alert banner for newly found surveillance devices
-    if (isNew && finalClassification.type === 'surveillance') {
+    // Alert only on evidence strong enough to be worth interrupting for.
+    if (isNew
+        && finalClassification.type === 'surveillance'
+        && CONFIDENCE_RANK[finalClassification.confidence] >= CONFIDENCE_RANK.likely) {
         showAlertBanner(deviceData.name || 'Unknown Device');
     }
 }
@@ -427,6 +648,18 @@ function scheduleRender() {
 function shouldUpgrade(oldType, newType) {
     const rank = { surveillance: 2, tracker: 1, normal: 0 };
     return (rank[newType] ?? 0) > (rank[oldType] ?? 0);
+}
+
+/**
+ * Returns true when a new classification should replace the stored one.
+ * Mirrors `Classifier.shouldReplace` in the Android app.
+ */
+function shouldReplaceClassification(oldClassification, newClassification) {
+    if (!oldClassification) return true;
+    if (shouldUpgrade(oldClassification.type, newClassification.type)) return true;
+    if (shouldUpgrade(newClassification.type, oldClassification.type)) return false;
+    return (CONFIDENCE_RANK[newClassification.confidence] ?? 1)
+        > (CONFIDENCE_RANK[oldClassification.confidence] ?? 1);
 }
 
 // ================================================================
@@ -659,7 +892,11 @@ function renderCardHTML(data) {
         : '';
 
     const badgeClass = `badge-${data.classification.type}`;
-    const badgeText  = data.classification.type.toUpperCase();
+    // Qualify anything flagged, so "we decoded a Find My beacon" and "the name
+    // contains the word tile" stop looking identical.
+    const badgeText = data.classification.type === 'normal'
+        ? 'NORMAL'
+        : `${data.classification.type.toUpperCase()} · ${(data.classification.confidence || 'likely').toUpperCase()}`;
 
     const firstStr = new Date(data.firstSeen).toLocaleTimeString();
     const lastStr  = new Date(data.lastSeen).toLocaleTimeString();
@@ -680,6 +917,13 @@ function renderCardHTML(data) {
         ? `<div class="device-detail alert-reason">
              <span class="detail-label">REASON</span>
              <span class="detail-value">${escapeHTML(data.classification.reason)}</span>
+           </div>`
+        : '';
+
+    const confidenceRow = data.classification.type !== 'normal'
+        ? `<div class="device-detail">
+             <span class="detail-label">CONFIDENCE</span>
+             <span class="detail-value dim small">${escapeHTML((data.classification.confidence || 'likely').toUpperCase())} — ${escapeHTML(CONFIDENCE_EXPLANATION[data.classification.confidence] || CONFIDENCE_EXPLANATION.likely)}</span>
            </div>`
         : '';
 
@@ -732,6 +976,7 @@ function renderCardHTML(data) {
             ${txRow}
             ${manufacturerRows}
             ${reasonRow}
+            ${confidenceRow}
             ${uuidsRow}
             ${aliasRow}
             ${noteRow}
@@ -935,8 +1180,31 @@ function bindViewToggle(buttonId, apply) {
 }
 
 // ================================================================
-// CSV Export
 // ================================================================
+// CSV Export
+//
+// The schema below is shared with the Android app (see
+// app/src/main/java/com/compyra/ghosttooth/export/CsvExport.kt). Someone
+// documenting being followed may export from the phone one day and the browser
+// the next; if the two files had different columns, different date formats and
+// different words for the same verdict they could not be compared, which
+// defeats the point of an evidence export. Keep both sides in step.
+// ================================================================
+
+/** Bump together with SCHEMA_VERSION in CsvExport.kt. */
+const CSV_SCHEMA_VERSION = 'ghosttooth-csv-1';
+const CSV_SOURCE = 'web';
+
+const CSV_DEVICE_HEADER = [
+    'address', 'name', 'classification', 'confidence', 'reason',
+    'manufacturer_ids', 'manufacturer_names', 'service_uuids',
+    'rssi_dbm', 'distance_m', 'tx_power', 'samples',
+    'first_seen', 'last_seen', 'note', 'source',
+];
+
+const CSV_MANUFACTURER_HEADER = [
+    'manufacturer', 'company_id', 'total', 'surveillance', 'trackers', 'normal',
+];
 
 /**
  * Quote/escape a single CSV field. Prefixes a leading `'` on values starting
@@ -947,7 +1215,8 @@ function bindViewToggle(buttonId, apply) {
  */
 function csvField(value) {
     let s = value == null ? '' : String(value);
-    if (/^[=+\-@]/.test(s)) s = `'${s}`;
+    s = s.replace(/[\r\n]+/g, ' ');
+    if (/^[=+\-@\t]/.test(s)) s = `'${s}`;
     return `"${s.replace(/"/g, '""')}"`;
 }
 
@@ -965,6 +1234,11 @@ function downloadCsv(filename, rows) {
     URL.revokeObjectURL(url);
 }
 
+/** Provenance banner, so a file found months later still explains itself. */
+function csvPreamble() {
+    return [`# ${CSV_SCHEMA_VERSION}`, `source=${CSV_SOURCE}`, `generated=${new Date().toISOString()}`];
+}
+
 /** Export a per-manufacturer/group summary (counts by classification) as CSV. */
 function exportMfrSummaryCsv() {
     if (devices.size === 0) {
@@ -977,17 +1251,18 @@ function exportMfrSummaryCsv() {
         if (!groups.has(key)) groups.set(key, []);
         groups.get(key).push(d);
     }
-    const rows = [['Manufacturer / Group', 'Total', 'Surveillance', 'Trackers', 'Normal']];
+    const rows = [csvPreamble(), CSV_MANUFACTURER_HEADER];
     for (const [key, items] of groups) {
         rows.push([
             key,
+            items[0]?.manufacturers?.[0]?.id ?? '',
             items.length,
             items.filter(d => d.classification.type === 'surveillance').length,
             items.filter(d => d.classification.type === 'tracker').length,
             items.filter(d => d.classification.type === 'normal').length,
         ]);
     }
-    downloadCsv(`ghosttooth-mfr-summary-${Date.now()}.csv`, rows);
+    downloadCsv(`ghosttooth-manufacturers-${Date.now()}.csv`, rows);
 }
 
 /** Export the full device list (one row per device, all known fields) as CSV. */
@@ -996,29 +1271,32 @@ function exportFullCsv() {
         showNotice('warn', 'No devices to export yet.');
         return;
     }
-    const rows = [[
-        'ID', 'Name', 'Classification', 'Reason', 'Manufacturer IDs', 'Manufacturer Names',
-        'Service UUIDs', 'RSSI (dBm)', 'Est. Distance (m)', 'TX Power', 'First Seen', 'Last Seen', 'Note',
-    ]];
+    const rows = [csvPreamble(), CSV_DEVICE_HEADER];
     for (const d of devices.values()) {
         const dist = estimateDistance(d.rssi, d.txPower);
         rows.push([
             d.id,
             d.name || '',
             d.classification.type,
+            // Blank for an unflagged device: "normal,confirmed" would read as
+            // though we are certain it is harmless, and we cannot claim that —
+            // it simply matched nothing. Kept in step with CsvExport.kt.
+            d.classification.type === 'normal' ? '' : (d.classification.confidence || ''),
             d.classification.reason || '',
             d.manufacturers.map(m => m.id).join('; '),
             d.manufacturers.map(m => m.name).join('; '),
-            d.uuids.join('; '),
+            d.uuids.map(u => serviceUuidName(u) || u).join('; '),
             d.rssi ?? '',
             dist != null ? dist.toFixed(1) : '',
             d.txPower ?? '',
+            '', // samples: the web scanner does not buffer per-device samples
             new Date(d.firstSeen).toISOString(),
             new Date(d.lastSeen).toISOString(),
             deviceNotes[d.id] || '',
+            CSV_SOURCE,
         ]);
     }
-    downloadCsv(`ghosttooth-full-export-${Date.now()}.csv`, rows);
+    downloadCsv(`ghosttooth-scan-${Date.now()}.csv`, rows);
 }
 
 // ================================================================
@@ -1148,9 +1426,18 @@ function flashButton(btn, symbol) {
  * Timestamped console logger for capturing a real scan session
  * (permission granted -> first packet -> last packet -> restarts).
  * Always on so a failing session can be copied straight from DevTools.
+ *
+ * Every line is also kept in a small ring buffer so the user can hand us a
+ * session timeline without ever opening DevTools — see copyDiagnostics().
  */
+const LOG_BUFFER = [];
+const LOG_BUFFER_MAX = 400;
+
 function btLog(...args) {
     const t = new Date().toISOString().substr(11, 12);
+    const line = `[${t}] ${args.map(a => (typeof a === 'string' ? a : JSON.stringify(a))).join(' ')}`;
+    LOG_BUFFER.push(line);
+    if (LOG_BUFFER.length > LOG_BUFFER_MAX) LOG_BUFFER.shift();
     // eslint-disable-next-line no-console
     console.log(`[ghosttooth ${t}]`, ...args);
 }
@@ -1181,6 +1468,57 @@ function browserLabel() {
 /** Open the collapsible troubleshooting grimoire (used when a scan struggles). */
 function openTroubleshoot() {
     document.getElementById('troubleshoot')?.setAttribute('open', '');
+}
+
+/**
+ * Copy a complete diagnostics report to the clipboard.
+ *
+ * Bug reports about scanning are almost useless without the environment and the
+ * session timeline, and "open DevTools and paste the console" is too much to ask
+ * of most people. This bundles the browser/OS label, capability flags, the live
+ * counters and the log ring buffer into one paste.
+ *
+ * Deliberately contains no device data: MAC addresses and device names are not
+ * ours to put on someone's clipboard.
+ */
+async function copyDiagnostics(btn) {
+    const diag = (id) => document.getElementById(id)?.textContent?.trim() ?? 'n/a';
+    const report = [
+        'GHOSTTOOTH diagnostics',
+        `when          : ${new Date().toISOString()}`,
+        `browser/OS    : ${browserLabel()}`,
+        `page          : ${location.origin}${location.pathname}`,
+        `secure context: ${window.isSecureContext}`,
+        `web bluetooth : ${'bluetooth' in navigator}`,
+        `requestLEScan : ${typeof navigator.bluetooth?.requestLEScan === 'function'}`,
+        `service worker: ${'serviceWorker' in navigator}`,
+        '',
+        `mode          : ${diag('diag-mode')}`,
+        `packets       : ${diag('diag-packets')}`,
+        `unique        : ${diag('diag-unique')}`,
+        `last packet   : ${diag('diag-lastpkt')}`,
+        `scan state    : ${diag('diag-active')}`,
+        `restarts      : ${diag('diag-restarts')}`,
+        '',
+        `--- session log (${LOG_BUFFER.length} lines) ---`,
+        ...(LOG_BUFFER.length ? LOG_BUFFER : ['(no scan started yet)']),
+    ].join('\n');
+
+    try {
+        await navigator.clipboard.writeText(report);
+        if (btn) flashButton(btn, 'COPIED \u2713');
+    } catch (_) {
+        // Insecure context or blocked clipboard: fall back to a selectable
+        // textarea so the report can still be copied by hand.
+        const box = document.getElementById('diag-dump');
+        if (box) {
+            box.value = report;
+            box.classList.remove('hidden');
+            box.focus();
+            box.select();
+        }
+        if (btn) flashButton(btn, 'SELECT + COPY');
+    }
 }
 
 /** Copy the bridge launch command to the clipboard, with button feedback. */
@@ -1486,6 +1824,9 @@ function stopScan() {
     // Also stop all watched devices
     stopWatchingDevices();
 
+    // A pending bridge reconnect must not resurrect a scan the user just ended.
+    cancelBridgeReconnect();
+
     if (wasActive) btLog('Scan stopped by user.');
     setStatus('STOPPED', '');
     document.getElementById('btn-scan').disabled  = false;
@@ -1560,14 +1901,66 @@ function startBridgeWsScan() {
                 clearTimeout(timeout);
                 resolve(false);
             } else if (bridgeWs !== null) {
-                // Unexpected disconnect (bridge crashed / stopped)
+                // Unexpected disconnect (bridge crashed, was restarted, or the
+                // machine slept). Previously this was a dead end — the user had
+                // to notice "BRIDGE LOST" and start over. Try to pick it back up.
                 bridgeWs = null;
-                stopScan();
-                setStatus('BRIDGE LOST', 'error');
-                showNotice('error', 'Lost connection to the local scanner bridge. Restart "python bt-bridge.py" and scan again.');
+                handleBridgeLoss();
             }
         };
     });
+}
+
+/** How long to keep trying to reach the bridge again after it drops. */
+const BRIDGE_RECONNECT_DELAYS_MS = [1000, 2000, 4000, 8000];
+let bridgeReconnectAttempt = 0;
+let bridgeReconnectTimer = null;
+
+/**
+ * Recover from a dropped bridge connection.
+ *
+ * The common cause is the user restarting `bt-bridge.py`, which is exactly the
+ * moment they least want to lose their session. Retries with a short backoff and
+ * only gives up — with an actionable message — once the backoff is exhausted.
+ */
+function handleBridgeLoss() {
+    if (bridgeReconnectAttempt >= BRIDGE_RECONNECT_DELAYS_MS.length) {
+        stopScan();
+        setStatus('BRIDGE LOST', 'error');
+        showNotice('error',
+            'Lost connection to the local scanner bridge and could not reconnect. ' +
+            'Restart "python bt-bridge.py", then click [ START SCAN ] again.');
+        btLog('Bridge reconnect gave up after all attempts.');
+        bridgeReconnectAttempt = 0;
+        return;
+    }
+
+    const delay = BRIDGE_RECONNECT_DELAYS_MS[bridgeReconnectAttempt];
+    bridgeReconnectAttempt += 1;
+    setStatus('BRIDGE RECONNECTING', 'scanning');
+    btLog(`Bridge connection lost — reconnect attempt ${bridgeReconnectAttempt} in ${delay} ms.`);
+
+    clearTimeout(bridgeReconnectTimer);
+    bridgeReconnectTimer = setTimeout(async () => {
+        // The user may have pressed STOP while we were waiting. stopScan()
+        // calls cancelBridgeReconnect(), which clears this timer and resets the
+        // counter, so reaching here means the session is still meant to run.
+        const ok = await startBridgeWsScan();
+        if (ok) {
+            bridgeReconnectAttempt = 0;
+            btLog('Bridge reconnected.');
+            showNotice('info', 'Reconnected to the local scanner bridge — scanning resumed.');
+        } else {
+            handleBridgeLoss();
+        }
+    }, delay);
+}
+
+/** Cancel any pending bridge reconnect (called when the user stops a scan). */
+function cancelBridgeReconnect() {
+    clearTimeout(bridgeReconnectTimer);
+    bridgeReconnectTimer = null;
+    bridgeReconnectAttempt = 0;
 }
 
 /**
@@ -1600,25 +1993,63 @@ async function startBridgeScan() {
     return true;
 }
 
-/** Periodic bridge poll; stops with an error notice if the bridge goes away. */
+/** Periodic bridge poll; retries before giving up if the bridge goes away. */
 async function pollBridge() {
     try {
         processBridgeDevices(await fetchBridgeDevices());
+        bridgeReconnectAttempt = 0;
     } catch (_) {
+        // One failed poll is not proof the bridge is gone — it may be
+        // restarting. Tolerate a few before tearing the session down.
+        bridgeReconnectAttempt += 1;
+        if (bridgeReconnectAttempt <= BRIDGE_RECONNECT_DELAYS_MS.length) {
+            setStatus('BRIDGE RECONNECTING', 'scanning');
+            btLog(`Bridge poll failed (${bridgeReconnectAttempt}) — retrying.`);
+            return;
+        }
         stopScan();
         setStatus('BRIDGE LOST', 'error');
-        showNotice('error', 'Lost connection to the local scanner bridge. Restart "python bt-bridge.py" and scan again.');
+        showNotice('error',
+            'Lost connection to the local scanner bridge and could not reconnect. ' +
+            'Restart "python bt-bridge.py", then click [ START SCAN ] again.');
+        bridgeReconnectAttempt = 0;
     }
+}
+
+/** Decode a hex string from the bridge into a Uint8Array. */
+function hexToBytes(hex) {
+    if (!hex) return new Uint8Array(0);
+    const out = new Uint8Array(hex.length >> 1);
+    for (let i = 0; i < out.length; i++) out[i] = parseInt(hex.substr(i * 2, 2), 16);
+    return out;
 }
 
 /** Feed bridge JSON entries through the normal advertisement pipeline. */
 function processBridgeDevices(list) {
     for (const d of list) {
+        // Prefer the full payloads when the bridge sends them (newer versions);
+        // fall back to bare company IDs so an older bt-bridge.py still works,
+        // just with less certainty about Apple and Samsung devices.
+        const manufacturerData = new Map();
+        if (d.manufacturer_data) {
+            for (const [companyId, hex] of Object.entries(d.manufacturer_data)) {
+                manufacturerData.set(Number(companyId), hexToBytes(hex));
+            }
+        } else {
+            for (const id of (d.manufacturer_ids || [])) manufacturerData.set(id, null);
+        }
+
+        const serviceData = new Map();
+        for (const [uuid, hex] of Object.entries(d.service_data || {})) {
+            serviceData.set(String(uuid).toLowerCase(), hexToBytes(hex));
+        }
+
         handleAdvertisement({
             device: { id: d.address, name: d.name || null },
             rssi: d.rssi,
             txPower: d.tx_power,
-            manufacturerData: new Map((d.manufacturer_ids || []).map(id => [id, null])),
+            manufacturerData,
+            serviceData,
             uuids: d.uuids || [],
         });
     }
@@ -1768,6 +2199,7 @@ function escapeHTML(str) {
 
     // Troubleshooting: copy the bridge launch command
     document.getElementById('btn-copy-cmd')?.addEventListener('click', (e) => copyBridgeCommand(e.currentTarget));
+    document.getElementById('btn-copy-diag')?.addEventListener('click', (e) => copyDiagnostics(e.currentTarget));
 
     // Re-apply the staleness filter periodically while it is active
     setInterval(() => {

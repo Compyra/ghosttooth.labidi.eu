@@ -12,6 +12,12 @@
     <meta name="color-scheme" content="dark light">
     <link rel="canonical" href="https://ghosttooth.labidi.eu/">
 
+    <!-- The app ships in English, French and Dutch; so does the site. -->
+    <link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/">
+    <link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/">
+    <link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/">
+    <link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/">
+
     <!-- Favicons (based on the GHOSTTOOTH logo) -->
     <link rel="icon" type="image/png" href="media/app-icon-512.png">
     <link rel="apple-touch-icon" href="media/app-icon-512.png">
@@ -23,19 +29,21 @@
     <meta property="og:title" content="GHOSTTOOTH // Bluetooth Surveillance &amp; Tracker Detector">
     <meta property="og:description" content="Scan for nearby Bluetooth (BLE) devices to help find hidden trackers and surveillance gadgets. Free, privacy-first, and works offline.">
     <meta property="og:url" content="https://ghosttooth.labidi.eu/">
-    <meta property="og:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
-    <meta property="og:image:alt" content="GHOSTTOOTH logo">
+    <meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+    <meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
     <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta property="og:locale:alternate" content="nl_NL">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="GHOSTTOOTH // Bluetooth Surveillance &amp; Tracker Detector">
     <meta name="twitter:description" content="Scan for nearby Bluetooth (BLE) devices to help find hidden trackers and surveillance gadgets. Free, privacy-first, and works offline.">
-    <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
-    <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+    <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+    <meta name="twitter:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -103,6 +111,11 @@
             <a href="https://labidi.eu" class="back-link">← labidi.eu</a>
             <span class="prompt-title">ghosttooth:~$</span>
             <span class="prompt-blink" aria-hidden="true">█</span>
+            <nav class="lang-switch" aria-label="Language">
+                <span aria-current="true" lang="en">EN</span>
+                <a href="fr/" lang="fr" hreflang="fr">FR</a>
+                <a href="nl/" lang="nl" hreflang="nl">NL</a>
+            </nav>
         </header>
 
         <main class="terminal-body" id="main-content">
@@ -113,7 +126,11 @@
             <!-- Title -->
             <h1 class="tool-title">
                 <span class="title-prefix">// </span>GHOSTTOOTH
-                <span class="title-suffix"> v2.0</span>
+                <!-- Deliberately not a version number. This page is the browser
+                     scanner; the Android app has its own version (see
+                     /changelog/) and showing "v2.0" here made the two look
+                     inconsistent. -->
+                <span class="title-suffix"> browser scanner</span>
             </h1>
             <p class="tagline dim small">
                 <strong>G</strong>athering <strong>H</strong>idden <strong>O</strong>bjects through <strong>S</strong>ignal <strong>T</strong>racking and <strong>T</strong>elemetry <strong>O</strong>bservation of <strong>O</strong>perational <strong>T</strong>racker <strong>H</strong>ardware — tracking trackers with Bluetooth.
@@ -135,11 +152,12 @@
                     <strong>native Android app</strong> or the <strong>local Python bridge</strong>.
                 </p>
                 <div class="app-actions">
-                    <!-- TODO: replace href with the real Google Play listing URL once the app is published -->
-                    <a id="btn-playstore" class="terminal-btn primary" href="#" data-play-placeholder="true"
-                       aria-label="Get GHOSTTOOTH on Google Play (coming soon)" rel="noopener">[ ▶ GET IT ON GOOGLE PLAY ]</a>
+                    <a id="btn-playstore" class="terminal-btn primary"
+                       href="https://play.google.com/store/apps/details?id=com.compyra.ghosttooth"
+                       aria-label="Get GHOSTTOOTH on Google Play"
+                       target="_blank" rel="noopener">[ ▶ GET IT ON GOOGLE PLAY ]</a>
                     <a class="terminal-btn secondary" href="faq/">[ ? HELP &amp; FAQ ]</a>
-                    <span class="dim small">Android app coming soon — until then, use the Python bridge below.</span>
+                    <a class="terminal-btn secondary" href="safety/">[ ! FOUND A TRACKER? ]</a>
                 </div>
             </section>
 
@@ -306,7 +324,16 @@
                             <strong>Add a single device by hand.</strong> If passive scanning is blocked, use <strong>[ + ADD DEVICE ]</strong> to pick one device at a time from the browser&rsquo;s chooser.
                         </li>
                         <li>
-                            <strong>Watch the runes (diagnostics).</strong> While scanning, the <strong>PACKETS</strong>, <strong>LAST PKT</strong> and <strong>SCAN</strong> readings above show whether data is flowing. <strong>STALLED</strong> or a growing <strong>LAST PKT</strong> means the browser stopped delivering packets — Ghosttooth auto-restarts the scan, but the bridge is the reliable fix. Open the console (F12) for a timestamped log to share when reporting a problem.
+                            <strong>Watch the runes (diagnostics).</strong> While scanning, the <strong>PACKETS</strong>, <strong>LAST PKT</strong> and <strong>SCAN</strong> readings above show whether data is flowing. <strong>STALLED</strong> or a growing <strong>LAST PKT</strong> means the browser stopped delivering packets — Ghosttooth auto-restarts the scan, but the bridge is the reliable fix.
+                        </li>
+                        <li>
+                            <strong>Reporting a problem?</strong> Copy a full diagnostics report — browser, operating system, capability flags, the live counters and a timestamped session log. No device names or addresses are included.
+                            <div class="cmd-row">
+                                <button id="btn-copy-diag" class="terminal-btn secondary" type="button" title="Copy a diagnostics report to the clipboard">[ ⧉ COPY DIAGNOSTICS ]</button>
+                            </div>
+                            <label class="dim small" for="diag-dump" hidden>Diagnostics report</label>
+                            <textarea id="diag-dump" class="diag-dump hidden" rows="10" readonly
+                                      aria-label="Diagnostics report — select all and copy"></textarea>
                         </li>
                     </ol>
                 </div>
@@ -412,7 +439,15 @@
             <nav class="footer-nav" aria-label="Site links">
                 <a href="faq/" class="terminal-link">HELP &amp; FAQ</a>
                 <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="privacy/" class="terminal-link">PRIVACY POLICY</a>
+                <a href="safety/" class="terminal-link">FOUND A TRACKER?</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="privacy/" class="terminal-link">PRIVACY</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="terms/" class="terminal-link">TERMS</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="accessibility/" class="terminal-link">ACCESSIBILITY</a>
+                <span class="footer-sep" aria-hidden="true">·</span>
+                <a href="changelog/" class="terminal-link">CHANGELOG</a>
                 <span class="footer-sep" aria-hidden="true">·</span>
                 <a href="https://labidi.eu" class="terminal-link">labidi.eu</a>
             </nav>
@@ -420,6 +455,7 @@
                 GHOSTTOOTH — an awareness tool, not a guarantee. Because browser Bluetooth support is
                 inconsistent, the <strong>Android app</strong> or the <strong>Python bridge</strong> is the
                 recommended way to run it.
+                Questions: <a href="mailto:ghosttooth@labidi.eu" class="terminal-link">ghosttooth@labidi.eu</a>
             </p>
         </footer>
     </div><!-- /terminal-window -->
@@ -428,5 +464,14 @@
     <script src="media/company_identifiers.js"></script>
     <script src="media/known-devices.js"></script>
     <script src="media/script.js"></script>
+    <script>
+    /* Offline support for the FAQ, safety guide and this page's shell. Silent on
+       failure — the site is fully functional without it. */
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/sw.js').catch(function () {});
+        });
+    }
+    </script>
 </body>
 </html>

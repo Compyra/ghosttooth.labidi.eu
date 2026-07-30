@@ -169,6 +169,59 @@ body.terminal-bg::before {
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 45% { opacity: 0.25; } 55% { opacity: 0.9; } }
 
+/* ---- Diagnostics fallback dump ----
+   Shown only when the clipboard API is unavailable (plain HTTP, or a browser
+   that blocks it), so the report can still be selected and copied by hand. */
+.diag-dump {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: var(--bg-deep, #0b0e20);
+    color: var(--text-dim);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: var(--font-mono, ui-monospace, Consolas, monospace);
+    font-size: 0.78rem;
+    line-height: 1.5;
+    white-space: pre;
+    overflow: auto;
+    resize: vertical;
+}
+.diag-dump.hidden { display: none; }
+
+/* ---- Language switcher ----
+   The app ships en/fr/nl, so the site does too. Sits at the right-hand end of
+   the header bar; targets stay 32px+ so they are comfortably tappable. */
+.lang-switch {
+    display: flex;
+    gap: 6px;
+    font-family: var(--font-arcane);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+}
+.lang-switch a,
+.lang-switch span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-dim);
+    transition: color 0.15s, border-color 0.15s;
+}
+.lang-switch a:hover {
+    color: var(--amber);
+    border-color: var(--amber);
+    text-decoration: none;
+}
+.lang-switch [aria-current="true"] {
+    color: var(--amber);
+    border-color: var(--amber);
+    background: #b8934a1a;
+}
+
 /* ---- Panel Body ---- */
 .terminal-body {
     position: relative;

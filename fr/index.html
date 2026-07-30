@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="GhostTooth repère les traceurs Bluetooth (AirTag, Tile, SmartTag, Find My Device) et les appareils d&#x27;enregistrement à proximité. Gratuit, sans publicité, sans collecte de données, fonctionne hors ligne.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/fr/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/">
+<link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/">
+<link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/">
+<link rel="icon" type="image/png" href="../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../media/app-icon-512.png">
+<link rel="manifest" href="../site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="GHOSTTOOTH — Détecteur de traceurs Bluetooth">
+<meta property="og:description" content="GhostTooth repère les traceurs Bluetooth (AirTag, Tile, SmartTag, Find My Device) et les appareils d&#x27;enregistrement à proximité. Gratuit, sans publicité, sans collecte de données, fonctionne hors ligne.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/fr/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GHOSTTOOTH — Détecteur de traceurs Bluetooth">
+<meta name="twitter:description" content="GhostTooth repère les traceurs Bluetooth (AirTag, Tile, SmartTag, Find My Device) et les appareils d&#x27;enregistrement à proximité. Gratuit, sans publicité, sans collecte de données, fonctionne hors ligne.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>GHOSTTOOTH — Détecteur de traceurs et d&#x27;appareils de surveillance Bluetooth</title>
+<style>
+  :root {
+    --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
+    --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+    --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+    --danger: #ff5a6e; --warn: #f5b942; --ok: #5fd3a6;
+    --radius: 14px; --radius-sm: 10px; --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb; --bg-2: #eaecf6; --surface: #ffffff; --surface-2: #f0f2fb;
+      --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+      --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      --danger: #c62839; --warn: #a5720a; --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+    color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px,4vw,40px) clamp(16px,5vw,32px) 64px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip {
+    position: absolute; left: -9999px; top: 0; background: var(--surface);
+    color: var(--ink); padding: 10px 16px; border-radius: var(--radius-sm); z-index: 10;
+  }
+  .skip:focus { left: 12px; top: 12px; }
+  header.site { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  header.site img { width: 44px; height: 44px; border-radius: 10px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .12em; color: var(--gold); font-size: 15px; }
+  nav.langs { margin-left: auto; display: flex; gap: 6px; font-size: 13px; font-family: var(--mono); }
+  nav.langs a, nav.langs span {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+    min-height: 32px; display: inline-flex; align-items: center;
+  }
+  nav.langs [aria-current="true"] { background: var(--surface-2); color: var(--gold); border-color: var(--gold); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 18px 0 6px; color: var(--gold); }
+  h2 { font-size: clamp(20px, 3.5vw, 24px); margin: 36px 0 8px; color: var(--gold-soft); }
+  h3 { font-size: 18px; margin: 24px 0 6px; color: var(--ink); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lede { color: var(--ink-dim); font-size: 18px; }
+  .updated { color: var(--ink-faint); font-size: 13px; font-family: var(--mono); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(14px, 3vw, 20px); margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .card.warn { border-color: var(--warn); }
+  .card.danger { border-color: var(--danger); }
+  .card.ok { border-color: var(--ok); }
+  .card h2, .card h3 { margin-top: 0; }
+  .step { counter-increment: step; }
+  .step h2::before { content: counter(step) ". "; color: var(--gold); }
+  main { counter-reset: step; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gold-soft); font-weight: 600; }
+  code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; height: auto; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); display: block;
+  }
+  .shots figcaption { color: var(--ink-faint); font-size: 13px; margin-top: 6px; }
+  footer.site {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: 14px;
+  }
+  footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/fr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "GHOSTTOOTH — Détecteur de traceurs et d'appareils de surveillance Bluetooth",
+      "item": "https://ghosttooth.labidi.eu/fr/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Aller au contenu</a>
+<div class="wrap">
+
+<header class="site">
+  <a href="https://ghosttooth.labidi.eu/fr/"><img src="../media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <span class="brand">GHOSTTOOTH</span>
+  <nav class="langs" aria-label="Langue"><a href="https://ghosttooth.labidi.eu/" lang="en" hreflang="en">EN</a><span aria-current="true" lang="fr">FR</span><a href="https://ghosttooth.labidi.eu/nl/" lang="nl" hreflang="nl">NL</a></nav>
+</header>
+
+<main id="content">
+<h1>Détectez les traceurs et les appareils de surveillance autour de vous</h1>
+<p class="updated">Dernière mise à jour 2026-07-30</p>
+<p class="lede">GhostTooth écoute les trames Bluetooth autour de vous et signale ce qui ressemble à un traceur ou à du matériel d'enregistrement. Gratuit, sans publicité, sans compte, et <strong>aucune donnée ne quitte votre téléphone</strong>.</p>
+<div class="btnrow"><a class="btn primary" href="https://play.google.com/store/apps/details?id=com.compyra.ghosttooth" target="_blank" rel="noopener">Télécharger sur Google Play</a><a class="btn " href="../">Scanner depuis le navigateur</a></div>
+<h2>Ce qu&#x27;il détecte</h2>
+<ul><li><strong>Traceurs</strong> : AirTag et accessoires Find My d'Apple, Tile, Samsung SmartTag, Chipolo, Pebblebee, Moto Tag et les balises du réseau Find My Device de Google.</li><li><strong>Appareils de surveillance</strong> : lunettes à caméra (Ray-Ban Meta, Snap Spectacles, Echo Frames), enregistreurs portables et pins IA, caméras-piétons.</li><li><strong>Balises anonymes</strong> qui restent avec vous sur plusieurs créneaux horaires distincts, même sans marque reconnaissable.</li></ul>
+<h2>Chaque verdict s&#x27;explique</h2>
+<p>Un badge rouge sans explication n'aide personne. GhostTooth indique pourquoi un appareil est signalé et à quel point la preuve est solide : <em>possible</em> (un seul indice faible), <em>probable</em> (confirmé par le fabricant ou le service annoncé) ou <em>confirmé</em> (lu directement dans le protocole de suivi). Seules les preuves solides déclenchent une alerte.</p>
+<h2>Surveillance en arrière-plan</h2>
+<p>Activez la surveillance et GhostTooth continue de chercher quand l'application est fermée, avec une notification qui affiche les compteurs en direct. Il vous prévient quand un appareil <em>voyage avec vous</em> — le signal qui compte vraiment.</p>
+<h2>Vie privée</h2>
+<p>Aucune donnée d'analyse, aucune donnée personnelle, aucune position ne quitte votre appareil. Aucune publicité, aucun traceur, aucun compte. La seule connexion réseau sert à télécharger les définitions de détection depuis ce site. Voir la <a href="../fr/privacy/">politique de confidentialité</a>.</p>
+<h2>Vous avez trouvé quelque chose ?</h2>
+<div class="card warn"><p>Ne le jetez pas tout de suite : c'est une preuve. Notre <a href="../fr/safety/">guide de sécurité</a> explique quoi faire, quoi éviter, et où trouver de l'aide.</p></div>
+<div class="btnrow"><a class="btn " href="../fr/faq/">Aide &amp; FAQ</a><a class="btn " href="../fr/safety/">Traceur trouvé ?</a></div>
+</main>
+
+<footer class="site">
+  <nav aria-label="Sections du site"><a href="https://ghosttooth.labidi.eu/fr/">Scanner</a><a href="https://ghosttooth.labidi.eu/fr/faq/">Aide &amp; FAQ</a><a href="https://ghosttooth.labidi.eu/fr/safety/">Traceur trouvé ?</a><a href="https://ghosttooth.labidi.eu/fr/privacy/">Confidentialité</a><a href="https://ghosttooth.labidi.eu/fr/terms/">Conditions</a><a href="https://ghosttooth.labidi.eu/fr/accessibility/">Accessibilité</a><a href="https://ghosttooth.labidi.eu/changelog/">Journal des versions</a></nav>
+  <p>GHOSTTOOTH est développé par labidi.eu. Une question, ou un appareil que nous devrions reconnaître ? Écrivez à <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a>.</p>
+</footer>
+
+</div>
+<script>
+/* Offline support. Someone reading the safety guide may have deliberately gone
+   offline, and someone reading the FAQ is often there because their device is
+   misbehaving. Failure is silent: the site works perfectly well without it. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Local tooling environment used by tools/*.py (screenshot + OG image generation).
+# Never commit: it is large, platform-specific and trivially recreated with
+#   python -m venv .venv; .venv\Scripts\pip install pillow
+.venv/
+__pycache__/
+*.pyc
+
+# Local scratch output
+*.tmp
+.DS_Store
+Thumbs.db

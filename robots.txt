@@ -1,4 +1,12 @@
 User-agent: *
 Allow: /
 
+# Internal test fixture: a saved scan with several hundred mock devices, used to
+# check list rendering, filters, sorting and CSV export without a live radio.
+# Not user-facing content, so keep it out of search results.
+Disallow: /test-found-devices.html
+
+# Build tooling for the localised pages and the reference registries.
+Disallow: /tools/
+
 Sitemap: https://ghosttooth.labidi.eu/sitemap.xml

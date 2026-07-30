@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Le niveau d&#x27;accessibilité de l&#x27;application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/fr/accessibility/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/accessibility/">
+<link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/accessibility/">
+<link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/accessibility/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/accessibility/">
+<link rel="icon" type="image/png" href="../../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../../media/app-icon-512.png">
+<link rel="manifest" href="../../site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="GHOSTTOOTH — Déclaration d&#x27;accessibilité">
+<meta property="og:description" content="Le niveau d&#x27;accessibilité de l&#x27;application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/fr/accessibility/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GHOSTTOOTH — Déclaration d&#x27;accessibilité">
+<meta name="twitter:description" content="Le niveau d&#x27;accessibilité de l&#x27;application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>Déclaration d&#x27;accessibilité — GHOSTTOOTH</title>
+<style>
+  :root {
+    --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
+    --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+    --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+    --danger: #ff5a6e; --warn: #f5b942; --ok: #5fd3a6;
+    --radius: 14px; --radius-sm: 10px; --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb; --bg-2: #eaecf6; --surface: #ffffff; --surface-2: #f0f2fb;
+      --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+      --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      --danger: #c62839; --warn: #a5720a; --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+    color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px,4vw,40px) clamp(16px,5vw,32px) 64px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip {
+    position: absolute; left: -9999px; top: 0; background: var(--surface);
+    color: var(--ink); padding: 10px 16px; border-radius: var(--radius-sm); z-index: 10;
+  }
+  .skip:focus { left: 12px; top: 12px; }
+  header.site { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  header.site img { width: 44px; height: 44px; border-radius: 10px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .12em; color: var(--gold); font-size: 15px; }
+  nav.langs { margin-left: auto; display: flex; gap: 6px; font-size: 13px; font-family: var(--mono); }
+  nav.langs a, nav.langs span {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+    min-height: 32px; display: inline-flex; align-items: center;
+  }
+  nav.langs [aria-current="true"] { background: var(--surface-2); color: var(--gold); border-color: var(--gold); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 18px 0 6px; color: var(--gold); }
+  h2 { font-size: clamp(20px, 3.5vw, 24px); margin: 36px 0 8px; color: var(--gold-soft); }
+  h3 { font-size: 18px; margin: 24px 0 6px; color: var(--ink); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lede { color: var(--ink-dim); font-size: 18px; }
+  .updated { color: var(--ink-faint); font-size: 13px; font-family: var(--mono); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(14px, 3vw, 20px); margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .card.warn { border-color: var(--warn); }
+  .card.danger { border-color: var(--danger); }
+  .card.ok { border-color: var(--ok); }
+  .card h2, .card h3 { margin-top: 0; }
+  .step { counter-increment: step; }
+  .step h2::before { content: counter(step) ". "; color: var(--gold); }
+  main { counter-reset: step; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gold-soft); font-weight: 600; }
+  code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; height: auto; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); display: block;
+  }
+  .shots figcaption { color: var(--ink-faint); font-size: 13px; margin-top: 6px; }
+  footer.site {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: 14px;
+  }
+  footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/fr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Déclaration d'accessibilité — GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/fr/accessibility/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Aller au contenu</a>
+<div class="wrap">
+
+<header class="site">
+  <a href="https://ghosttooth.labidi.eu/fr/"><img src="../../media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <span class="brand">GHOSTTOOTH</span>
+  <nav class="langs" aria-label="Langue"><a href="https://ghosttooth.labidi.eu/accessibility/" lang="en" hreflang="en">EN</a><span aria-current="true" lang="fr">FR</span><a href="https://ghosttooth.labidi.eu/nl/accessibility/" lang="nl" hreflang="nl">NL</a></nav>
+</header>
+
+<main id="content">
+<h1>Déclaration d&#x27;accessibilité</h1>
+<p class="updated">Dernière mise à jour 2026-07-30</p>
+<p class="lede">Un outil de sécurité qui ne fonctionne que pour certaines personnes n'est pas un outil de sécurité. Cette page dit clairement où en est GhostTooth, y compris ce qui n'est pas encore satisfaisant.</p>
+<h2>Objectif</h2>
+<p>Nous visons le niveau <strong>AA des WCAG 2.1</strong> sur ce site, et le respect des recommandations d'accessibilité Android dans l'application. Aucun audit externe formel n'a été commandé : il s'agit donc d'une auto-évaluation.</p>
+<h2>Ce qui est en place</h2>
+<ul><li>Chaque page est un fichier unique sans police ni script externe : elle s'affiche même sur une connexion lente ou filtrée.</li><li>Les thèmes sombre et clair respectent tous deux le contraste AA ; le site suit votre préférence système au lieu d'en imposer une.</li><li>Repères sémantiques, hiérarchie de titres logique et lien « aller au contenu » sur chaque page.</li><li>Zones tactiles d'au moins 48 × 48 px dans l'application comme sur le site.</li><li>Dans l'application, les badges de menace portent une description vocale — un lecteur d'écran annonce « Appareil de surveillance, confiance confirmée » au lieu de lire un symbole coloré.</li><li>Le niveau de menace n'est jamais transmis par la couleur seule : chaque badge porte aussi un symbole et un mot.</li><li>Le texte suit la taille de police du système sans être tronqué.</li></ul>
+<h2>Limites connues</h2>
+<p>Nous préférons les lister plutôt que faire comme si elles n'existaient pas :</p>
+<ul><li>La frise de présence expérimentale est un graphique purement visuel, sans équivalent textuel pour l'instant.</li><li>La localisation chaud/froid est utilisable au lecteur d'écran et avec retour sonore, mais n'a pas encore de retour haptique pour les personnes qui n'entendent pas les bips.</li><li>La liste d'appareils du scanner web se met à jour très souvent ; l'application est plus reposante avec un lecteur d'écran.</li><li>Certains textes explicatifs longs n'ont pas encore fait l'objet d'une relecture en langage clair.</li></ul>
+<h2>Signalez-nous ce qui ne fonctionne pas</h2>
+<p>Si une partie de GhostTooth vous est difficile ou impossible à utiliser, écrivez à <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a> en décrivant ce qui s'est passé et ce que vous utilisiez. Les signalements d'accessibilité sont traités comme des bugs, pas comme des demandes d'évolution.</p>
+</main>
+
+<footer class="site">
+  <nav aria-label="Sections du site"><a href="https://ghosttooth.labidi.eu/fr/">Scanner</a><a href="https://ghosttooth.labidi.eu/fr/faq/">Aide &amp; FAQ</a><a href="https://ghosttooth.labidi.eu/fr/safety/">Traceur trouvé ?</a><a href="https://ghosttooth.labidi.eu/fr/privacy/">Confidentialité</a><a href="https://ghosttooth.labidi.eu/fr/terms/">Conditions</a><a href="https://ghosttooth.labidi.eu/fr/accessibility/">Accessibilité</a><a href="https://ghosttooth.labidi.eu/changelog/">Journal des versions</a></nav>
+  <p>GHOSTTOOTH est développé par labidi.eu. Une question, ou un appareil que nous devrions reconnaître ? Écrivez à <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a>.</p>
+</footer>
+
+</div>
+<script>
+/* Offline support. Someone reading the safety guide may have deliberately gone
+   offline, and someone reading the FAQ is often there because their device is
+   misbehaving. Failure is silent: the site works perfectly well without it. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

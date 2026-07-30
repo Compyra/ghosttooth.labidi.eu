@@ -9,8 +9,13 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0b0d1a">
 <link rel="canonical" href="https://ghosttooth.labidi.eu/faq/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/faq/">
+<link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/faq/">
+<link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/faq/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/faq/">
 <link rel="icon" type="image/png" href="../media/app-icon-512.png">
 <link rel="apple-touch-icon" href="../media/app-icon-512.png">
+<link rel="manifest" href="../site.webmanifest">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -18,19 +23,21 @@
 <meta property="og:title" content="GHOSTTOOTH — Help &amp; FAQ">
 <meta property="og:description" content="How the Bluetooth surveillance &amp; tracker detector works, what it can and cannot see, and how to read the results.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/faq/">
-<meta property="og:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
-<meta property="og:image:alt" content="GHOSTTOOTH logo">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="1024">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="fr_FR">
+<meta property="og:locale:alternate" content="nl_NL">
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="GHOSTTOOTH — Help &amp; FAQ">
 <meta name="twitter:description" content="How the Bluetooth surveillance &amp; tracker detector works, what it can and cannot see, and how to read the results.">
-<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/app-icon-1024.png">
-<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
 
 <title>GHOSTTOOTH — Help &amp; FAQ</title>
 <style>
@@ -404,6 +411,24 @@
     font-size: 14px;
   }
   footer .ft-brand { font-family: var(--mono); color: var(--gold); letter-spacing: .1em; }
+  footer .ft-nav { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+
+  /* ---------- Language switcher ----------
+     The app ships en/fr/nl; so does the site. Sits above the brand so it is the
+     first interactive thing a lost non-English reader meets. */
+  .lang-switch {
+    display: flex; gap: 6px; justify-content: flex-end;
+    font-family: var(--mono); font-size: 13px; margin-bottom: 8px;
+  }
+  .lang-switch a, .lang-switch span {
+    display: inline-flex; align-items: center; min-height: 32px;
+    padding: 4px 10px; border: 1px solid var(--border); border-radius: 8px;
+    color: var(--ink-dim); text-decoration: none;
+  }
+  .lang-switch a:hover { color: var(--gold); border-color: var(--gold); }
+  .lang-switch [aria-current="true"] {
+    color: var(--gold); border-color: var(--gold); background: var(--surface-2);
+  }
 
   .pill {
     display: inline-block; font-family: var(--mono); font-size: 12px;
@@ -475,6 +500,11 @@
 
   <!-- ===================== HERO ===================== -->
   <header class="hero">
+    <nav class="lang-switch" aria-label="Language">
+      <span aria-current="true" lang="en">EN</span>
+      <a href="../fr/faq/" lang="fr" hreflang="fr">FR</a>
+      <a href="../nl/faq/" lang="nl" hreflang="nl">NL</a>
+    </nav>
     <h1 class="brand"><span class="glyph"><img src="../media/GhostTooth-mascot.png" alt="GHOSTTOOTH logo" width="54" height="54"></span>GHOSTTOOTH</h1>
     <p class="tagline">A Bluetooth scanner that helps you discover nearby devices — including potential surveillance gadgets and hidden trackers.</p>
     <p class="byline">Help &amp; FAQ · a labidi.eu project</p>
@@ -810,11 +840,29 @@
 
   <!-- ===================== FOOTER ===================== -->
   <footer>
+    <p class="ft-nav">
+      <a href="../">Home</a> ·
+      <a href="../safety/">Found a tracker?</a> ·
+      <a href="../privacy/">Privacy</a> ·
+      <a href="../terms/">Terms</a> ·
+      <a href="../accessibility/">Accessibility</a> ·
+      <a href="../changelog/">Changelog</a>
+    </p>
     <p><span class="ft-brand">GHOSTTOOTH</span> — a <a href="https://labidi.eu">labidi.eu</a> project</p>
     <p><span class="pill">Awareness tool · not a guarantee</span></p>
-    <p>Last updated: 2026-07-09</p>
+    <p>Questions? <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a></p>
+    <p>Last updated: 2026-07-28</p>
   </footer>
 
 </div>
+<script>
+/* Offline support: this is the page people open when their device is already
+   misbehaving. Silent on failure. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
 </body>
 </html>

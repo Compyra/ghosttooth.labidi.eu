@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Des conseils concrets et posés si vous pensez qu&#x27;un traceur Bluetooth vous suit : préserver les preuves, rester en sécurité, écarter les explications innocentes et trouver de l&#x27;aide.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/fr/safety/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/safety/">
+<link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/safety/">
+<link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/safety/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/safety/">
+<link rel="icon" type="image/png" href="../../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../../media/app-icon-512.png">
+<link rel="manifest" href="../../site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="Traceur trouvé ? Que faire ensuite">
+<meta property="og:description" content="Des conseils concrets et posés si vous pensez qu&#x27;un traceur Bluetooth vous suit : préserver les preuves, rester en sécurité, écarter les explications innocentes et trouver de l&#x27;aide.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/fr/safety/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="fr_FR">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Traceur trouvé ? Que faire ensuite">
+<meta name="twitter:description" content="Des conseils concrets et posés si vous pensez qu&#x27;un traceur Bluetooth vous suit : préserver les preuves, rester en sécurité, écarter les explications innocentes et trouver de l&#x27;aide.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>Traceur trouvé ? Que faire ensuite — GHOSTTOOTH</title>
+<style>
+  :root {
+    --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
+    --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+    --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+    --danger: #ff5a6e; --warn: #f5b942; --ok: #5fd3a6;
+    --radius: 14px; --radius-sm: 10px; --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb; --bg-2: #eaecf6; --surface: #ffffff; --surface-2: #f0f2fb;
+      --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+      --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      --danger: #c62839; --warn: #a5720a; --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+    color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px,4vw,40px) clamp(16px,5vw,32px) 64px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip {
+    position: absolute; left: -9999px; top: 0; background: var(--surface);
+    color: var(--ink); padding: 10px 16px; border-radius: var(--radius-sm); z-index: 10;
+  }
+  .skip:focus { left: 12px; top: 12px; }
+  header.site { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  header.site img { width: 44px; height: 44px; border-radius: 10px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .12em; color: var(--gold); font-size: 15px; }
+  nav.langs { margin-left: auto; display: flex; gap: 6px; font-size: 13px; font-family: var(--mono); }
+  nav.langs a, nav.langs span {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+    min-height: 32px; display: inline-flex; align-items: center;
+  }
+  nav.langs [aria-current="true"] { background: var(--surface-2); color: var(--gold); border-color: var(--gold); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 18px 0 6px; color: var(--gold); }
+  h2 { font-size: clamp(20px, 3.5vw, 24px); margin: 36px 0 8px; color: var(--gold-soft); }
+  h3 { font-size: 18px; margin: 24px 0 6px; color: var(--ink); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lede { color: var(--ink-dim); font-size: 18px; }
+  .updated { color: var(--ink-faint); font-size: 13px; font-family: var(--mono); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(14px, 3vw, 20px); margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .card.warn { border-color: var(--warn); }
+  .card.danger { border-color: var(--danger); }
+  .card.ok { border-color: var(--ok); }
+  .card h2, .card h3 { margin-top: 0; }
+  .step { counter-increment: step; }
+  .step h2::before { content: counter(step) ". "; color: var(--gold); }
+  main { counter-reset: step; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gold-soft); font-weight: 600; }
+  code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; height: auto; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); display: block;
+  }
+  .shots figcaption { color: var(--ink-faint); font-size: 13px; margin-top: 6px; }
+  footer.site {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: 14px;
+  }
+  footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/fr/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Traceur trouvé ? Que faire ensuite — GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/fr/safety/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Aller au contenu</a>
+<div class="wrap">
+
+<header class="site">
+  <a href="https://ghosttooth.labidi.eu/fr/"><img src="../../media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <span class="brand">GHOSTTOOTH</span>
+  <nav class="langs" aria-label="Langue"><a href="https://ghosttooth.labidi.eu/safety/" lang="en" hreflang="en">EN</a><span aria-current="true" lang="fr">FR</span><a href="https://ghosttooth.labidi.eu/nl/safety/" lang="nl" hreflang="nl">NL</a></nav>
+</header>
+
+<main id="content">
+<h1>Vous avez trouvé quelque chose. Et maintenant ?</h1>
+<p class="updated">Dernière mise à jour 2026-07-30</p>
+<p class="lede">Si GhostTooth a signalé un appareil qui semble vous suivre, respirez. La plupart des appareils signalés se révèlent inoffensifs. Mais si ce n'est pas le cas, ce que vous faites dans les prochaines minutes compte — et les réactions les plus évidentes sont généralement les mauvaises.</p>
+<div class="card warn"><h3>En cas de danger immédiat</h3><p>Arrêtez de lire et appelez le numéro d'urgence. Dans l'Union européenne, c'est le <strong>112</strong>. Cette page sert à préparer, pas à gérer une urgence.</p></div>
+<section class="step"><h2>Ne le détruisez pas encore</h2><p>Un traceur est une preuve. Le casser ou le jeter détruit la trace de qui l'a placé là, et prévient la personne qui vous surveille qu'elle a été découverte. Laissez-le en place pour l'instant et photographiez-le là où il se trouve, avec un objet pour l'échelle.</p></section>
+<section class="step"><h2>Mettez-vous d&#x27;abord en sécurité</h2><p>Si vous pensez que quelqu'un vous suit, ne commencez pas à fouiller votre voiture ou votre sac dans un endroit isolé, la nuit, seul·e. Rendez-vous dans un lieu public et bien éclairé, ou chez quelqu'un de confiance, et cherchez là-bas.</p></section>
+<section class="step"><h2>Enregistrez ce que l&#x27;application a relevé</h2><p>Les horodatages sont la preuve : ils montrent que le même appareil se trouvait près de vous à des moments et des endroits différents. Dans GhostTooth, ouvrez <em>Paramètres avancés → Exporter le rapport de surveillance</em> et gardez une copie hors de portée de l'autre personne — un compte professionnel, l'appareil d'un ami, une impression papier.</p></section>
+<section class="step"><h2>Écartez les explications innocentes</h2><p>Avant d'imaginer le pire, passez en revue cette liste. Elle explique la majorité des cas.</p></section>
+<ul><li>Une balise familiale dans une voiture partagée, ou sur un trousseau commun.</li><li>Un traceur dans un sac, un manteau, une poussette ou un vélo empruntés.</li><li>Une balise appartenant à un hôtel, une voiture de location, un employeur ou un colis.</li><li>Un appareil à vous que vous aviez oublié — les étiquettes de bagage se perdent de vue facilement.</li><li>Le téléphone ou les écouteurs de quelqu'un qui fait simplement le même trajet que vous.</li></ul>
+<section class="step"><h2>Envisagez de le signaler</h2><p>Dans de nombreux pays, suivre une personne sans son consentement est une infraction pénale et peut aussi violer le droit de la protection des données. Vous pouvez contacter le numéro non urgent de votre police locale et lui montrer le rapport exporté. Demandez que le signalement soit consigné même si rien d'autre n'est fait : une trace écrite compte si le comportement se poursuit.</p></section>
+<section class="step"><h2>Parlez-en à des professionnels</h2><p>Les services d'aide aux victimes de violences conjugales et de harcèlement traitent exactement ce genre de situation et peuvent vous aider à agir en sécurité. C'est gratuit et confidentiel, et les contacter ne vous engage à rien.</p></section>
+<h2>Où trouver de l&#x27;aide</h2>
+<p>Voici des points de départ nationaux. Si votre pays n'y figure pas, cherchez la ligne d'écoute nationale pour les violences conjugales ou l'aide aux victimes, ou demandez une orientation à votre médecin ou à la police locale.</p>
+<table><thead><tr><th scope="col">Pays</th><th scope="col">Service</th><th scope="col">Contact</th></tr></thead><tbody><tr><td>Belgique</td><td>Écoute Violences Conjugales</td><td><strong>0800 30 030</strong> · <a href="https://www.ecouteviolencesconjugales.be" rel="noopener nofollow" target="_blank">ecouteviolencesconjugales.be</a></td></tr><tr><td>Belgique (NL)</td><td>1712 — geweld en misbruik</td><td><strong>1712</strong> · <a href="https://1712.be" rel="noopener nofollow" target="_blank">1712.be</a></td></tr><tr><td>France</td><td>Violences Femmes Info</td><td><strong>3919</strong> · <a href="https://arretonslesviolences.gouv.fr" rel="noopener nofollow" target="_blank">arretonslesviolences.gouv.fr</a></td></tr><tr><td>France</td><td>France Victimes</td><td><strong>116 006</strong> · <a href="https://www.france-victimes.fr" rel="noopener nofollow" target="_blank">france-victimes.fr</a></td></tr><tr><td>Suisse</td><td>Aide aux victimes</td><td><a href="https://www.aide-aux-victimes.ch" rel="noopener nofollow" target="_blank">aide-aux-victimes.ch</a></td></tr><tr><td>Union européenne</td><td>Victim Support Europe</td><td><a href="https://victim-support.eu" rel="noopener nofollow" target="_blank">victim-support.eu</a></td></tr></tbody></table>
+<h2>À propos de la sécurité numérique</h2>
+<div class="card danger"><p>Si la personne qui vous inquiète a accès à votre téléphone, à vos comptes ou à votre abonnement familial, elle peut voir votre historique de navigation, vos applications installées et votre position. GhostTooth garde son écran de sécurité hors de la liste des applications récentes, mais ne peut pas protéger l'historique de votre navigateur. Si c'est un risque pour vous, utilisez un appareil hors de sa portée — un ordinateur de bibliothèque, ou le téléphone d'un ami.</p></div>
+<h2>Comment retrouver physiquement l&#x27;appareil</h2>
+<p>GhostTooth intègre une localisation chaud/froid : appuyez longuement sur un appareil dans la liste et choisissez <em>Localiser cet appareil</em>. Un grand pourcentage de signal augmente à mesure que vous approchez, et les bips s'accélèrent.</p>
+<ul><li>Avancez lentement et faites une pause tous les quelques pas — le signal a besoin d'un instant pour se stabiliser.</li><li>Le Bluetooth traverse le tissu et le plastique, mais pas le métal ni l'eau. Votre propre corps le bloque : le chiffre baisse quand vous vous retournez.</li><li>Cachettes fréquentes : passages de roue, sous les pare-chocs, interstices des sièges, doublures de sac, sous les semelles, ourlets de manteau, châssis de poussette.</li><li>Séparés assez longtemps de leur propriétaire, beaucoup de modèles se mettent à sonner d'eux-mêmes. Le silence dans une pièce calme ne prouve rien.</li></ul>
+<h2>Ce que GhostTooth ne peut pas vous dire</h2>
+<p>Être honnête là-dessus compte plus que d'avoir l'air impressionnant :</p>
+<ul><li>Il ne peut pas dire <em>qui</em> a placé un appareil. Les trames Bluetooth ne contiennent aucune identité de propriétaire.</li><li>Il ne voit pas les traceurs GPS/GSM sans Bluetooth, ni les appareils éteints ou déchargés.</li><li>Il ne voit pas un traceur enfermé dans du métal, ni un modèle qui ne se réveille qu'occasionnellement.</li><li>Un appareil signalé ne prouve rien à lui seul. C'est la régularité dans le temps qui compte.</li></ul>
+<div class="btnrow"><a class="btn " href="../../fr/faq/">Lire la FAQ complète</a><a class="btn primary" href="https://play.google.com/store/apps/details?id=com.compyra.ghosttooth" target="_blank" rel="noopener">Télécharger sur Google Play</a></div>
+</main>
+
+<footer class="site">
+  <nav aria-label="Sections du site"><a href="https://ghosttooth.labidi.eu/fr/">Scanner</a><a href="https://ghosttooth.labidi.eu/fr/faq/">Aide &amp; FAQ</a><a href="https://ghosttooth.labidi.eu/fr/safety/">Traceur trouvé ?</a><a href="https://ghosttooth.labidi.eu/fr/privacy/">Confidentialité</a><a href="https://ghosttooth.labidi.eu/fr/terms/">Conditions</a><a href="https://ghosttooth.labidi.eu/fr/accessibility/">Accessibilité</a><a href="https://ghosttooth.labidi.eu/changelog/">Journal des versions</a></nav>
+  <p>GHOSTTOOTH est développé par labidi.eu. Une question, ou un appareil que nous devrions reconnaître ? Écrivez à <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a>.</p>
+</footer>
+
+</div>
+<script>
+/* Offline support. Someone reading the safety guide may have deliberately gone
+   offline, and someone reading the FAQ is often there because their device is
+   misbehaving. Failure is silent: the site works perfectly well without it. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

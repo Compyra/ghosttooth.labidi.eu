@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "updated": "2026-07-30T12:02:44Z",
+  "files": {
+    "company_identifiers.js": {
+      "sha256": "c05e3548e7ffa59ed474e0108906ea2f18d6ff288b3efcda0bda6872f42e4fff",
+      "bytes": 156752
+    },
+    "long_company_identifiers.js": {
+      "sha256": "76d30e99b4728479fb159961b4f87e43f526a93dde3d4e3cc548e20a3e6848a0",
+      "bytes": 49663
+    },
+    "known-devices.js": {
+      "sha256": "ccf797d757e57388d9aa1924919ac946769eeda9d8aaf400c96287485390245e",
+      "bytes": 8031
+    },
+    "device-types.js": {
+      "sha256": "8b962ba5aa34398aaa5e02f09f9a372e3ff593a8f8ebb1c23ef2729c7dcfd3b6",
+      "bytes": 4443
+    }
+  }
+}

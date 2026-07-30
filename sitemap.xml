@@ -1,21 +1,192 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ghosttooth.labidi.eu/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/"/>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://ghosttooth.labidi.eu/faq/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/faq/"/>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://ghosttooth.labidi.eu/fr/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/faq/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/faq/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/faq/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/faq/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/faq/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/faq/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/safety/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/safety/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/safety/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/safety/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/safety/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/fr/safety/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/safety/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/safety/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/safety/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/safety/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/safety/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/safety/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/safety/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/safety/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/safety/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/changelog/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/changelog/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/changelog/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://ghosttooth.labidi.eu/privacy/</loc>
-    <lastmod>2026-07-14</lastmod>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <lastmod>2026-07-30</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/fr/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/privacy/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/terms/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/fr/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/terms/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/terms/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/terms/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/terms/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/fr/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/nl/accessibility/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/accessibility/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/accessibility/"/>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
   </url>
 </urlset>

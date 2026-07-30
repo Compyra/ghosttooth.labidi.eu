@@ -12,11 +12,14 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 
 ## 1. Crawlability & indexing
 - [x] `robots.txt` present, allows all, references sitemap
-- [x] `sitemap.xml` with home, faq, privacy (lastmod, priority, changefreq)
-- [x] Canonical URL on every page (home, faq, privacy, 404)
+- [x] `robots.txt` disallows the internal test fixture (`/test-found-devices.html`) and `/tools/`
+- [x] `sitemap.xml` — now **generated** by `tools/build-site.py`; 19 URLs across en/fr/nl with `xhtml:link` hreflang alternates
+- [x] Canonical URL on every page
+- [x] `hreflang` alternates + `x-default` on every page, both generated and hand-written
 - [x] `meta robots` = `index, follow, max-image-preview:large` on indexable pages
 - [x] 404 page returns a helpful, on-brand page and is `noindex`
-- [ ] Verify GitHub Pages serves `/404.html` for unknown paths (it does by convention)
+- [x] 404 uses absolute paths so it still resolves when served from a deep URL
+- [x] Internal test fixture is wrapped, labelled and `noindex, nofollow, noarchive`
 - [ ] Submit sitemap in Google Search Console + Bing Webmaster Tools (manual, external)
 
 ## 2. Metadata (per page)
@@ -24,14 +27,15 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 - [x] Unique `meta description` (~150–160 chars) per page
 - [x] `meta keywords` (low value, kept minimal on home)
 - [x] `author`, `theme-color`, `color-scheme`
-- [x] `lang="en"` on `<html>`
+- [x] `lang` set correctly per page (`en` / `fr` / `nl`)
 
 ## 3. Social / Open Graph / Twitter
-- [x] Open Graph tags on home, faq, privacy, 404
+- [x] Open Graph tags on every page, generated and hand-written
 - [x] Twitter summary_large_image tags on all pages
 - [x] `og:image` + dimensions + type declared
-- [x] Social share image is text-free (mascot on brand background, 1024×1024)
-- [ ] Optional: dedicated 1200×630 landscape share image
+- [x] `og:locale` per language + `og:locale:alternate` on the English pages
+- [x] Dedicated 1200×630 landscape share image — `media/og-1200x630.png`, generated
+      reproducibly by `tools/build-og-image.py`, referenced by every page
 
 ## 4. Structured data (schema.org / JSON-LD)
 - [x] `WebApplication` / `SoftwareApplication` on home
@@ -42,7 +46,9 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 
 ## 5. Icons & PWA
 - [x] Favicon based on the GHOSTTOOTH logo (PNG + apple-touch-icon)
-- [x] `site.webmanifest` (installable, theme/background color)
+- [x] `site.webmanifest` (installable, theme/background color), linked from every page
+- [x] Service worker (`sw.js`) — cache-first shell, network-first registries, offline
+      fallback. Registered on every page so the FAQ and safety guide open offline.
 - [x] Text-free mascot logo (`media/GhostTooth-mascot.png`, transparent) used in-site
 - [x] Google Play app icons generated (`app-icon-512.png`, `app-icon-1024.png`)
 - [x] Dedicated maskable icon (`app-icon-maskable-512.png`, safe-zone padding)
@@ -61,15 +67,20 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 ## 8. Internal linking
 - [x] Home links to FAQ + Privacy (callout + footer)
 - [x] FAQ + Privacy link back to Home + each other
-- [x] 404 links back to Home + FAQ + Privacy
+- [x] 404 links back to Home + FAQ + Safety + Terms, plus FR/NL
+- [x] Every page footers to Safety, Terms, Accessibility and Changelog
+- [x] Language switcher on every page, including the hand-written English ones
 
 ## 9. Consistency
 - [x] Logo (not emoji) in all hero/brand marks
 - [x] Matching meta/OG/Twitter structure across all pages
-- [x] Consistent "Last updated" dates in sitemap
+- [x] Consistent "Last updated" dates, driven from `UPDATED` in `tools/site_content.py`
+- [x] No version number on the landing page that could contradict the app changelog
 
 ## Remaining manual / external actions
-- [ ] Optional: create a 1200×630 landscape OG share image for richer social cards
 - [ ] Register in Google Search Console & Bing, submit sitemap
-- [ ] Replace the Google Play placeholder link once the app is published
-- [ ] Upload `media/app-icon-512.png` as the Play Store listing icon
+- [ ] Validate structured data with the Google Rich Results Test
+- [ ] Add real 1.3.0 app screenshots to `media/screenshots/` and re-run
+      `tools/build-site.py` (the gallery is skipped while they are missing —
+      see `media/screenshots/README.md`)
+- [ ] Optional: serve the logo as WebP alongside PNG

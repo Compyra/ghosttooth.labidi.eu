@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.">
+<meta name="author" content="labidi.eu">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="theme-color" content="#0b0d1a">
+<link rel="canonical" href="https://ghosttooth.labidi.eu/nl/accessibility/">
+<link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/accessibility/">
+<link rel="alternate" hreflang="fr" href="https://ghosttooth.labidi.eu/fr/accessibility/">
+<link rel="alternate" hreflang="nl" href="https://ghosttooth.labidi.eu/nl/accessibility/">
+<link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/accessibility/">
+<link rel="icon" type="image/png" href="../../media/app-icon-512.png">
+<link rel="apple-touch-icon" href="../../media/app-icon-512.png">
+<link rel="manifest" href="../../site.webmanifest">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GHOSTTOOTH">
+<meta property="og:title" content="GHOSTTOOTH — Toegankelijkheidsverklaring">
+<meta property="og:description" content="Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.">
+<meta property="og:url" content="https://ghosttooth.labidi.eu/nl/accessibility/">
+<meta property="og:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="nl_NL">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GHOSTTOOTH — Toegankelijkheidsverklaring">
+<meta name="twitter:description" content="Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.">
+<meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/og-1200x630.png">
+<meta name="twitter:image:alt" content="GHOSTTOOTH logo">
+
+<title>Toegankelijkheidsverklaring — GHOSTTOOTH</title>
+<style>
+  :root {
+    --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
+    --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+    --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+    --danger: #ff5a6e; --warn: #f5b942; --ok: #5fd3a6;
+    --radius: 14px; --radius-sm: 10px; --maxw: 860px;
+    --shadow: 0 6px 24px rgba(0,0,0,.35);
+    --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f4f5fb; --bg-2: #eaecf6; --surface: #ffffff; --surface-2: #f0f2fb;
+      --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+      --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      --danger: #c62839; --warn: #a5720a; --ok: #1f8f63;
+      --shadow: 0 6px 24px rgba(20,25,60,.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+    color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: clamp(16px,4vw,40px) clamp(16px,5vw,32px) 64px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .skip {
+    position: absolute; left: -9999px; top: 0; background: var(--surface);
+    color: var(--ink); padding: 10px 16px; border-radius: var(--radius-sm); z-index: 10;
+  }
+  .skip:focus { left: 12px; top: 12px; }
+  header.site { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+  header.site img { width: 44px; height: 44px; border-radius: 10px; }
+  .brand { font-family: var(--mono); font-weight: 700; letter-spacing: .12em; color: var(--gold); font-size: 15px; }
+  nav.langs { margin-left: auto; display: flex; gap: 6px; font-size: 13px; font-family: var(--mono); }
+  nav.langs a, nav.langs span {
+    padding: 6px 10px; border-radius: 8px; border: 1px solid var(--border);
+    min-height: 32px; display: inline-flex; align-items: center;
+  }
+  nav.langs [aria-current="true"] { background: var(--surface-2); color: var(--gold); border-color: var(--gold); }
+  h1 { font-size: clamp(26px, 5vw, 36px); line-height: 1.2; margin: 18px 0 6px; color: var(--gold); }
+  h2 { font-size: clamp(20px, 3.5vw, 24px); margin: 36px 0 8px; color: var(--gold-soft); }
+  h3 { font-size: 18px; margin: 24px 0 6px; color: var(--ink); }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0; padding-left: 22px; }
+  li { margin: 6px 0; }
+  .lede { color: var(--ink-dim); font-size: 18px; }
+  .updated { color: var(--ink-faint); font-size: 13px; font-family: var(--mono); }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: clamp(14px, 3vw, 20px); margin: 18px 0; box-shadow: var(--shadow);
+  }
+  .card.warn { border-color: var(--warn); }
+  .card.danger { border-color: var(--danger); }
+  .card.ok { border-color: var(--ok); }
+  .card h2, .card h3 { margin-top: 0; }
+  .step { counter-increment: step; }
+  .step h2::before { content: counter(step) ". "; color: var(--gold); }
+  main { counter-reset: step; }
+  .btnrow { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+    font-weight: 600; font-size: 15px;
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+  .btn.primary:hover { background: var(--gold-soft); }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { color: var(--gold-soft); font-weight: 600; }
+  code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
+  .shots { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 14px; margin: 18px 0; }
+  .shots figure { margin: 0; }
+  .shots img {
+    width: 100%; height: auto; border-radius: var(--radius-sm);
+    border: 1px solid var(--border); background: var(--surface-2); display: block;
+  }
+  .shots figcaption { color: var(--ink-faint); font-size: 13px; margin-top: 6px; }
+  footer.site {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: 14px;
+  }
+  footer.site nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 10px; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/nl/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Toegankelijkheidsverklaring — GHOSTTOOTH",
+      "item": "https://ghosttooth.labidi.eu/nl/accessibility/"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#content">Naar de inhoud</a>
+<div class="wrap">
+
+<header class="site">
+  <a href="https://ghosttooth.labidi.eu/nl/"><img src="../../media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <span class="brand">GHOSTTOOTH</span>
+  <nav class="langs" aria-label="Taal"><a href="https://ghosttooth.labidi.eu/accessibility/" lang="en" hreflang="en">EN</a><a href="https://ghosttooth.labidi.eu/fr/accessibility/" lang="fr" hreflang="fr">FR</a><span aria-current="true" lang="nl">NL</span></nav>
+</header>
+
+<main id="content">
+<h1>Toegankelijkheidsverklaring</h1>
+<p class="updated">Laatst bijgewerkt 2026-07-30</p>
+<p class="lede">Een veiligheidshulpmiddel dat maar voor sommige mensen werkt, is geen veiligheidshulpmiddel. Deze pagina zegt eerlijk waar GhostTooth staat, inclusief wat nog niet goed genoeg is.</p>
+<h2>Doel</h2>
+<p>We streven op deze website naar <strong>WCAG 2.1 niveau AA</strong>, en in de app naar de Android-richtlijnen voor toegankelijkheid. Er is geen formele externe audit uitgevoerd; dit is dus een zelfbeoordeling.</p>
+<h2>Wat er is geregeld</h2>
+<ul><li>Elke pagina is één bestand zonder externe lettertypen of scripts, dus hij laadt ook op een trage of geblokkeerde verbinding.</li><li>Donker en licht thema voldoen allebei aan AA-contrast; de site volgt je systeemvoorkeur in plaats van er één op te leggen.</li><li>Semantische landmarks, een logische kopstructuur en een 'naar de inhoud'-link op elke pagina.</li><li>Aanraakdoelen van minimaal 48 × 48 px in zowel de app als de site.</li><li>In de app hebben dreigingsbadges een gesproken omschrijving — een schermlezer meldt "Surveillanceapparaat, bevestigde zekerheid" in plaats van een gekleurd symbool voor te lezen.</li><li>Het dreigingsniveau wordt nooit alleen met kleur aangegeven: elke badge heeft ook een symbool en een woord.</li><li>Tekst schaalt mee met je systeemlettergrootte zonder weg te vallen.</li></ul>
+<h2>Bekende tekortkomingen</h2>
+<p>We noemen ze liever dan te doen alsof ze er niet zijn:</p>
+<ul><li>De experimentele aanwezigheidstijdlijn in de app is een puur visuele grafiek zonder tekstueel alternatief.</li><li>De warm/koud-locator is bruikbaar met een schermlezer en met geluid, maar heeft nog geen trilpatroon voor wie het piepen niet hoort.</li><li>De apparaatlijst van de webscanner ververst vaak; met een schermlezer is de app rustiger in gebruik.</li><li>Sommige langere uitlegteksten zijn nog niet op begrijpelijke taal nagekeken.</li></ul>
+<h2>Laat het weten als iets niet werkt</h2>
+<p>Als een onderdeel van GhostTooth voor jou lastig of onmogelijk te gebruiken is, mail dan naar <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a> met wat er gebeurde en wat je gebruikte. Toegankelijkheidsmeldingen behandelen we als bugs, niet als wensen.</p>
+</main>
+
+<footer class="site">
+  <nav aria-label="Onderdelen van de site"><a href="https://ghosttooth.labidi.eu/nl/">Scanner</a><a href="https://ghosttooth.labidi.eu/nl/faq/">Help &amp; FAQ</a><a href="https://ghosttooth.labidi.eu/nl/safety/">Tracker gevonden?</a><a href="https://ghosttooth.labidi.eu/nl/privacy/">Privacy</a><a href="https://ghosttooth.labidi.eu/nl/terms/">Voorwaarden</a><a href="https://ghosttooth.labidi.eu/nl/accessibility/">Toegankelijkheid</a><a href="https://ghosttooth.labidi.eu/changelog/">Wijzigingslog</a></nav>
+  <p>GHOSTTOOTH wordt gemaakt door labidi.eu. Vragen, of een apparaat dat we zouden moeten herkennen? Mail naar <a href="mailto:ghosttooth@labidi.eu">ghosttooth@labidi.eu</a>.</p>
+</footer>
+
+</div>
+<script>
+/* Offline support. Someone reading the safety guide may have deliberately gone
+   offline, and someone reading the FAQ is often there because their device is
+   misbehaving. Failure is silent: the site works perfectly well without it. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('/sw.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>

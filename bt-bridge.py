@@ -69,6 +69,22 @@ def on_advertisement(device, adv):
             "rssi": adv.rssi,
             "tx_power": adv.tx_power,
             "manufacturer_ids": list(adv.manufacturer_data.keys()),
+            # The payload bytes, hex-encoded, keyed by company ID.
+            #
+            # The company ID alone cannot tell an AirTag from an iPhone: 0x004C
+            # is broadcast by every Apple product ever made. The bytes that
+            # follow it say which it is, so the page can decode Find My frames
+            # exactly the way the Android app does. Same story for the Eddystone
+            # service data, which distinguishes a Find My Device Network tag
+            # from an ordinary shop beacon.
+            "manufacturer_data": {
+                str(cid): bytes(payload).hex()
+                for cid, payload in adv.manufacturer_data.items()
+            },
+            "service_data": {
+                str(uuid).lower(): bytes(payload).hex()
+                for uuid, payload in (adv.service_data or {}).items()
+            },
             "uuids": [u.lower() for u in adv.service_uuids],
             "last_seen": time.time(),
         }
