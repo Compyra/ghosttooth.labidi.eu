@@ -76,6 +76,19 @@ const KNOWN_DEVICE_NAME_PATTERNS = [
     { pattern: /inmo.?(air|go)/i, type: 'surveillance', confidence: 'likely', reason: 'INMO smart glasses' },
     { pattern: /brilliant.?labs/i, type: 'surveillance', confidence: 'likely', reason: 'Brilliant Labs Frame — camera glasses' },
 
+    // HeyCyan is an SDK/reference platform rather than a brand: a long tail of
+    // white-label camera glasses ship on it and advertise its name, including
+    // the Nilox Smart AI Glasses sold through ALDI/Hofer. Catching the platform
+    // catches every rebrand at once, which is why this is worth more than any
+    // single vendor entry.
+    { pattern: /heycyan/i, type: 'surveillance', confidence: 'likely', reason: 'HeyCyan-platform smart glasses — this platform is used by camera glasses sold under many different brand names' },
+    { pattern: /nilox.?(smart|ai|glass)/i, type: 'surveillance', confidence: 'likely', reason: 'Nilox Smart AI Glasses — built-in camera' },
+    { pattern: /rollme.?(vista|view|glass)/i, type: 'surveillance', confidence: 'likely', reason: 'Rollme VistaView smart glasses — built-in camera' },
+    { pattern: /rogbird/i, type: 'surveillance', confidence: 'likely', reason: 'Rogbird smart glasses — built-in camera' },
+    { pattern: /\bmyvu\b/i, type: 'surveillance', confidence: 'likely', reason: 'Meizu MYVU AR glasses' },
+    { pattern: /\bvuzix\b|\bblade\b.?(smart|glass)/i, type: 'surveillance', confidence: 'likely', reason: 'Vuzix smart glasses — built-in camera' },
+    { pattern: /\bxreal\b|\bnreal\b/i, type: 'surveillance', confidence: 'possible', reason: 'XREAL display glasses. Most models have no camera — a viewing accessory rather than a recorder' },
+
     // ==========================================================
     // Body cameras and covert recorders
     // ==========================================================
