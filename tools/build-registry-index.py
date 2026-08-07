@@ -61,6 +61,12 @@ def main() -> int:
         if data.startswith(b"\xef\xbb\xbf"):
             raise SystemExit(f"{name} starts with a UTF-8 BOM; re-save it without one.")
 
+        # Hash what GitHub Pages will actually serve: the committed blob, which
+        # git normalises to LF. On a Windows checkout (core.autocrlf=true) the
+        # working tree is CRLF, and hashing it raw published digests that never
+        # matched the served bytes — every app refresh failed its integrity check.
+        data = data.replace(b"\r\n", b"\n")
+
         files[name] = {
             "sha256": hashlib.sha256(data).hexdigest(),
             "bytes": len(data),

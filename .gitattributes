@@ -1,0 +1,5 @@
+# The app verifies media/ registry files against SHA-256 digests in
+# media/registry-index.json. Digests are computed over LF bytes (what GitHub
+# Pages serves), so keep these files LF everywhere — including Windows worktrees.
+media/*.js text eol=lf
+media/*.json text eol=lf
