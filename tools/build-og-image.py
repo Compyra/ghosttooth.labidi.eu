@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate media/og-1200x630.png — the social share card.
+"""Generate media/img/og-1200x630.png — the social share card.
 
 Every page references this image in its Open Graph and Twitter Card metadata.
 1200x630 is the landscape ratio both Facebook and X crop to; the square icon the

@@ -34,7 +34,7 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 - [x] Twitter summary_large_image tags on all pages
 - [x] `og:image` + dimensions + type declared
 - [x] `og:locale` per language + `og:locale:alternate` on the English pages
-- [x] Dedicated 1200×630 landscape share image — `media/og-1200x630.png`, generated
+- [x] Dedicated 1200×630 landscape share image — `media/img/og-1200x630.png`, generated
       reproducibly by `tools/build-og-image.py`, referenced by every page
 
 ## 4. Structured data (schema.org / JSON-LD)
@@ -49,7 +49,7 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 - [x] `site.webmanifest` (installable, theme/background color), linked from every page
 - [x] Service worker (`sw.js`) — cache-first shell, network-first registries, offline
       fallback. Registered on every page so the FAQ and safety guide open offline.
-- [x] Text-free mascot logo (`media/GhostTooth-mascot.png`, transparent) used in-site
+- [x] Text-free mascot logo (`media/img/GhostTooth-mascot.png`, transparent) used in-site
 - [x] Google Play app icons generated (`app-icon-512.png`, `app-icon-1024.png`)
 - [x] Dedicated maskable icon (`app-icon-maskable-512.png`, safe-zone padding)
 
@@ -82,5 +82,5 @@ Goal: flawless technical SEO, rich results, fast + crawlable, socially shareable
 - [ ] Validate structured data with the Google Rich Results Test
 - [ ] Add real 1.3.0 app screenshots to `media/screenshots/` and re-run
       `tools/build-site.py` (the gallery is skipped while they are missing —
-      see `media/screenshots/README.md`)
+      see `media/img/screenshots/README.md`)
 - [ ] Optional: serve the logo as WebP alongside PNG

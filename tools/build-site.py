@@ -229,7 +229,7 @@ def render_blocks(blocks: list[dict], root: str) -> str:
             # Only render the gallery when every image actually exists. A missing
             # screenshot would otherwise ship as a broken image on the landing
             # page, which is worse than no gallery at all. See
-            # media/screenshots/README.md for the expected filenames.
+            # media/img/screenshots/README.md for the expected filenames.
             present = [s for s in block["items"] if (ROOT / s["src"]).is_file()]
             if len(present) != len(block["items"]):
                 MISSING_SHOTS.update(
@@ -320,8 +320,8 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 <meta name="theme-color" content="#0b0d1a">
 <link rel="canonical" href="{url}">
 {alternates}
-<link rel="icon" type="image/png" href="{root}media/app-icon-512.png">
-<link rel="apple-touch-icon" href="{root}media/app-icon-512.png">
+<link rel="icon" type="image/png" href="{root}media/img/app-icon-512.png">
+<link rel="apple-touch-icon" href="{root}media/img/app-icon-512.png">
 <link rel="manifest" href="{root}site.webmanifest">
 
 <meta property="og:type" content="website">
@@ -329,7 +329,7 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 <meta property="og:title" content="{esc(meta['og_title'])}">
 <meta property="og:description" content="{esc(meta['description'])}">
 <meta property="og:url" content="{url}">
-<meta property="og:image" content="{BASE_URL}media/og-1200x630.png">
+<meta property="og:image" content="{BASE_URL}media/img/og-1200x630.png">
 <meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
@@ -339,7 +339,7 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{esc(meta['og_title'])}">
 <meta name="twitter:description" content="{esc(meta['description'])}">
-<meta name="twitter:image" content="{BASE_URL}media/og-1200x630.png">
+<meta name="twitter:image" content="{BASE_URL}media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
 <title>{esc(meta['title'])}</title>
@@ -353,7 +353,7 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 <div class="wrap">
 
 <header class="site">
-  <a href="{page_url(lang, '')}"><img src="{root}media/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
+  <a href="{page_url(lang, '')}"><img src="{root}media/img/GhostTooth-mascot-512.png" alt="GHOSTTOOTH" width="44" height="44"></a>
   <span class="brand">GHOSTTOOTH</span>
   <nav class="langs" aria-label="{esc(UI[lang]['language'])}">{lang_nav}</nav>
 </header>
@@ -479,7 +479,7 @@ def main() -> int:
         print(
             "\nnote: screenshot gallery omitted, these files are missing:\n  "
             + "\n  ".join(sorted(MISSING_SHOTS))
-            + "\n  (see media/screenshots/README.md)"
+            + "\n  (see media/img/screenshots/README.md)"
         )
     return 0
 

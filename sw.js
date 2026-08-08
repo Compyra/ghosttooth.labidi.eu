@@ -26,7 +26,7 @@
  * that does not match, so old assets never linger.
  */
 
-const CACHE_VERSION = 'ghosttooth-v3-2026-07-28';
+const CACHE_VERSION = 'ghosttooth-v4-2026-08-08';
 const RUNTIME = `${CACHE_VERSION}-runtime`;
 
 /* Kept deliberately small: the pages a stranded reader actually needs. Anything
@@ -46,15 +46,16 @@ const SHELL = [
   '/nl/faq/',
   '/nl/safety/',
   '/404.html',
-  '/media/style.css',
-  '/media/GhostTooth-mascot.png',
-  '/media/GhostTooth-mascot-512.png',
-  '/media/app-icon-512.png',
+  '/media/css/style.css',
+  '/media/img/GhostTooth-mascot.png',
+  '/media/img/GhostTooth-mascot-512.png',
+  '/media/img/app-icon-512.png',
   '/site.webmanifest',
 ];
 
-/* Registries are refreshed from the network whenever possible. */
-const REGISTRY = /\/media\/(company_identifiers|long_company_identifiers|known-devices|device-types)\.js$|\/media\/registry-index\.json$/;
+/* Registries are refreshed from the network whenever possible. Matches both
+ * the canonical identifiers/ paths and the legacy media/ copies old apps use. */
+const REGISTRY = /\/media\/(identifiers\/)?(company_identifiers|long_company_identifiers|known-devices|device-types)\.js$|\/media\/(identifiers\/)?registry-index\.json$/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(

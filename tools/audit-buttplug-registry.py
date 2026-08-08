@@ -70,8 +70,8 @@ def main() -> int:
         per_proto[name[:-4]] = {"names": names, "advertised": adv, "services": svc}
 
     # --- our registries ---------------------------------------------------
-    dt = (ROOT / "media" / "device-types.js").read_text(encoding="utf-8")
-    lc = (ROOT / "media" / "long_company_identifiers.js").read_text(encoding="utf-8")
+    dt = (ROOT / "media" / "identifiers" / "device-types.js").read_text(encoding="utf-8")
+    lc = (ROOT / "media" / "identifiers" / "long_company_identifiers.js").read_text(encoding="utf-8")
     our_hints = {m.group(1).lower() for m in re.finditer(r"\{ service: '([0-9a-fx-]+)'", dt)}
     our_named = {m.group(1).lower() for m in re.finditer(r'\["([0-9a-f-]{36})"', lc)}
     our_patterns = [re.compile(m.group(1), re.I) for m in re.finditer(r"\{ pattern: /(.+?)/i?, category: 'Intimate device' \}", dt)]

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate media/registry-index.json.
+"""Generate the registry index and the legacy-path registry copies.
 
 WHY THIS EXISTS
 ---------------
@@ -14,7 +14,13 @@ SHA-256 against its cached copy, and only downloads what actually changed. The
 same digest then verifies the download, so a truncated or tampered file is
 discarded rather than parsed.
 
-Run this after editing anything in media/ that the app consumes:
+LAYOUT (since the 2026-08 media split)
+--------------------------------------
+Canonical registry sources live in media/identifiers/. Every deployed app
+version before the split fetches the OLD paths (media/<name> and
+media/registry-index.json), so this script also writes byte-identical legacy
+copies there. Never hand-edit the legacy copies — edit media/identifiers/ and
+re-run:
 
     python tools/build-registry-index.py
 
@@ -29,7 +35,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # Files the Android app fetches. Keys are the bare file names, which is what
-# Registry.fileKey() derives from the media/ path.
+# Registry.fileKey() derives from the media path.
 TRACKED = [
     "company_identifiers.js",
     "long_company_identifiers.js",
@@ -39,7 +45,11 @@ TRACKED = [
 
 ROOT = Path(__file__).resolve().parent.parent
 MEDIA = ROOT / "media"
-OUTPUT = MEDIA / "registry-index.json"
+CANONICAL = MEDIA / "identifiers"
+OUTPUT = CANONICAL / "registry-index.json"
+# Pre-split app versions fetch these; kept in lockstep by this script.
+LEGACY_DIR = MEDIA
+LEGACY_OUTPUT = MEDIA / "registry-index.json"
 
 # Bump when the *shape* of this file changes, not when its contents do.
 SCHEMA_VERSION = 1
@@ -50,7 +60,7 @@ def main() -> int:
     missing: list[str] = []
 
     for name in TRACKED:
-        path = MEDIA / name
+        path = CANONICAL / name
         if not path.is_file():
             missing.append(name)
             continue
@@ -67,6 +77,11 @@ def main() -> int:
         # matched the served bytes — every app refresh failed its integrity check.
         data = data.replace(b"\r\n", b"\n")
 
+        # Legacy copy for pre-split app versions, byte-identical to canonical.
+        legacy = LEGACY_DIR / name
+        if not legacy.is_file() or legacy.read_bytes().replace(b"\r\n", b"\n") != data:
+            legacy.write_bytes(data)
+
         files[name] = {
             "sha256": hashlib.sha256(data).hexdigest(),
             "bytes": len(data),
@@ -81,9 +96,11 @@ def main() -> int:
         "files": files,
     }
 
-    OUTPUT.write_text(json.dumps(index, indent=2) + "\n", encoding="utf-8", newline="\n")
+    payload = json.dumps(index, indent=2) + "\n"
+    OUTPUT.write_text(payload, encoding="utf-8", newline="\n")
+    LEGACY_OUTPUT.write_text(payload, encoding="utf-8", newline="\n")
 
-    print(f"wrote {OUTPUT.relative_to(ROOT)}")
+    print(f"wrote {OUTPUT.relative_to(ROOT)} (+ legacy copies in media/)")
     for name, meta in files.items():
         print(f"  {name:<30} {meta['bytes']:>8,} bytes  {meta['sha256'][:16]}…")
     return 0

@@ -90,22 +90,22 @@ PLAY_BUTTON = {
 
 SCREENSHOTS = {
     "en": [
-        {"src": "media/screenshots/scan-list.png", "alt": "GhostTooth device list showing detected Bluetooth devices with threat badges", "caption": "Live scan with confidence-rated badges"},
-        {"src": "media/screenshots/threat-detail.png", "alt": "Expanded device card explaining why a device was flagged", "caption": "Every verdict explains itself"},
-        {"src": "media/screenshots/monitoring.png", "alt": "Ongoing notification showing running device counts", "caption": "Background monitoring, no foreground service"},
-        {"src": "media/screenshots/locate.png", "alt": "Hot and cold locator screen with a large signal percentage", "caption": "Hot/cold locator with audible feedback"},
+        {"src": "media/img/screenshots/scan-list.png", "alt": "GhostTooth device list showing detected Bluetooth devices with threat badges", "caption": "Live scan with confidence-rated badges"},
+        {"src": "media/img/screenshots/threat-detail.png", "alt": "Expanded device card explaining why a device was flagged", "caption": "Every verdict explains itself"},
+        {"src": "media/img/screenshots/monitoring.png", "alt": "Ongoing notification showing running device counts", "caption": "Background monitoring, no foreground service"},
+        {"src": "media/img/screenshots/locate.png", "alt": "Hot and cold locator screen with a large signal percentage", "caption": "Hot/cold locator with audible feedback"},
     ],
     "fr": [
-        {"src": "media/screenshots/scan-list.png", "alt": "Liste des appareils Bluetooth détectés par GhostTooth avec les badges de menace", "caption": "Analyse en direct avec niveaux de confiance"},
-        {"src": "media/screenshots/threat-detail.png", "alt": "Fiche d'appareil dépliée expliquant pourquoi il a été signalé", "caption": "Chaque verdict s'explique"},
-        {"src": "media/screenshots/monitoring.png", "alt": "Notification permanente affichant le nombre d'appareils", "caption": "Surveillance en arrière-plan, sans service au premier plan"},
-        {"src": "media/screenshots/locate.png", "alt": "Écran de localisation chaud/froid avec un grand pourcentage de signal", "caption": "Localisation chaud/froid avec retour sonore"},
+        {"src": "media/img/screenshots/scan-list.png", "alt": "Liste des appareils Bluetooth détectés par GhostTooth avec les badges de menace", "caption": "Analyse en direct avec niveaux de confiance"},
+        {"src": "media/img/screenshots/threat-detail.png", "alt": "Fiche d'appareil dépliée expliquant pourquoi il a été signalé", "caption": "Chaque verdict s'explique"},
+        {"src": "media/img/screenshots/monitoring.png", "alt": "Notification permanente affichant le nombre d'appareils", "caption": "Surveillance en arrière-plan, sans service au premier plan"},
+        {"src": "media/img/screenshots/locate.png", "alt": "Écran de localisation chaud/froid avec un grand pourcentage de signal", "caption": "Localisation chaud/froid avec retour sonore"},
     ],
     "nl": [
-        {"src": "media/screenshots/scan-list.png", "alt": "Lijst met gedetecteerde bluetooth-apparaten in GhostTooth met dreigingsbadges", "caption": "Live scan met zekerheidsniveaus"},
-        {"src": "media/screenshots/threat-detail.png", "alt": "Uitgeklapte apparaatkaart die uitlegt waarom een apparaat is gemarkeerd", "caption": "Elk oordeel legt zichzelf uit"},
-        {"src": "media/screenshots/monitoring.png", "alt": "Blijvende melding met het aantal gevonden apparaten", "caption": "Monitoring op de achtergrond, zonder foreground service"},
-        {"src": "media/screenshots/locate.png", "alt": "Warm/koud-lokalisatiescherm met een groot signaalpercentage", "caption": "Warm/koud-locator met geluid"},
+        {"src": "media/img/screenshots/scan-list.png", "alt": "Lijst met gedetecteerde bluetooth-apparaten in GhostTooth met dreigingsbadges", "caption": "Live scan met zekerheidsniveaus"},
+        {"src": "media/img/screenshots/threat-detail.png", "alt": "Uitgeklapte apparaatkaart die uitlegt waarom een apparaat is gemarkeerd", "caption": "Elk oordeel legt zichzelf uit"},
+        {"src": "media/img/screenshots/monitoring.png", "alt": "Blijvende melding met het aantal gevonden apparaten", "caption": "Monitoring op de achtergrond, zonder foreground service"},
+        {"src": "media/img/screenshots/locate.png", "alt": "Warm/koud-lokalisatiescherm met een groot signaalpercentage", "caption": "Warm/koud-locator met geluid"},
     ],
 }
 

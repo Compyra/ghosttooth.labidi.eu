@@ -35,7 +35,7 @@ HEADER = """<!DOCTYPE html>
 <meta name="googlebot" content="noindex, nofollow">
 
 <title>[TEST FIXTURE] Mock device list — GHOSTTOOTH</title>
-<link rel="stylesheet" href="/media/style.css">
+<link rel="stylesheet" href="/media/css/style.css">
 <style>
   .fixture-note {
     max-width: 900px; margin: 20px auto; padding: 18px 22px;
