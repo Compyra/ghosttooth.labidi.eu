@@ -719,6 +719,26 @@ const SERVICE_UUID_NAMES = new Map([
     ["5a300001-0023-4bd4-bbd5-a6920e4c5653", "Lovense Hush (intimate device)"],
     ["5a300001-0024-4bd4-bbd5-a6920e4c5653", "Lovense Hush (intimate device)"],
     ["5a410001-0023-4bd4-bbd5-a6920e4c5653", "Lovense Synth (intimate device)"],
+    // Other toy brands (buttplug.io device configs; see
+    // tools/audit-buttplug-registry.py). GATT-discovered services included so
+    // the app's GATT probe names them; tx/rx characteristic UUIDs are omitted
+    // because no UI surface ever shows characteristic UUIDs.
+    // Squatted/example UUIDs (Nordic LBS 1523, 0xae00, 0x6000…) stay unnamed.
+    ["00001320-0000-1000-8000-00805f9b34fb", "Adrien Lastic (intimate device)"],
+    ["1775244d-6b43-439b-877c-060f2d9bed07", "The Handy (intimate device)"],
+    ["40ee1111-63ec-4b7f-8ce7-712efd55b90e", "Vorze (intimate device)"],
+    ["40ee2222-63ec-4b7f-8ce7-712efd55b90e", "Vorze control (intimate device)"],
+    ["51361500-c5e7-47c7-8a6e-47ebc99d80e8", "Satisfyer (intimate device)"],
+    ["53300021-0050-4bd4-bbe5-a6920e4c5663", "Vibio (intimate device)"],
+    ["77834d26-40f7-11ee-be56-0242ac120002", "The Handy v3 (intimate device)"],
+    ["78667579-7b48-43db-b8c5-7928a6b0a335", "Magic Motion (intimate device)"],
+    ["88f80580-0000-01e6-aace-0002a5d5c51b", "Kiiroo v2 (intimate device)"],
+    ["88f82580-0000-01e6-aace-0002a5d5c51b", "Kiiroo v2 vibrator (intimate device)"],
+    ["8e7c6065-7656-17ad-1b41-b53d1a548e0d", "kGoal Boost (intimate device)"],
+    ["a0d70001-4c16-4ba7-977a-d394920e13a3", "Kiiroo v2.1 / OhMiBod (intimate device)"],
+    ["f0006900-110c-478b-b74b-6f403b364a9c", "MysteryVibe (intimate device)"],
+    ["f000bb03-0451-4000-b000-000000000000", "We-Vibe (intimate device)"],
+    ["f60402a6-0293-4bdb-9f20-6758133f7090", "Kiiroo v2 sensor (intimate device)"],
     // --- end Lovense block -------------------------------------------------
     ["49535343-1e4d-4bd9-ba61-23c647249616", "ISSC Transparent TX"],
     ["49535343-6daa-4d02-abf6-19569aca69fe", "ISSC Update Connection Parameter"],

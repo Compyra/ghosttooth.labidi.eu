@@ -51,11 +51,27 @@ const DEVICE_TYPE_PATTERNS = [
     { pattern: /air.?tag|\btile\b|smart.?tag|chipolo|find.?my|pebblebee|\btrackr\b/i, category: 'Tracker tag' },
 
     // --- Intimate devices ---------------------------------------------------
-    // Lovense toys advertise "LVS-<model><version>" (older firmware) or
-    // "LOVE-<letters>" (newer). Naming them plainly matters: a device hidden
-    // on or near a person should be identifiable for what it is.
-    // Source: buttplug.io stpihkal Lovense protocol documentation.
+    // Naming these plainly matters: a device hidden on or near a person
+    // should be identifiable for what it is.
+    // Sources: buttplug.io stpihkal protocol docs + the buttplugio/buttplug
+    // device-config tree (successor to the metafetish buttplug-csharp /
+    // buttplug-js / lovesense-* repos). Only brand-anchored tokens are used;
+    // generic model words ("Classic", "Nova", "Boost", "M2") are deliberately
+    // skipped — a false positive here is worse than a miss.
+    // Lovense: "LVS-<model><version>" (older firmware), "LOVE-<letters>" (newer).
     { pattern: /^(lvs|love)-|lovense/i, category: 'Intimate device' },
+    { pattern: /kiiroo|ohmibod|fleshlight|\bkeon\b|\bcliona\b|onyx\s?2|pearl\s?[23]/i, category: 'Intimate device' },
+    { pattern: /we-?vibe|\bskeena\b/i, category: 'Intimate device' },
+    { pattern: /\blelo\b|\bf1sv\d|tiani.?(harmony|twist)|ida.?wave|double.?sonic|\bhugo2\b|\bgigi3\b|\bsona3\b|\btor3\b/i, category: 'Intimate device' },
+    { pattern: /satisfyer|^sf\s/i, category: 'Intimate device' },
+    { pattern: /magic.?motion|\bgballs?\d\b|\bfugu2?\b|smart.?mini.?vibe|smart.?bean|\bkrush\b/i, category: 'Intimate device' },
+    { pattern: /mysteryvibe|\bmv\s(crescendo|tenuto|poco)\b/i, category: 'Intimate device' },
+    { pattern: /svakom|\b(sam|alex|emma|phoenix|vick|iker|mora|trysta|ava|hannes)\sneo\b/i, category: 'Intimate device' },
+    { pattern: /hismith|auxfun|sinloli|wildolo|pleasuredrive|eropair/i, category: 'Intimate device' },
+    { pattern: /\bthe\shandy\b|^ohd_hw\d/i, category: 'Intimate device' },
+    { pattern: /vorze|\bufosa\b|\bcycsa\b|bach\ssmart|\bomorfi\b/i, category: 'Intimate device' },
+    { pattern: /vibratissimo|monsterpub|monsterhub|tracydog|picobong|motorbunny|jejoue|je\sjoue|youcups|\bwetoy\b|utimi|sakuraneko|love.?nuts|twerking.?butt/i, category: 'Intimate device' },
+    { pattern: /^zalo-|^tf-(bhplus|rock|meta|spray|one)|tryfun|pink.?punch|_vibio$|^xxd-|^tklm-|^meese-|sayberx|\bkgoal\b|\blioness2?\b|adrien.?lastic/i, category: 'Intimate device' },
 
     // --- Sensors / misc ---------------------------------------------------
     { pattern: /scale|thermo|hygro|\bsensor\b|\btag\b|beacon|ibeacon|eddystone/i, category: 'Sensor / beacon' },
@@ -74,6 +90,28 @@ const DEVICE_TYPE_SERVICE_HINTS = [
     { service: '110b', category: 'Audio' },                    // Audio Sink
     { service: '1108', category: 'Headset' },                  // Headset
     { service: '111e', category: 'Hands-free' },               // Hands-Free
+
+    // Adrien Lastic toys advertise this unassigned SIG-base service.
+    { service: '1320', category: 'Intimate device' },
+
+    // Proprietary services of other toy brands (from the buttplug.io device
+    // configs). Mostly seen via GATT discovery rather than advertisements.
+    // Deliberately absent: Nordic-example/squatted UUIDs shared by unrelated
+    // hobbyist hardware (00001523-1212-efde… "LED Button Service", 0xae00,
+    // 0x6000, 0xffe0/fff0 UART clones) — they would mislabel innocent devices.
+    { service: 'f000bb03-0451-4000-b000-000000000000', category: 'Intimate device' }, // We-Vibe
+    { service: '88f80580-0000-01e6-aace-0002a5d5c51b', category: 'Intimate device' }, // Kiiroo v2
+    { service: '88f82580-0000-01e6-aace-0002a5d5c51b', category: 'Intimate device' }, // Kiiroo v2 vibrator
+    { service: 'f60402a6-0293-4bdb-9f20-6758133f7090', category: 'Intimate device' }, // Kiiroo v2 sensor
+    { service: 'a0d70001-4c16-4ba7-977a-d394920e13a3', category: 'Intimate device' }, // Kiiroo v2.1 / OhMiBod
+    { service: '51361500-c5e7-47c7-8a6e-47ebc99d80e8', category: 'Intimate device' }, // Satisfyer
+    { service: '78667579-7b48-43db-b8c5-7928a6b0a335', category: 'Intimate device' }, // Magic Motion
+    { service: 'f0006900-110c-478b-b74b-6f403b364a9c', category: 'Intimate device' }, // MysteryVibe
+    { service: '1775244d-6b43-439b-877c-060f2d9bed07', category: 'Intimate device' }, // The Handy
+    { service: '77834d26-40f7-11ee-be56-0242ac120002', category: 'Intimate device' }, // The Handy v3
+    { service: '40ee1111-63ec-4b7f-8ce7-712efd55b90e', category: 'Intimate device' }, // Vorze
+    { service: '8e7c6065-7656-17ad-1b41-b53d1a548e0d', category: 'Intimate device' }, // kGoal Boost
+    { service: '53300021-0050-4bd4-bbe5-a6920e4c5663', category: 'Intimate device' }, // Vibio
 
     // Lovense proprietary advertised services: xxxx0001-002x-4bd4-bbd5-a6920e4c5653,
     // first two bytes = ASCII model code. Covers adverts with no local name.
