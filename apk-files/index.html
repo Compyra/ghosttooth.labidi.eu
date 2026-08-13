@@ -9,16 +9,22 @@
 <link rel="icon" type="image/png" href="../media/img/app-icon-512.png">
 <link rel="stylesheet" href="../media/css/style.css">
 <style>
-  .apk-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
-  .apk-table th, .apk-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid #1d3a2a; vertical-align: top; }
-  .apk-table th { color: var(--amber); }
-  .apk-table code { font-size: 0.7rem; word-break: break-all; }
+  /* Long hashes force the table wider than the panel on small screens:
+     scroll the table, never the page. */
+  .apk-scroll { overflow-x: auto; }
+  .apk-table { width: 100%; min-width: 720px; border-collapse: collapse; font-size: 0.85rem; }
+  .apk-table th, .apk-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .apk-table th { color: var(--amber); white-space: nowrap; }
+  .apk-table td { color: var(--text); }
+  .apk-table td:nth-child(2), .apk-table td:nth-child(3), .apk-table td:nth-child(4) { white-space: nowrap; }
+  .apk-table code { font-size: 0.68rem; word-break: break-all; }
   .apk-note { color: var(--amber); }
-  .apk-current td { background: #0c1c22; }
+  .apk-current td { background: #17203a; border-bottom-color: var(--green-dim); }
 </style>
 </head>
-<body>
-<div class="terminal">
+<body class="terminal-bg">
+<a href="#main-content" class="skip-link">Skip to content</a>
+<div class="terminal-window">
   <header class="terminal-header">
     <a href="../" class="back-link">← ghosttooth.labidi.eu</a>
     <span class="prompt-title">ghosttooth:~/apk-files$</span>
@@ -38,6 +44,7 @@
       </p>
     </section>
 
+    <div class="apk-scroll">
     <table class="apk-table">
       <thead>
         <tr><th>File</th><th>Version</th><th>Date</th><th>Size</th><th>SHA-256</th><th>Notes</th></tr>
@@ -130,6 +137,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
 
     <p class="dim small" style="margin-top:14px">
       Versions are read from each APK's manifest; vcN = versionCode. Verify a download on
@@ -137,6 +145,6 @@
       <code>sha256sum file.apk</code>.
     </p>
   </main>
-</div>
+</div><!-- /terminal-window -->
 </body>
 </html>
