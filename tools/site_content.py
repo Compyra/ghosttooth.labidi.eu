@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-07-30"
+UPDATED = "2026-08-13"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -504,6 +504,29 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.4.2 — 13 August 2026"},
+                {"type": "p", "text": "The releases between 1.3.1 and this one went to testers only, so everything they contained is listed here."},
+                {"type": "h3", "text": "Fixed"},
+                {"type": "ul", "items": [
+                    "<strong>The app could crash the moment you pressed Start scan.</strong> On Android 14 and later only. Two internal text-matching patterns were written in a form the older Android text engine tolerated and the newer one rejects outright. Nothing was wrong with your phone, and no data was lost.",
+                    "<strong>JBL speakers were reported as surveillance devices.</strong> Bluetooth company ID <code>0x0057</code> was labelled as a smart-glasses maker in our tables. It actually belongs to Harman, the maker of JBL audio gear; the glasses maker is <code>0x060C</code>. Corrected.",
+                    "<strong>Apple devices no longer flip between “tracker” and ordinary.</strong> Trackers rotate their Bluetooth address to avoid being followed, so GhostTooth stitches those identities back together. It was taking the verdict from whichever frame arrived last, and Apple hardware alternates between two kinds of frame. It now keeps the strongest verdict it has seen.",
+                    "<strong>The locator now really does beep faster as you close in.</strong> The beeping was tied to the scan refresh, which is slower than the fastest beep interval, so the acceleration you were promised could never happen.",
+                    "<strong>“Check for new definitions” always failed.</strong> The published checksums were generated from files saved with Windows line endings while the server sends Unix ones, so every download failed its integrity check and was discarded — correctly, but for the wrong reason. Definition updates work again.",
+                ]},
+                {"type": "h3", "text": "New"},
+                {"type": "ul", "items": [
+                    "<strong>A Notable tab.</strong> One place for the findings that actually warrant a look — something travelling with you, surveillance hardware close by — instead of scrolling a list of everything in range. You choose what qualifies, including how near counts as near.",
+                    "<strong>Distances in metres or feet.</strong>",
+                    "<strong>Alerts for particular kinds of device.</strong> Ask to be told when a camera, a microphone or a tag appears, without being told about everything else.",
+                    "<strong>Automatic licence-plate-reader (ALPR) camera detection.</strong> GhostTooth recognises the Bluetooth signature of Flock Safety camera hardware. The radio module and the manufacturing MAC ranges this hardware uses are also sold to other companies, so a match on those alone is reported as <em>possible</em> and never raises an alarm — only the vendor's own name, or two independent signals together, counts as a firm finding. Published prefix lists were checked against the official IEEE registry first, and the entries belonging to mass-market parts were discarded rather than copied.",
+                    "<strong>Optional automatic definition checks.</strong> Off unless you turn it on, and it asks once.",
+                ]},
+                {"type": "h3", "text": "Changed"},
+                {"type": "ul", "items": [
+                    "New installations now start grouped by manufacturer and collapsed, which is far easier to read in a busy place. Existing settings are untouched.",
+                    "Built for Android 16.",
+                ]},
                 {"type": "h2", "text": "1.3.1 — 30 July 2026"},
                 {"type": "ul", "items": [
                     "<strong>Nearby phones no longer inflate the tracker count.</strong> An Apple device sitting beside its owner broadcasts the same Find My frame whether it is an iPhone or a tag, so it is still listed — as a <em>possible</em> match that says in plain words it is most likely simply someone's phone. What changed is that weak matches like these are no longer counted in the headline “trackers” number and never raise an alarm. The number now only ever counts firm matches.",
