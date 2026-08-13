@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>APK archive · GHOSTTOOTH</title>
+<!-- Direct-download archive for sideloading and rollback. Not for search engines. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="../media/img/app-icon-512.png">
+<link rel="stylesheet" href="../media/css/style.css">
+<style>
+  .apk-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+  .apk-table th, .apk-table td { padding: 6px 10px; text-align: left; border-bottom: 1px solid #1d3a2a; vertical-align: top; }
+  .apk-table th { color: var(--amber); }
+  .apk-table code { font-size: 0.7rem; word-break: break-all; }
+  .apk-note { color: var(--amber); }
+  .apk-current td { background: #0c1c22; }
+</style>
+</head>
+<body>
+<div class="terminal">
+  <header class="terminal-header">
+    <a href="../" class="back-link">← ghosttooth.labidi.eu</a>
+    <span class="prompt-title">ghosttooth:~/apk-files$</span>
+    <span class="prompt-blink" aria-hidden="true">█</span>
+  </header>
+
+  <main class="terminal-body" id="main-content">
+    <h1 class="tool-title"><span class="title-prefix">// </span>APK archive</h1>
+
+    <section class="notice-box info-warn" aria-label="Install advice">
+      <p style="margin:0">
+        ⚠ The recommended install is the
+        <a href="https://play.google.com/store/apps/details?id=com.compyra.ghosttooth"
+           target="_blank" rel="noopener"><strong>Google Play listing</strong></a> — it updates
+        automatically. These files are for sideloading, testing and rollback. Verify the
+        SHA-256 after downloading; Android will refuse cross-signed updates.
+      </p>
+    </section>
+
+    <table class="apk-table">
+      <thead>
+        <tr><th>File</th><th>Version</th><th>Date</th><th>Size</th><th>SHA-256</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <!-- Next releases: uncomment, fill in date/size/hash, move the
+             apk-current class down. Numbering continues release17, 18, 19 …
+             matching versionCode in app/build.gradle.kts.
+        <tr class="apk-current"><td><a href="ghosttooth-app-release19.apk">ghosttooth-app-release19.apk</a></td><td>1.x.x (vc19)</td><td>YYYY-MM-DD</td><td>x.xx MB</td><td><code>…</code></td><td></td></tr>
+        <tr class="apk-current"><td><a href="ghosttooth-app-release18.apk">ghosttooth-app-release18.apk</a></td><td>1.x.x (vc18)</td><td>YYYY-MM-DD</td><td>x.xx MB</td><td><code>…</code></td><td></td></tr>
+        <tr class="apk-current"><td><a href="ghosttooth-app-release17.apk">ghosttooth-app-release17.apk</a></td><td>1.x.x (vc17)</td><td>YYYY-MM-DD</td><td>x.xx MB</td><td><code>…</code></td><td></td></tr>
+        -->
+        <tr class="apk-current">
+          <td><a href="ghosttooth-app-release16.apk">ghosttooth-app-release16.apk</a></td>
+          <td>1.4.1 (vc16)</td><td>2026-08-13</td><td>3.20 MB</td>
+          <td><code>7f5f77a934babc384a31e5b3c7e30414d8bdf8e7d81c2aae43fd83d5e56f77a6</code></td>
+          <td><strong>Current.</strong> Notable tab, distance units.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release15.1.apk">ghosttooth-app-release15.1.apk</a></td>
+          <td>1.4.0 (vc15)</td><td>2026-08-13</td><td>3.20 MB</td>
+          <td><code>6c62c12e0b25c5059ad3213aea9cb80f7c6c4e5d133949049c84f1e6eb003eb0</code></td>
+          <td>1.4.0 rebuild.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release15.apk">ghosttooth-app-release15.apk</a></td>
+          <td>1.4.0 (vc15)</td><td>2026-08-08</td><td>3.18 MB</td>
+          <td><code>830b0b216b67d350c09bea32a921eee729c61c706bf96c2d0a1dac9185b20710</code></td>
+          <td>Settings rework, intimate-device detection, media split.</td>
+        </tr>
+        <tr>
+          <td>ghosttooth-app-release15-SignedWithBeeFirstCert.apk</td>
+          <td>1.4.0 (vc15)</td><td>2026-08-08</td><td>3.18 MB</td>
+          <td><code>abf25aae80a82d19480fac2a9e6ab0cbe3dea7c7c9670b09b6462894f7d066df</code></td>
+          <td class="apk-note">Do not install — signed with the wrong (BeeFirst) certificate; kept for the record only.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release14.apk">ghosttooth-app-release14.apk</a></td>
+          <td>1.3.5 (vc14)</td><td>2026-08-08</td><td>3.17 MB</td>
+          <td><code>8978079ff04b7680785a7099d2f970d34445bd0fb898627f1a0dbfbb7023e8cd</code></td>
+          <td>Locator beeping logic, Lovense registry support.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release13.apk">ghosttooth-app-release13.apk</a></td>
+          <td>1.3.4 (vc13)</td><td>2026-08-04</td><td>3.17 MB</td>
+          <td><code>45e6efa0157dfbeb5d812b0f80c11891a075ad58fab83bcf2476380f90d642eb</code></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release12.apk">ghosttooth-app-release12.apk</a></td>
+          <td>1.3.3 (vc12)</td><td>2026-08-04</td><td>3.17 MB</td>
+          <td><code>ada90d62d44fd1c857a8c15304b37595cba6e38f556949475e584d37b3166b31</code></td>
+          <td>Crash fix.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release6.apk">ghosttooth-app-release6.apk</a></td>
+          <td>1.1.0 (vc6)</td><td>2026-07-11</td><td>2.38 MB</td>
+          <td><code>ff11638529ee56598ac0e6f0d5b20ecb422d17ffe9196c65786908e5f20d3b33</code></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>ghosttooth-app-release5-testBranch-debug.apk</td>
+          <td>1.0.0 (vc5)</td><td>2026-07-11</td><td>9.91 MB</td>
+          <td><code>2f7c132ca76fdaee8c005e3376eadd069bdc3b933434d4c48636b0e050793332</code></td>
+          <td class="apk-note">Debug build from a test branch — not for normal use.</td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release4.apk">ghosttooth-app-release4.apk</a></td>
+          <td>1.0.0 (vc4)</td><td>2026-07-10</td><td>1.95 MB</td>
+          <td><code>e4b6dd9f5a975484c5d0dc884b17de0bae6e825bf9bf1e836a3af17436f15b04</code></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release3.apk">ghosttooth-app-release3.apk</a></td>
+          <td>1.0.0 (vc3)</td><td>2026-07-09</td><td>1.93 MB</td>
+          <td><code>313189f459aa3265f1b430567dd0dcc58bac02f4bfd0eed07396fe97e5baa059</code></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release2.apk">ghosttooth-app-release2.apk</a></td>
+          <td>1.0.0 (vc2)</td><td>2026-07-09</td><td>1.92 MB</td>
+          <td><code>ba2c34d50ff95c27c11e01cf32845848105a4c9a2d5782c77e7ff414774a578b</code></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><a href="ghosttooth-app-release.apk">ghosttooth-app-release.apk</a></td>
+          <td>1.0.0 (vc1)</td><td>2026-07-09</td><td>1.89 MB</td>
+          <td><code>5c2602686638e986305e721f1fc9736e8d47dbef9741cb51e3e33ce205d2eaba</code></td>
+          <td>First build.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="dim small" style="margin-top:14px">
+      Versions are read from each APK's manifest; vcN = versionCode. Verify a download on
+      Windows with <code>Get-FileHash file.apk -Algorithm SHA256</code> or on Linux/macOS with
+      <code>sha256sum file.apk</code>.
+    </p>
+  </main>
+</div>
+</body>
+</html>
