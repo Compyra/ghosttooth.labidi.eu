@@ -1,5 +1,11 @@
 # The app verifies media/ registry files against SHA-256 digests in
 # media/registry-index.json. Digests are computed over LF bytes (what GitHub
 # Pages serves), so keep these files LF everywhere — including Windows worktrees.
+#
+# The ** patterns matter: a plain media/*.js does not match the canonical
+# sources in media/identifiers/, which is where they have lived since the
+# 2026-08 split.
+media/**/*.js text eol=lf
+media/**/*.json text eol=lf
 media/*.js text eol=lf
 media/*.json text eol=lf

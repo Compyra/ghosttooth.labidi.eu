@@ -41,7 +41,12 @@ TRACKED = [
     "long_company_identifiers.js",
     "known-devices.js",
     "device-types.js",
+    "oui.js",
 ]
+
+# Files added after the media split. No released app version fetches the legacy
+# path for these, so a second 1.7 MB copy in media/ would be dead weight.
+LEGACY_EXEMPT = {"oui.js"}
 
 ROOT = Path(__file__).resolve().parent.parent
 MEDIA = ROOT / "media"
@@ -78,9 +83,10 @@ def main() -> int:
         data = data.replace(b"\r\n", b"\n")
 
         # Legacy copy for pre-split app versions, byte-identical to canonical.
-        legacy = LEGACY_DIR / name
-        if not legacy.is_file() or legacy.read_bytes().replace(b"\r\n", b"\n") != data:
-            legacy.write_bytes(data)
+        if name not in LEGACY_EXEMPT:
+            legacy = LEGACY_DIR / name
+            if not legacy.is_file() or legacy.read_bytes().replace(b"\r\n", b"\n") != data:
+                legacy.write_bytes(data)
 
         files[name] = {
             "sha256": hashlib.sha256(data).hexdigest(),

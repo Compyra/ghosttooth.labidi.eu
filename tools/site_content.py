@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-13"
+UPDATED = "2026-08-15"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -504,6 +504,25 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.5.0 — 15 August 2026"},
+                {"type": "h3", "text": "New"},
+                {"type": "ul", "items": [
+                    "<strong>Devices are named from their MAC address.</strong> A new registry carries all 53,000 IEEE manufacturer assignments, so hardware whose Bluetooth data says nothing — an ESP32 module, a camera, a no-name tag — is still identified when it uses a public address. Randomised addresses, which most phones and trackers use precisely so they cannot be followed, are never looked up: those bytes are generated, not assigned, and naming a vendor from them would be invention. The registry ships inside the app and works fully offline.",
+                    "<strong>Alert list.</strong> Long-press any device and choose “Alert me when seen” to be notified whenever it turns up, whoever made it and whatever it is. Alert devices carry a bell and their own colour, re-alert only after they have been away a while, and can be muted for 30 minutes, 1, 8 or 24 hours without being forgotten. The list is managed from Settings.",
+                    "<strong>The Notable tab is now yours to edit.</strong> Remove a device permanently — it never comes back on its own — or add one by hand. An optional notification tells you when something newly qualifies for the tab.",
+                    "<strong>Copy MAC address</strong> from the long-press menu, for looking a device up elsewhere.",
+                    "<strong>Reset all settings</strong>, at the bottom of Settings. Notes, Notable choices and the alert list are kept, and no scan history is touched.",
+                ]},
+                {"type": "h3", "text": "Changed"},
+                {"type": "ul", "items": [
+                    "<strong>The summary panel collapses while you scroll</strong>, giving small screens the whole display for the device list. A small arrow brings it back, and returning to the top of the list does too.",
+                    "New installations sort by name. Together with the existing grouping and collapsing defaults, the first scan reads as a tidy inventory rather than a churning feed.",
+                ]},
+                {"type": "h3", "text": "Fixed"},
+                {"type": "ul", "items": [
+                    "Two notifications about different devices could previously overwrite each other; every alert kind now has its own slot per device.",
+                    "Resetting settings while background monitoring ran could leave the scan running with the switch showing off. The scan is now stopped first.",
+                ]},
                 {"type": "h2", "text": "1.4.2 — 13 August 2026"},
                 {"type": "p", "text": "The releases between 1.3.1 and this one went to testers only, so everything they contained is listed here."},
                 {"type": "h3", "text": "Fixed"},
