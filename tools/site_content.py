@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-15"
+UPDATED = "2026-08-16"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -504,6 +504,12 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.5.1 — 16 August 2026"},
+                {"type": "ul", "items": [
+                    "<strong>Correct edge-to-edge display on Android 15 and 16.</strong> The platform libraries that draw behind the system bars were updated to the releases built for Android 15's enforced edge-to-edge, following Google Play's recommendation, so the app fills the whole screen properly on every device — including small ones, where the summary panel already collapses while you scroll.",
+                    "<strong>Faster startup.</strong> The app now ships a compilation profile, so the code that runs when you open it — the scanner, the registries, the device list — is compiled ahead of time on every Android version instead of being interpreted on early launches.",
+                    "Under the hood: Kotlin 2.2 and updated Room, Material and AndroidX libraries.",
+                ]},
                 {"type": "h2", "text": "1.5.0 — 15 August 2026"},
                 {"type": "h3", "text": "New"},
                 {"type": "ul", "items": [
