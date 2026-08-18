@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-16"
+UPDATED = "2026-08-18"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -504,6 +504,27 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.6.0 — 18 August 2026"},
+                {"type": "h3", "text": "Devices get named from their MAC address — carefully"},
+                {"type": "ul", "items": [
+                    "<strong>Hardware that broadcasts nothing identifying is now named from the IEEE manufacturer registry</strong> when its address is genuinely public, and shown as “Vendor (MAC)” so you can see where the name came from. On Android 15+ the Bluetooth controller itself says whether an address is real or randomised; on older versions only addresses that provably cannot be randomised are looked up. A randomised address never gets a name — inventing a manufacturer would be worse than saying nothing.",
+                    "<strong>Devices found by background monitoring keep their manufacturer.</strong> They previously lost it on the way to the screen, which filed Apple Find My devices under “No manufacturer data” while their own description said Apple.",
+                    "<strong>Anonymous devices stay anonymous, honestly.</strong> Many devices broadcast no name, no manufacturer and no services on a rotating address — that is Bluetooth privacy working, and no list anywhere can name them. GhostTooth watches whether they <em>travel with you</em> instead, which is the only signal that matters.",
+                ]},
+                {"type": "h3", "text": "Fixed"},
+                {"type": "ul", "items": [
+                    "<strong>Two false “Flock camera” sightings in a living room.</strong> A contract manufacturer's MAC range is no longer enough on its own to claim ALPR hardware — those builders also make everyday laptops, printers and TVs. The MAC range now only corroborates the actual Flock radio beacon.",
+                    "<strong>A device no longer blinks in time with the refresh rate.</strong> Two causes: list rows re-animated on every update, and a device whose rotating addresses were merged could flip its identity on each refresh. Rows now update in place and merged identities stay put.",
+                    "<strong>Clear now really clears.</strong> It also resets the background-monitoring store and the notification's counters, so the numbers on screen and in the notification can no longer drift apart — and cleared devices stop reappearing on the next app start.",
+                    "The proximity locator and the experimental device probe now talk to the address a rotating device is actually using.",
+                ]},
+                {"type": "h3", "text": "New"},
+                {"type": "ul", "items": [
+                    "<strong>Report an issue from inside the app</strong> — an unrecognised device, a bug, a crash or a request. You see exactly what will be sent, nothing goes out until you confirm, and you get an anonymous tracking code to check for a reply. Crash reports can include the actual error, recorded on your device when it happened.",
+                    "<strong>“Only show devices close to me”</strong> (experimental) declutters crowded places by hiding ordinary devices beyond a distance you choose. Trackers, surveillance devices, anything following you and your own marked devices are always shown, and searching always finds everything.",
+                    "<strong>“Alert on every device found”</strong> (experimental) posts a silent notification for each new device background monitoring discovers.",
+                    "A lifetime <strong>“devices seen since install”</strong> counter in Settings, and the collapsed screen keeps a small Start/Stop button. Tapping the GHOSTTOOTH title reopens the summary.",
+                ]},
                 {"type": "h2", "text": "1.5.1 — 16 August 2026"},
                 {"type": "ul", "items": [
                     "<strong>Correct edge-to-edge display on Android 15 and 16.</strong> The platform libraries that draw behind the system bars were updated to the releases built for Android 15's enforced edge-to-edge, following Google Play's recommendation, so the app fills the whole screen properly on every device — including small ones, where the summary panel already collapses while you scroll.",
