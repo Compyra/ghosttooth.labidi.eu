@@ -778,4 +778,11 @@ const SERVICE_UUID_NAMES = new Map([
     ["f0cd2004-95da-4f4b-9ac8-aa55d312af0c", "Aranet4: seconds since last update"],
     ["f0cd2005-95da-4f4b-9ac8-aa55d312af0c", "Aranet4 sensor logs"],
     ["f0cd3001-95da-4f4b-9ac8-aa55d312af0c", "Aranet4: CO2 measurements, interval, time since measurements"],
+
+    // Identified from GATT probes in the field (device reported its own
+    // manufacturer and model over the Device Information service).
+    ["272fe150-6c6c-4718-a3d4-6de8a3735cff", "HPE Aruba access point: management service"],
+    ["faafea00-b67b-6ee7-3d4c-424fb2f14a66", "HPE Aruba access point: provisioning service"],
+    ["2141e100-213a-11e6-b67b-9e71128cae77", "Universal Electronics UE878 RF module (Daikin BRC1H controller)"],
+    ["2141e110-213a-11e6-b67b-9e71128cae77", "Universal Electronics UE878 RF module: control service"],
 ]);

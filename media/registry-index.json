@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "updated": "2026-08-14T21:55:49Z",
+  "updated": "2026-08-21T17:55:11Z",
   "files": {
     "company_identifiers.js": {
       "sha256": "9303964f1aedfb5022d8318c5fa2f0a9bb9f217be31b3080d68227c5f71e68e5",
       "bytes": 152734
     },
     "long_company_identifiers.js": {
-      "sha256": "9d04bfae415e37eaf2b43465ef35214a2c15b4d09c438c0ed5f33c76bff59198",
-      "bytes": 54778
+      "sha256": "621d742d7ef08a250af803b2e96b3b3ef57a05d4b5a9beb582e9d53fc6f790b6",
+      "bytes": 55323
     },
     "known-devices.js": {
       "sha256": "3cf9498abe01579ff1b68ff74d8247deab1091944b20e8175b8655e667704fa6",

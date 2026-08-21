@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-18"
+UPDATED = "2026-08-21"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -504,6 +504,14 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.7.0 — 21 August 2026"},
+                {"type": "ul", "items": [
+                    "<strong>The device probe identifies far more.</strong> It now also reads what a device declares itself to be (its Bluetooth category — watch, tag, keyboard…), its serial number and firmware/hardware versions, and it explains notable services in plain language: “this device can be reprogrammed over the air”, “it can act as a keyboard”. A serial number is a persistent identity that survives address rotation — exactly what an evidence trail needs.",
+                    "<strong>The probe's documentation is now honest about visibility.</strong> Connecting is not passive listening: some devices answer a connection by asking to pair, which their owner can see. The setting says so, and advises against probing a device you believe is following you.",
+                    "<strong>Help grow the registry (experimental).</strong> One tap reports the service UUIDs and manufacturer IDs in your list that GhostTooth cannot name yet, so they can be identified and added for everyone. No addresses are included, you see exactly what goes out before sending, and you get an anonymous tracking code.",
+                    "New identifications from the field: HPE Aruba access-point services and the Universal Electronics UE878 module (Daikin thermostat controllers) now show by name.",
+                    "Reliability: definition-cache writes are now atomic, so an interrupted update can no longer leave a corrupted file (1.6.1).",
+                ]},
                 {"type": "h2", "text": "1.6.0 — 18 August 2026"},
                 {"type": "h3", "text": "Devices get named from their MAC address — carefully"},
                 {"type": "ul", "items": [
