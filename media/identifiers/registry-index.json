@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-22T10:35:48Z",
+  "updated": "2026-08-22T14:14:55Z",
   "files": {
     "company_identifiers.js": {
       "sha256": "9303964f1aedfb5022d8318c5fa2f0a9bb9f217be31b3080d68227c5f71e68e5",
@@ -21,6 +21,10 @@
     "oui.js": {
       "sha256": "f855f5ea89ae966d67f5101683cda67822c96023173ae850bb2824a2a3078427",
       "bytes": 1782030
+    },
+    "gatt.js": {
+      "sha256": "7df95e42a44dc2a463e306ae6c07f56f5a5c3184a60a1e973ec9972e9ff33b4c",
+      "bytes": 3856
     }
   }
 }

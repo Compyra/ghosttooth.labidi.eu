@@ -42,11 +42,12 @@ TRACKED = [
     "known-devices.js",
     "device-types.js",
     "oui.js",
+    "gatt.js",
 ]
 
 # Files added after the media split. No released app version fetches the legacy
-# path for these, so a second 1.7 MB copy in media/ would be dead weight.
-LEGACY_EXEMPT = {"oui.js"}
+# path for these, so a second copy in media/ would be dead weight.
+LEGACY_EXEMPT = {"oui.js", "gatt.js"}
 
 ROOT = Path(__file__).resolve().parent.parent
 MEDIA = ROOT / "media"

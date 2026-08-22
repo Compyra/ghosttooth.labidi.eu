@@ -55,7 +55,7 @@ const SHELL = [
 
 /* Registries are refreshed from the network whenever possible. Matches both
  * the canonical identifiers/ paths and the legacy media/ copies old apps use. */
-const REGISTRY = /\/media\/(identifiers\/)?(company_identifiers|long_company_identifiers|known-devices|device-types|oui)\.js$|\/media\/(identifiers\/)?registry-index\.json$/;
+const REGISTRY = /\/media\/(identifiers\/)?(company_identifiers|long_company_identifiers|known-devices|device-types|oui|gatt)\.js$|\/media\/(identifiers\/)?registry-index\.json$/;
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
