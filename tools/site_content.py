@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-21"
+UPDATED = "2026-08-22"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -136,7 +136,7 @@ SAFETY = {
                 {"type": "card", "variant": "warn", "title": "If you are in immediate danger", "text": "Stop reading and call your local emergency number. In the EU and the UK that is <strong>112</strong> (999 also works in the UK). This page is for planning, not for emergencies."},
                 {"type": "step", "title": "Do not destroy it yet", "text": "A tracker is evidence. Smashing it or throwing it away destroys the record of who put it there, and it tells whoever is watching that they have been found. Leave it where it is for now and photograph it in place, with something for scale."},
                 {"type": "step", "title": "Get somewhere safe first", "text": "If you think someone may be tracking you, do not start searching your car or your bag in an isolated place, at night, alone. Go somewhere public and well-lit, or somewhere you trust, and investigate there."},
-                {"type": "step", "title": "Save what the app recorded", "text": "The timestamps are the evidence: they show that the same device was near you at separate times and in separate places. In GhostTooth, open <em>Advanced settings → Export monitoring report</em> and keep a copy somewhere the other person cannot reach — a work account, a friend's device, printed paper."},
+                {"type": "step", "title": "Save what the app recorded", "text": "The timestamps are the evidence: they show that the same device was near you at separate times and in separate places. In GhostTooth, open <em>Notifications → Export monitoring report</em> and keep a copy somewhere the other person cannot reach — a work account, a friend's device, printed paper."},
                 {"type": "step", "title": "Rule out the innocent explanations", "text": "Before assuming the worst, work through these. They account for most findings."},
                 {"type": "ul", "items": [
                     "A family tag in a shared car, or on a set of keys you both use.",
@@ -504,6 +504,17 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.8.0 — 22 August 2026"},
+                {"type": "ul", "items": [
+                    "<strong>Reorganised menu.</strong> A new <em>Notifications</em> screen gathers everything that decides when the app speaks up: background monitoring, alert sensitivity, notification categories, your alert list, the Notable rules and the “last seen” display. The View menu now also holds the distance unit, the stale-device timeout and the device-count window.",
+                    "<strong>Report &amp; support in the menu.</strong> Reporting an unrecognised device, a bug, a crash, a feature request or unknown identifiers is now one tap from the main menu — with a new option to copy your tracking code. Reports are politely rate-limited on the device.",
+                    "<strong>Much richer device reports.</strong> Reports now include the manufacturer payload bytes, service data, GATT findings, signal context and timestamps that identification actually needs — still never an address.",
+                    "<strong>Definitions: LE Audio services named.</strong> The registry now names the Bluetooth LE Audio services (media control, telephony, hearing access…) that modern phones, tablets and earbuds expose, plus another Google service UUID — all verified against the Bluetooth SIG assigned numbers.",
+                ]},
+                {"type": "h2", "text": "1.7.1 — 22 August 2026"},
+                {"type": "ul", "items": [
+                    "<strong>Crash fix.</strong> Asking Android to switch Bluetooth on could crash on the newest Android builds; the app now uses the permission-aware request path everywhere.",
+                ]},
                 {"type": "h2", "text": "1.7.0 — 21 August 2026"},
                 {"type": "ul", "items": [
                     "<strong>The device probe identifies far more.</strong> It now also reads what a device declares itself to be (its Bluetooth category — watch, tag, keyboard…), its serial number and firmware/hardware versions, and it explains notable services in plain language: “this device can be reprogrammed over the air”, “it can act as a keyboard”. A serial number is a persistent identity that survives address rotation — exactly what an evidence trail needs.",
