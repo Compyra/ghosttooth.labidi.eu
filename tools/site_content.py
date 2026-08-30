@@ -418,7 +418,6 @@ ACCESSIBILITY = {
                 {"type": "p", "text": "We would rather list these than pretend they do not exist:"},
                 {"type": "ul", "items": [
                     "The experimental presence timeline in the app is a purely visual chart with no textual equivalent yet.",
-                    "The web scanner's live device list updates frequently; screen-reader users may find the app a calmer experience.",
                     "Some longer explanatory text has not been through a plain-language review.",
                 ]},
                 {"type": "h2", "text": "Tell us when something does not work"},
@@ -449,7 +448,6 @@ ACCESSIBILITY = {
                 {"type": "ul", "items": [
                     "La frise de présence expérimentale est un graphique purement visuel, sans équivalent textuel pour l'instant.",
                     "La localisation chaud/froid est utilisable au lecteur d'écran et avec retour sonore, mais n'a pas encore de retour haptique pour les personnes qui n'entendent pas les bips.",
-                    "La liste d'appareils du scanner web se met à jour très souvent ; l'application est plus reposante avec un lecteur d'écran.",
                     "Certains textes explicatifs longs n'ont pas encore fait l'objet d'une relecture en langage clair.",
                 ]},
                 {"type": "h2", "text": "Signalez-nous ce qui ne fonctionne pas"},
@@ -480,7 +478,6 @@ ACCESSIBILITY = {
                 {"type": "ul", "items": [
                     "De experimentele aanwezigheidstijdlijn in de app is een puur visuele grafiek zonder tekstueel alternatief.",
                     "De warm/koud-locator is bruikbaar met een schermlezer en met geluid, maar heeft nog geen trilpatroon voor wie het piepen niet hoort.",
-                    "De apparaatlijst van de webscanner ververst vaak; met een schermlezer is de app rustiger in gebruik.",
                     "Sommige langere uitlegteksten zijn nog niet op begrijpelijke taal nagekeken.",
                 ]},
                 {"type": "h2", "text": "Laat het weten als iets niet werkt"},
@@ -668,8 +665,7 @@ CHANGELOG = {
 }
 
 # ---------------------------------------------------------------------------
-# Landing pages (/, /fr/, /nl/) — information and links. The archived English
-# browser scanner lives at /scanner/ and is hand-written.
+# Landing pages (/, /fr/, /nl/) — information and links.
 # ---------------------------------------------------------------------------
 
 LANDING = {
@@ -684,7 +680,6 @@ LANDING = {
                 {"type": "lede", "text": "GhostTooth listens to the Bluetooth advertisements around you and flags what looks like a tracker or recording hardware. Free, no ads, no account, and <strong>nothing ever leaves your phone</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Get it on Google Play", "primary": True, "external": True},
-                    {"href": "{root}scanner/", "label": "Browser scanner (archived)"},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["en"]},
                 {"type": "h2", "text": "What it detects"},
@@ -716,7 +711,6 @@ LANDING = {
                 {"type": "lede", "text": "GhostTooth écoute les trames Bluetooth autour de vous et signale ce qui ressemble à un traceur ou à du matériel d'enregistrement. Gratuit, sans publicité, sans compte, et <strong>aucune donnée ne quitte votre téléphone</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Télécharger sur Google Play", "primary": True, "external": True},
-                    {"href": "{root}scanner/", "label": "Scanner navigateur (archivé)"},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["fr"]},
                 {"type": "h2", "text": "Ce qu'il détecte"},
@@ -748,7 +742,6 @@ LANDING = {
                 {"type": "lede", "text": "GhostTooth luistert naar de bluetooth-berichten om je heen en markeert wat op een tracker of opnameapparaat lijkt. Gratis, zonder advertenties, zonder account, en <strong>er verlaat geen enkel gegeven je telefoon</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Downloaden in Google Play", "primary": True, "external": True},
-                    {"href": "{root}scanner/", "label": "Browserscanner (gearchiveerd)"},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["nl"]},
                 {"type": "h2", "text": "Wat het vindt"},
