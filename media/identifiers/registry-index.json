@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated": "2026-08-22T14:14:55Z",
+  "updated": "2026-08-29T23:47:35Z",
   "files": {
     "company_identifiers.js": {
       "sha256": "9303964f1aedfb5022d8318c5fa2f0a9bb9f217be31b3080d68227c5f71e68e5",
@@ -11,8 +11,8 @@
       "bytes": 57836
     },
     "known-devices.js": {
-      "sha256": "3cf9498abe01579ff1b68ff74d8247deab1091944b20e8175b8655e667704fa6",
-      "bytes": 9342
+      "sha256": "568ecd4a1495fb79b6acbfdd946382ec06dd66c90c289f2bc9bc0a91c2f873d1",
+      "bytes": 11944
     },
     "device-types.js": {
       "sha256": "813cdb7cd92c25cf59f6ee26fb339056ffcbf2b8300f15bffc2f9864ba9dd0ba",
@@ -23,8 +23,8 @@
       "bytes": 1782030
     },
     "gatt.js": {
-      "sha256": "7df95e42a44dc2a463e306ae6c07f56f5a5c3184a60a1e973ec9972e9ff33b4c",
-      "bytes": 3856
+      "sha256": "a461da9da7ae86f4333736610911d4e045badaf01ac2531556624c897ca1c526",
+      "bytes": 4299
     }
   }
 }

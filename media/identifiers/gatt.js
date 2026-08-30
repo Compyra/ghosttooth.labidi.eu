@@ -108,4 +108,6 @@ const GHOSTTOOTH_GATT_NOTES = [
     ["00001812-0000-1000-8000-00805f9b34fb", "Acts as an input device (keyboard/mouse); can inject keystrokes when paired."],
     ["00001819-0000-1000-8000-00805f9b34fb", "Exposes location and navigation data."],
     ["0000feaa-0000-1000-8000-00805f9b34fb", "Broadcasts beacon frames that apps can use for presence detection."],
+    ["0000ffe0-0000-1000-8000-00805f9b34fb", "Transparent serial bridge (HM-1x style): whatever the attached circuit prints is relayed over Bluetooth. Normal in hobby electronics; inside a payment terminal or fuel pump it is what a card skimmer looks like."],
+    ["6e400001-b5a3-f393-e0a9-e50e24dcca9e", "Nordic UART: a general-purpose serial link. Extremely common in ordinary products, so it says what the device can do, not what it is."],
 ];

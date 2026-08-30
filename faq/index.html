@@ -526,6 +526,7 @@
       <li><a href="#rssi">Signal strength (dBm / RSSI)</a></li>
       <li><a href="#distance">Distance estimation</a></li>
       <li><a href="#limits">Why we can’t detect 100%</a></li>
+      <li><a href="#skimmers">Card skimmers</a></li>
       <li><a href="#mfr">Manufacturer / Company IDs</a></li>
       <li><a href="#list">Reading the device list</a></li>
       <li><a href="#locate">Locating a suspicious device</a></li>
@@ -649,9 +650,51 @@
       </div>
     </section>
 
-    <!-- ===================== 7. MANUFACTURER ===================== -->
+    <!-- ===================== 7. SKIMMERS ===================== -->
+    <section id="skimmers">
+      <h2><span class="num">07</span> Bluetooth card skimmers — what we can and cannot see</h2>
+      <p class="section-lead">A partial answer, honestly labelled. Please read the limits before you rely on this.</p>
+
+      <p>A Bluetooth card skimmer is a small board hidden inside a fuel pump, ATM or payment terminal. It copies card data as you pay and stores it, and the criminal collects it later over Bluetooth from the car park — without ever touching the machine again. Skimmers are not a branded product: they are a cheap <strong>serial-to-Bluetooth module</strong> wired to a card reader, and that module is the only part that emits a radio signal.</p>
+
+      <div class="callout honesty" style="margin:18px 0;">
+        <span class="tag">The most important limit</span>
+        <p style="margin-top:8px;"><strong>Most skimmers found in the field to date are invisible to GHOSTTOOTH — and to every other BLE app on your phone.</strong></p>
+        <p>The landmark study is <a href="https://cns.ucsd.edu/bluetana/" rel="noopener" target="_blank">Bluetana</a> (UC San Diego / UIUC with the US Secret Service, <a href="https://www.usenix.org/conference/usenixsecurity19/presentation/bhaskar" rel="noopener" target="_blank">USENIX Security 2019</a>), which found 44 real skimmers in petrol stations. The signals it relies on — a <em>Class-of-Device</em> value of “Uncategorized”, a MAC-prefix list such as <code>00:06:66</code>, and factory names like <code>HC-05</code>, <code>HC-06</code> or <code>RNBT-*</code> — all belong to <strong>Bluetooth Classic (BR/EDR)</strong>.</p>
+        <p style="margin-bottom:0;">Class-of-Device does not exist in a BLE advertisement, and Android does not report Classic-only devices to a BLE scanner at all. So we deliberately did <strong>not</strong> add those rules: they would produce a detector that can never fire, which is worse than no detector, because it would tell you “nothing found” and sound reassuring.</p>
+      </div>
+
+      <p>What GHOSTTOOTH <em>can</em> see is the newer <strong>BLE</strong> generation of these devices, documented by John Passaro in <a href="https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers" rel="noopener" target="_blank">“Forensic Investigation of Bluetooth-Based Credit Card Skimmers”</a> (SANS Technology Institute, 2025). Those are built on <strong>HM-19</strong>-class modules, which ship with a factory name such as <code>DSD-TECH</code> and expose a transparent serial link (service <code>0xFFE0</code>) that the operator connects to in order to dump the stolen cards. GHOSTTOOTH now recognises that whole module family by name — HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42 and similar — and explains the serial service in plain language when you probe a device.</p>
+
+      <h3 style="margin-top:26px;">Why a match is <em>not</em> an accusation</h3>
+      <p>This is the part that matters most, and it is the reason every one of these entries is flagged only as <strong>“possible”</strong>:</p>
+      <ul>
+        <li><strong>These exact modules are everywhere, legitimately.</strong> They sell by the million for e-bike controllers, OBD-II car readers, LED strip controllers, 3D printers, model railways, hobby robotics and school electronics kits. Seeing one in a workshop, a garage or a classroom is completely normal.</li>
+        <li><strong>The name proves a serial bridge, never a crime.</strong> All the radio tells us is “this is a generic Bluetooth-to-serial module that still has its factory name.” It says nothing about what is wired to the other side.</li>
+        <li><strong>Bluetana hit the same wall.</strong> The paper notes that legitimate fleet-tracking and industrial equipment ships with those identical default names, and would “look exactly like skimmers” to any scanner. Professional inspectors resolve it by <em>where</em> the signal is, not <em>what</em> it is called.</li>
+        <li><strong>So “possible” behaves quietly on purpose.</strong> The device appears in your list with its explanation, but it is <em>not</em> counted in the surveillance total at the top of the screen, and it will <strong>never</strong> raise an alert or a notification on its own.</li>
+      </ul>
+
+      <h3 style="margin-top:26px;">What actually makes it suspicious</h3>
+      <p>Context, not the name. The question is never “is this module a skimmer?” but <strong>“why is a serial module transmitting from inside a payment machine?”</strong></p>
+      <ul>
+        <li>The signal is <strong>strongest at the pump or terminal itself</strong> and stays with it as you walk around — use the locate feature (section&nbsp;10) to confirm the source before concluding anything.</li>
+        <li>It is present at <strong>one pump but not the identical pump beside it</strong>.</li>
+        <li>It persists across visits, at a machine, with no plausible owner nearby.</li>
+      </ul>
+
+      <div class="callout legal" style="margin-top:18px;">
+        <span class="tag">If you think you have found one</span>
+        <p style="margin-top:8px;">Do <strong>not</strong> open, unscrew or tamper with the machine — that is both dangerous and a criminal offence in most countries, and it destroys the evidence.</p>
+        <p style="margin-bottom:0;">Tell the <strong>site operator or shop staff</strong>, and report it to your <strong>local police</strong> and, in some countries, the fuel or banking regulator. Then <strong>check your own card statements</strong> and, if in doubt, ask your bank for a new card. A GHOSTTOOTH reading is a reason to ask a question — it is not evidence of a crime, and it should never be used to accuse a business or a person.</p>
+      </div>
+
+      <p style="margin-top:18px;margin-bottom:0;"><strong>The practical advice remains the one the researchers give:</strong> prefer tap/contactless or a mobile wallet over swiping, use pumps in direct view of the shop window, and treat this feature as one small extra signal — never as a clean bill of health for a payment terminal.</p>
+    </section>
+
+    <!-- ===================== 8. MANUFACTURER ===================== -->
     <section id="mfr">
-      <h2><span class="num">07</span> Manufacturer codes / Company Identifiers</h2>
+      <h2><span class="num">08</span> Manufacturer codes / Company Identifiers</h2>
       <p class="section-lead">A number inside the packet that often (but not always) reveals the maker.</p>
       <p>Advertisement packets can carry <strong>manufacturer-specific data</strong> that begins with a <strong>Company Identifier</strong> — a number assigned by the <strong>Bluetooth SIG</strong> to a specific vendor. GHOSTTOOTH maps that number to a company name wherever it can (from an embedded registry of thousands of vendors).</p>
       <ul>
@@ -661,9 +704,9 @@
       <p>Use the manufacturer as <strong>one clue among several</strong> (name, services, signal behaviour), never as a verdict.</p>
     </section>
 
-    <!-- ===================== 8. READING THE LIST ===================== -->
+    <!-- ===================== 9. READING THE LIST ===================== -->
     <section id="list">
-      <h2><span class="num">08</span> Reading the device list</h2>
+      <h2><span class="num">09</span> Reading the device list</h2>
       <p class="section-lead">What each field means — and how much to trust it.</p>
       <div class="fields">
         <div class="field"><span class="k">Name</span><span class="v">The broadcast device name. Often <strong>empty</strong>, generic, or freely set by the maker — and <strong>easily spoofed</strong>. Treat as a hint, not an identity.</span></div>
@@ -676,9 +719,9 @@
       </div>
     </section>
 
-    <!-- ===================== 9. LOCATE ===================== -->
+    <!-- ===================== 10. LOCATE ===================== -->
     <section id="locate">
-      <h2><span class="num">09</span> How to physically locate a suspicious device</h2>
+      <h2><span class="num">10</span> How to physically locate a suspicious device</h2>
       <p class="section-lead">Play “hot and cold” with the signal.</p>
       <ol class="steps">
         <li><strong>Pick your target</strong> row and keep an eye on its <strong>RSSI</strong> and <strong>estimated distance</strong>.</li>
@@ -689,11 +732,11 @@
       </ol>
     </section>
 
-    <!-- ===================== 10. PRIVACY ===================== -->
+    <!-- ===================== 11. PRIVACY ===================== -->
     <section id="privacy">
       <div class="callout privacy">
         <span class="tag">Your privacy</span>
-        <h2 style="border:0;padding:0;"><span class="num">10</span> Privacy</h2>
+        <h2 style="border:0;padding:0;"><span class="num">11</span> Privacy</h2>
         <p>GHOSTTOOTH scans <strong>locally, on your device.</strong> The Bluetooth advertisements it hears are processed on your phone to build the list you see.</p>
         <ul>
           <li><strong>No accounts, no ads, no third-party tracking SDKs.</strong></li>
@@ -704,11 +747,11 @@
       </div>
     </section>
 
-    <!-- ===================== 11. LEGAL ===================== -->
+    <!-- ===================== 12. LEGAL ===================== -->
     <section id="legal">
       <div class="callout legal">
         <span class="tag">Important · legal &amp; ethical</span>
-        <h2 style="border:0;padding:0;"><span class="num">11</span> Legal &amp; ethical use</h2>
+        <h2 style="border:0;padding:0;"><span class="num">12</span> Legal &amp; ethical use</h2>
         <p>GHOSTTOOTH is provided for <strong>personal safety, education, and awareness</strong>. By using it you agree to use it responsibly:</p>
         <ul>
           <li><strong>Obey local laws.</strong> Rules on radio monitoring, recording, and privacy differ by country and region — you are responsible for complying with yours.</li>
@@ -720,9 +763,9 @@
       </div>
     </section>
 
-    <!-- ===================== 12. TROUBLESHOOTING ===================== -->
+    <!-- ===================== 13. TROUBLESHOOTING ===================== -->
     <section id="trouble">
-      <h2><span class="num">12</span> Troubleshooting FAQ</h2>
+      <h2><span class="num">13</span> Troubleshooting FAQ</h2>
       <p class="section-lead">Quick answers to the most common questions.</p>
 
       <details>
@@ -788,9 +831,9 @@
       </details>
     </section>
 
-    <!-- ===================== 13. GLOSSARY ===================== -->
+    <!-- ===================== 14. GLOSSARY ===================== -->
     <section id="glossary">
-      <h2><span class="num">13</span> Glossary</h2>
+      <h2><span class="num">14</span> Glossary</h2>
       <p class="section-lead">The jargon, decoded.</p>
       <dl class="glossary">
         <div>
@@ -812,6 +855,18 @@
         <div>
           <dt>MAC address</dt>
           <dd>A device’s Bluetooth hardware address. Often randomized/rotating for privacy, so it may change over time.</dd>
+        </div>
+        <div>
+          <dt>Bluetooth Classic (BR/EDR)</dt>
+          <dd>The older, higher-power Bluetooth used by headsets, car kits and serial modules. It is a separate radio protocol from BLE; a BLE scanner cannot see a Classic-only device that is not in discoverable mode. See section&nbsp;07.</dd>
+        </div>
+        <div>
+          <dt>Card skimmer</dt>
+          <dd>A hidden board inside a payment terminal or fuel pump that copies card data, often retrieved later over Bluetooth. See section&nbsp;07 for what we can and cannot detect.</dd>
+        </div>
+        <div>
+          <dt>Serial bridge (UART module)</dt>
+          <dd>A cheap chip that relays whatever an attached circuit prints over Bluetooth — the HM-10/HM-19 family and its clones. Used in countless legitimate DIY and industrial products, and also in BLE card skimmers.</dd>
         </div>
         <div>
           <dt>Company Identifier</dt>

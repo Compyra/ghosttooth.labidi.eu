@@ -120,4 +120,36 @@ const KNOWN_DEVICE_NAME_PATTERNS = [
     { pattern: /\bgf.?07\b|\btk.?102\b|\btk.?905\b|\bgt02\b/i, type: 'tracker', confidence: 'likely', reason: 'Common covert GPS/GSM vehicle tracker module' },
     { pattern: /\binvoxia\b/i, type: 'tracker', confidence: 'likely', reason: 'Invoxia GPS tracker' },
     { pattern: /\btracki\b/i, type: 'tracker', confidence: 'likely', reason: 'Tracki consumer GPS tracker' },
+
+    // ==========================================================
+    // Bluetooth serial bridge modules (the card-skimmer profile)
+    //
+    // Bluetooth card skimmers are not a product with a brand name.
+    // They are a cheap serial-to-Bluetooth module wired to a card
+    // reader, and the module almost always keeps its factory name.
+    // Bluetana (UCSD/UIUC + US Secret Service, USENIX Security 2019)
+    // found that the factory scan profile is the single best signal
+    // available to a phone, and Passaro (SANS, 2025) documents the
+    // same for the BLE generation built on HM-19 modules.
+    //
+    // EVERY ENTRY HERE IS 'possible' ON PURPOSE. These exact modules
+    // sell by the million for e-bikes, OBD readers, LED strips, 3D
+    // printers and school Arduino kits. The name proves a serial
+    // bridge, never a crime. 'possible' keeps them out of the
+    // headline counts and out of every alert: the app shows the row
+    // and explains it, and the user judges the context. A module in
+    // a workshop is furniture. The same module inside a fuel pump,
+    // ATM or payment terminal is worth reporting to the operator.
+    //
+    // Classic-Bluetooth-only skimmers (HC-05/HC-06, RNBT-*, MAC
+    // prefix 00:06:66) are deliberately absent: they do not
+    // advertise over BLE, so no BLE scanner can see them at all.
+    // Pretending otherwise would be a false reassurance.
+    // ==========================================================
+    { pattern: /\bhm.?(10|11|16|17|19)\b/i, type: 'surveillance', confidence: 'possible', reason: 'HM-1x Bluetooth serial bridge — hobby electronics use these constantly, and so do BLE card skimmers' },
+    { pattern: /\bdsd.?tech\b/i, type: 'surveillance', confidence: 'possible', reason: 'DSD TECH — factory name of the HM-19 serial bridge documented in SANS skimmer research' },
+    { pattern: /\bcc41.?a\b|\bat.?09\b|\bmlt.?bt05\b|\bbt0(4|5).?a?\b/i, type: 'surveillance', confidence: 'possible', reason: 'HM-10 clone serial bridge — sold unbranded, used in DIY projects and in card skimmers' },
+    { pattern: /\bjdy.?(08|09|10|23|31|33)\b/i, type: 'surveillance', confidence: 'possible', reason: 'JDY serial bridge module — generic Bluetooth-to-serial hardware' },
+    { pattern: /\b(sh.?)?hc.?(08|42)\b/i, type: 'surveillance', confidence: 'possible', reason: 'HC-08/HC-42 BLE serial bridge — generic Bluetooth-to-serial hardware' },
+    { pattern: /\bbolutek\b|\bble.?serial\b/i, type: 'surveillance', confidence: 'possible', reason: 'Unconfigured Bluetooth serial bridge advertising its factory name' },
 ];
