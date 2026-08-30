@@ -504,6 +504,10 @@ CHANGELOG = {
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
+                {"type": "h2", "text": "1.12.0 — 30 August 2026"},
+                {"type": "ul", "items": [
+                    "<strong>The alert-device list explains before it deletes.</strong> Under Notifications ▸ Alert devices, entries now show the device name, and tapping one opens its details — maker, why it was flagged, first and last seen, how often, your note, whether it is in range right now — and only then asks whether to remove it from the list or keep it. Previously a single tap removed the device immediately, from a list that showed nothing but addresses.",
+                ]},
                 {"type": "h2", "text": "1.11.0 — 30 August 2026"},
                 {"type": "ul", "items": [
                     "<strong>The notification tells the truth about being stopped.</strong> If the system drops the background scan, the notification used to say “Reacquiring…” and still offer a <em>Stop</em> button for something that was not running. It now says <strong>Stopped — not scanning</strong> and offers <strong>Restart</strong> instead. “Registered but quiet” and “not registered at all” are finally two different states with two different words.",
