@@ -2,7 +2,7 @@
   "name": "GHOSTTOOTH — Bluetooth Surveillance & Tracker Detector",
   "short_name": "GHOSTTOOTH",
   "description": "Scan for nearby Bluetooth (BLE) devices to help find hidden trackers and surveillance gadgets. Privacy-first and works offline.",
-  "start_url": "/",
+  "start_url": "/scanner/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#0b0d1a",

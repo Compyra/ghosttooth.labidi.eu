@@ -26,13 +26,14 @@
  * that does not match, so old assets never linger.
  */
 
-const CACHE_VERSION = 'ghosttooth-v10-2026-08-22';
+const CACHE_VERSION = 'ghosttooth-v11-2026-08-30';
 const RUNTIME = `${CACHE_VERSION}-runtime`;
 
 /* Kept deliberately small: the pages a stranded reader actually needs. Anything
  * else is picked up opportunistically at runtime. */
 const SHELL = [
   '/',
+  '/scanner/',
   '/faq/',
   '/safety/',
   '/privacy/',

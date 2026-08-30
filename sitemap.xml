@@ -189,4 +189,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://ghosttooth.labidi.eu/scanner/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://ghosttooth.labidi.eu/scanner/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://ghosttooth.labidi.eu/scanner/"/>
+    <lastmod>2026-08-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

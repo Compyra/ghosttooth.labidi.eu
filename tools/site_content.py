@@ -16,7 +16,7 @@ SUPPORT_EMAIL = "ghosttooth@labidi.eu"
 SECURITY_EMAIL = "security@compyra.com"
 
 LANGS = {
-    "en": {"short": "EN", "name": "English", "og_locale": "en"},
+    "en": {"short": "EN", "name": "English", "og_locale": "en_US"},
     "fr": {"short": "FR", "name": "Français", "og_locale": "fr_FR"},
     "nl": {"short": "NL", "name": "Nederlands", "og_locale": "nl_NL"},
 }
@@ -33,17 +33,17 @@ NAV = {
         {"key": "changelog", "slug": "changelog"},
     ],
     "en": {
-        "home": "Scanner", "faq": "Help & FAQ", "safety": "Found a tracker?",
+        "home": "Home", "faq": "Help & FAQ", "safety": "Found a tracker?",
         "privacy": "Privacy", "terms": "Terms", "accessibility": "Accessibility",
         "changelog": "Changelog",
     },
     "fr": {
-        "home": "Scanner", "faq": "Aide & FAQ", "safety": "Traceur trouvé ?",
+        "home": "Accueil", "faq": "Aide & FAQ", "safety": "Traceur trouvé ?",
         "privacy": "Confidentialité", "terms": "Conditions", "accessibility": "Accessibilité",
         "changelog": "Journal des versions",
     },
     "nl": {
-        "home": "Scanner", "faq": "Help & FAQ", "safety": "Tracker gevonden?",
+        "home": "Home", "faq": "Help & FAQ", "safety": "Tracker gevonden?",
         "privacy": "Privacy", "terms": "Voorwaarden", "accessibility": "Toegankelijkheid",
         "changelog": "Wijzigingslog",
     },
@@ -668,13 +668,45 @@ CHANGELOG = {
 }
 
 # ---------------------------------------------------------------------------
-# Localised landing pages (/fr/, /nl/). The English landing page is the
-# hand-written scanner at the site root and is not generated.
+# Landing pages (/, /fr/, /nl/) — information and links. The archived English
+# browser scanner lives at /scanner/ and is hand-written.
 # ---------------------------------------------------------------------------
 
 LANDING = {
     "updated": UPDATED,
     "langs": {
+        "en": {
+            "title": "GHOSTTOOTH — Bluetooth tracker and surveillance-device detector",
+            "og_title": "GHOSTTOOTH — Bluetooth tracker detector",
+            "heading": "Find trackers and surveillance devices around you",
+            "description": "GhostTooth finds Bluetooth trackers (AirTag, Tile, SmartTag, Find My Device) and recording devices nearby. Free, no ads, no data collection, works offline.",
+            "blocks": [
+                {"type": "lede", "text": "GhostTooth listens to the Bluetooth advertisements around you and flags what looks like a tracker or recording hardware. Free, no ads, no account, and <strong>nothing ever leaves your phone</strong>."},
+                {"type": "buttons", "items": [
+                    {"href": PLAY_URL, "label": "Get it on Google Play", "primary": True, "external": True},
+                    {"href": "{root}scanner/", "label": "Browser scanner (archived)"},
+                ]},
+                {"type": "shots", "items": SCREENSHOTS["en"]},
+                {"type": "h2", "text": "What it detects"},
+                {"type": "ul", "items": [
+                    "<strong>Trackers</strong>: Apple AirTag and Find My accessories, Tile, Samsung SmartTag, Chipolo, Pebblebee, Moto Tag and Google Find My Device network tags.",
+                    "<strong>Surveillance devices</strong>: camera glasses (Ray-Ban Meta, Snap Spectacles, Echo Frames), wearable recorders and AI pins, body cameras.",
+                    "<strong>Anonymous beacons</strong> that stay with you across several distinct time windows, even without a recognisable brand.",
+                ]},
+                {"type": "h2", "text": "Every verdict explains itself"},
+                {"type": "p", "text": "A red badge without an explanation helps nobody. GhostTooth tells you why a device was flagged and how strong the evidence is: <em>possible</em> (a single weak hint), <em>likely</em> (corroborated by the maker or the advertised service) or <em>confirmed</em> (read straight from the tracking protocol). Only strong evidence raises an alert."},
+                {"type": "h2", "text": "Background monitoring"},
+                {"type": "p", "text": "Switch monitoring on and GhostTooth keeps looking while the app is closed, with a notification carrying live counts. It tells you when a device is <em>travelling with you</em> — the signal that actually matters."},
+                {"type": "h2", "text": "Privacy"},
+                {"type": "p", "text": "No scan data, no personal data and no location ever leaves your device. No ads, no trackers, no account. The only network connection fetches detection definitions from this site. See the <a href=\"{root}privacy/\">privacy policy</a>."},
+                {"type": "h2", "text": "Found something?"},
+                {"type": "card", "variant": "warn", "text": "Do not throw it away straight away: it is evidence. Our <a href=\"{root}safety/\">safety guide</a> explains what to do, what to avoid, and where to find help."},
+                {"type": "buttons", "items": [
+                    {"href": "{root}faq/", "label": "Help & FAQ"},
+                    {"href": "{root}safety/", "label": "Found a tracker?"},
+                ]},
+            ],
+        },
         "fr": {
             "title": "GHOSTTOOTH — Détecteur de traceurs et d'appareils de surveillance Bluetooth",
             "og_title": "GHOSTTOOTH — Détecteur de traceurs Bluetooth",
@@ -684,7 +716,7 @@ LANDING = {
                 {"type": "lede", "text": "GhostTooth écoute les trames Bluetooth autour de vous et signale ce qui ressemble à un traceur ou à du matériel d'enregistrement. Gratuit, sans publicité, sans compte, et <strong>aucune donnée ne quitte votre téléphone</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Télécharger sur Google Play", "primary": True, "external": True},
-                    {"href": "{root}", "label": "Scanner depuis le navigateur"},
+                    {"href": "{root}scanner/", "label": "Scanner navigateur (archivé)"},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["fr"]},
                 {"type": "h2", "text": "Ce qu'il détecte"},
@@ -716,7 +748,7 @@ LANDING = {
                 {"type": "lede", "text": "GhostTooth luistert naar de bluetooth-berichten om je heen en markeert wat op een tracker of opnameapparaat lijkt. Gratis, zonder advertenties, zonder account, en <strong>er verlaat geen enkel gegeven je telefoon</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Downloaden in Google Play", "primary": True, "external": True},
-                    {"href": "{root}", "label": "Scannen in de browser"},
+                    {"href": "{root}scanner/", "label": "Browserscanner (gearchiveerd)"},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["nl"]},
                 {"type": "h2", "text": "Wat het vindt"},

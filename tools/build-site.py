@@ -388,10 +388,10 @@ if ('serviceWorker' in navigator) {{
 # Which slugs exist per language, so navigation never links to a missing page.
 ALL_SLUGS_FOR: dict[str, set[str]] = {}
 
-# The English landing page, FAQ and privacy policy are hand-written files that
-# this generator deliberately does not own — but they still belong in the
-# sitemap, so they are declared here.
-HANDWRITTEN_EN = {"", "faq", "privacy"}
+# The English FAQ, privacy policy and the archived browser scanner are
+# hand-written files that this generator deliberately does not own — but they
+# still belong in the sitemap, so they are declared here.
+HANDWRITTEN_EN = {"faq", "privacy", "scanner"}
 
 # changefreq / priority per slug. Content pages change rarely; the landing page
 # and changelog move with each release.
@@ -403,6 +403,7 @@ SITEMAP_HINTS = {
     "privacy": ("yearly", "0.5"),
     "terms": ("yearly", "0.4"),
     "accessibility": ("yearly", "0.4"),
+    "scanner": ("yearly", "0.3"),
 }
 
 
