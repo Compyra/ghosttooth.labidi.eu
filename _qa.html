@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>site QA</title>
+<pre id="out">PENDING</pre>
+<div id="frames"></div>
+<script>
+const PAGES = ['/', '/scanner/', '/fr/', '/nl/', '/404.html', '/faq/', '/apk-files/'];
+const frames = [];
+for (const p of PAGES) for (const wpx of [1100, 380]) {
+    const fr = document.createElement('iframe');
+    fr.style.cssText = `width:${wpx}px;height:600px`;
+    fr.src = p;
+    fr.dataset.url = p; fr.dataset.w = wpx;
+    document.getElementById('frames').appendChild(fr);
+    frames.push(fr);
+}
+window.addEventListener('load', () => setTimeout(() => {
+    const results = [];
+    const lum = c => { const m = c.match(/\d+/g).map(Number); return (0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2]) / 255; };
+    for (const fr of frames) {
+        try {
+            const w = fr.contentWindow, d = w.document;
+            const issues = [];
+            const overflow = d.documentElement.scrollWidth - d.documentElement.clientWidth;
+            if (overflow > 1) issues.push(`hscroll +${overflow}px`);
+            for (const img of d.querySelectorAll('img')) {
+                if (img.complete && img.naturalWidth === 0) issues.push('broken img ' + (img.getAttribute('src') || '').slice(0, 50));
+            }
+            const cs = w.getComputedStyle(d.body);
+            const bg = lum(cs.backgroundColor.includes('rgba(0, 0, 0, 0)') ? 'rgb(11,13,26)' : cs.backgroundColor);
+            const fg = lum(cs.color);
+            if (Math.abs(fg - bg) < 0.4) issues.push(`low contrast fg=${fg.toFixed(2)} bg=${bg.toFixed(2)}`);
+            const lang = d.documentElement.lang || 'MISSING';
+            results.push(`${fr.dataset.url} @${fr.dataset.w}: lang=${lang} ${issues.length ? 'ISSUES: ' + issues.join('; ') : 'ok'}`);
+        } catch (e) { results.push(`${fr.dataset.url} @${fr.dataset.w}: ERR ${e.message}`); }
+    }
+    document.getElementById('out').textContent = 'RESULT\n' + results.join('\n');
+}, 2500));
+</script>
