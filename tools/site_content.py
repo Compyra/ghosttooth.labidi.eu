@@ -76,7 +76,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-08-30"
+UPDATED = "2026-09-07"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -692,6 +692,10 @@ LANDING = {
                 {"type": "p", "text": "A red badge without an explanation helps nobody. GhostTooth tells you why a device was flagged and how strong the evidence is: <em>possible</em> (a single weak hint), <em>likely</em> (corroborated by the maker or the advertised service) or <em>confirmed</em> (read straight from the tracking protocol). Only strong evidence raises an alert."},
                 {"type": "h2", "text": "Background monitoring"},
                 {"type": "p", "text": "Switch monitoring on and GhostTooth keeps looking while the app is closed, with a notification carrying live counts. It tells you when a device is <em>travelling with you</em> — the signal that actually matters."},
+                {"type": "h2", "text": "Your phone is the detector"},
+                {"type": "p", "text": "Professional sweep gear such as the <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> exists for teams that inspect rooms for a living — and costs thousands. We do not think you should have to buy a dedicated device to find out whether a tracker is riding along in your bag. The phone in your pocket carries the same Bluetooth radio; GhostTooth turns it into the detector."},
+                {"type": "h2", "text": "Free to help, Pro to support"},
+                {"type": "p", "text": "GhostTooth exists to help people, so the detector is free: no ads, no account, no data for sale. To keep the work going, a <strong>GhostTooth Pro</strong> edition is coming soon for everyone who wants to support the project. The free app stays free."},
                 {"type": "h2", "text": "Privacy"},
                 {"type": "p", "text": "No scan data, no personal data and no location ever leaves your device. No ads, no trackers, no account. The only network connection fetches detection definitions from this site. See the <a href=\"{root}privacy/\">privacy policy</a>."},
                 {"type": "h2", "text": "Found something?"},
@@ -723,6 +727,10 @@ LANDING = {
                 {"type": "p", "text": "Un badge rouge sans explication n'aide personne. GhostTooth indique pourquoi un appareil est signalé et à quel point la preuve est solide : <em>possible</em> (un seul indice faible), <em>probable</em> (confirmé par le fabricant ou le service annoncé) ou <em>confirmé</em> (lu directement dans le protocole de suivi). Seules les preuves solides déclenchent une alerte."},
                 {"type": "h2", "text": "Surveillance en arrière-plan"},
                 {"type": "p", "text": "Activez la surveillance et GhostTooth continue de chercher quand l'application est fermée, avec une notification qui affiche les compteurs en direct. Il vous prévient quand un appareil <em>voyage avec vous</em> — le signal qui compte vraiment."},
+                {"type": "h2", "text": "Votre téléphone est le détecteur"},
+                {"type": "p", "text": "Le matériel professionnel comme le <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> existe pour les équipes qui inspectent des locaux à longueur de journée — et coûte plusieurs milliers d'euros. Vous ne devriez pas avoir à acheter un appareil dédié pour savoir si un traceur voyage dans votre sac : le téléphone dans votre poche embarque la même radio Bluetooth, et GhostTooth en fait le détecteur."},
+                {"type": "h2", "text": "Gratuit pour aider, Pro pour soutenir"},
+                {"type": "p", "text": "GhostTooth existe pour aider : le détecteur est gratuit, sans publicité, sans compte, sans données à vendre. Pour faire vivre le projet, une édition <strong>GhostTooth Pro</strong> arrive bientôt, pour celles et ceux qui veulent nous soutenir. L'application gratuite reste gratuite."},
                 {"type": "h2", "text": "Vie privée"},
                 {"type": "p", "text": "Aucune donnée d'analyse, aucune donnée personnelle, aucune position ne quitte votre appareil. Aucune publicité, aucun traceur, aucun compte. La seule connexion réseau sert à télécharger les définitions de détection depuis ce site. Voir la <a href=\"{root}fr/privacy/\">politique de confidentialité</a>."},
                 {"type": "h2", "text": "Vous avez trouvé quelque chose ?"},
@@ -754,6 +762,10 @@ LANDING = {
                 {"type": "p", "text": "Een rode badge zonder uitleg helpt niemand. GhostTooth vertelt waarom een apparaat is gemarkeerd en hoe sterk het bewijs is: <em>mogelijk</em> (één zwakke aanwijzing), <em>waarschijnlijk</em> (bevestigd door de fabrikant of de aangekondigde service) of <em>bevestigd</em> (rechtstreeks uit het volgprotocol gelezen). Alleen sterk bewijs geeft een melding."},
                 {"type": "h2", "text": "Monitoring op de achtergrond"},
                 {"type": "p", "text": "Zet monitoring aan en GhostTooth blijft zoeken als de app dicht is, met een melding die de tellers live bijhoudt. Je krijgt bericht wanneer een apparaat <em>met je meereist</em> — het signaal dat er echt toe doet."},
+                {"type": "h2", "text": "Je telefoon is de detector"},
+                {"type": "p", "text": "Professionele apparatuur zoals de <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> bestaat voor teams die beroepsmatig ruimtes doorzoeken — en kost duizenden euro's. Wij vinden niet dat je een apart apparaat zou moeten kopen om te weten of er een tracker in je tas meereist: de telefoon in je zak heeft dezelfde bluetooth-radio, en GhostTooth maakt er de detector van."},
+                {"type": "h2", "text": "Gratis om te helpen, Pro om te steunen"},
+                {"type": "p", "text": "GhostTooth bestaat om mensen te helpen: de detector is gratis, zonder advertenties, zonder account, zonder handel in gegevens. Om het werk mogelijk te maken komt er binnenkort een <strong>GhostTooth Pro</strong>-editie, voor wie het project wil steunen. De gratis app blijft gratis."},
                 {"type": "h2", "text": "Privacy"},
                 {"type": "p", "text": "Er verlaten geen scangegevens, persoonsgegevens of locatiegegevens je toestel. Geen advertenties, geen trackers, geen account. De enige netwerkverbinding haalt de detectiedefinities van deze site. Zie het <a href=\"{root}nl/privacy/\">privacybeleid</a>."},
                 {"type": "h2", "text": "Iets gevonden?"},
