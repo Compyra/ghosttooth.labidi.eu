@@ -19,23 +19,23 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GHOSTTOOTH">
-<meta property="og:title" content="GHOSTTOOTH — Aide &amp; FAQ">
+<meta property="og:title" content="GHOSTTOOTH · Aide &amp; FAQ">
 <meta property="og:description" content="Comment fonctionne GhostTooth, comment lire les résultats, pourquoi la détection à 100 % est impossible, et comment résoudre les problèmes d&#x27;analyse.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/fr/faq/">
 <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOSTTOOTH — Aide &amp; FAQ">
+<meta name="twitter:title" content="GHOSTTOOTH · Aide &amp; FAQ">
 <meta name="twitter:description" content="Comment fonctionne GhostTooth, comment lire les résultats, pourquoi la détection à 100 % est impossible, et comment résoudre les problèmes d&#x27;analyse.">
 <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
-<title>Aide &amp; FAQ — GHOSTTOOTH</title>
+<title>Aide &amp; FAQ · GHOSTTOOTH</title>
 <style>
   :root {
     --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
@@ -111,7 +111,8 @@
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -146,7 +147,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Aide & FAQ — GHOSTTOOTH",
+      "name": "Aide & FAQ · GHOSTTOOTH",
       "item": "https://ghosttooth.labidi.eu/fr/faq/"
     }
   ]
@@ -165,29 +166,29 @@
 
 <main id="content">
 <h1>Aide &amp; questions fréquentes</h1>
-<p class="updated">Dernière mise à jour 2026-09-07</p>
-<p class="lede">Comment GhostTooth fonctionne, comment lire ce qu'il affiche et — tout aussi important — ce qu'il ne peut honnêtement pas voir.</p>
+<p class="updated">Dernière mise à jour 2026-09-11</p>
+<p class="lede">Comment GhostTooth fonctionne, comment lire ce qu'il affiche et, tout aussi important, ce qu'il ne peut honnêtement pas voir.</p>
 <h2>Qu&#x27;est-ce que GhostTooth ?</h2>
 <p>Un scanner Bluetooth Low Energy. Les appareils BLE diffusent en permanence de petits paquets d'annonce pour se faire connaître. GhostTooth écoute ces paquets et compare ce qu'ils contiennent à une base d'appareils connus. Il ne se connecte à rien et ne s'appaire avec rien : il écoute uniquement.</p>
 <h2>Comment lire un résultat</h2>
 <table><thead><tr><th scope="col">Champ</th><th scope="col">Signification</th></tr></thead><tbody><tr><td>Nom</td><td>Le nom que l'appareil diffuse. Il est librement modifiable et souvent absent.</td></tr><tr><td>MAC</td><td>L'adresse Bluetooth. Beaucoup d'appareils la font tourner toutes les 15 minutes pour préserver la vie privée.</td></tr><tr><td>RSSI</td><td>La force du signal en dBm. Plus proche de zéro = plus fort. −40 est très proche, −100 est à la limite de portée.</td></tr><tr><td>Distance</td><td>Une estimation grossière déduite du RSSI. Les murs, les corps et l'orientation de l'antenne provoquent facilement un facteur d'erreur de 2 à 5.</td></tr><tr><td>Fabricant</td><td>L'identifiant d'entreprise Bluetooth SIG déclaré. Attention : beaucoup d'appareils annoncent l'identifiant du fabricant de la puce, pas celui du produit.</td></tr><tr><td>Raison</td><td>Pourquoi GhostTooth a signalé cet appareil.</td></tr><tr><td>Confiance</td><td>La solidité de la preuve : possible, probable ou confirmée.</td></tr></tbody></table>
 <h2>Que signifient les niveaux de confiance ?</h2>
-<ul><li><strong>Possible</strong> — un seul indice faible, par exemple un nom contenant « tile », ou un appareil Apple ou Samsung à côté de son propriétaire. Ces appareils apparaissent dans la liste avec leur explication, mais ne sont <em>pas</em> comptés dans le total des traceurs et ne déclenchent d'alerte que s'ils vous suivent durablement.</li><li><strong>Probable</strong> — confirmé par un fabricant qui ne produit que des traceurs, ou par le service annoncé.</li><li><strong>Confirmé</strong> — lu directement dans le protocole de suivi, par exemple une balise Find My d'Apple diffusant en mode séparé.</li></ul>
+<ul><li><strong>Possible</strong> : un seul indice faible, par exemple un nom contenant « tile », ou un appareil Apple ou Samsung à côté de son propriétaire. Ces appareils apparaissent dans la liste avec leur explication, mais ne sont <em>pas</em> comptés dans le total des traceurs et ne déclenchent d'alerte que s'ils vous suivent durablement.</li><li><strong>Probable</strong> : confirmé par un fabricant qui ne produit que des traceurs, ou par le service annoncé.</li><li><strong>Confirmé</strong> : lu directement dans le protocole de suivi, par exemple une balise Find My d'Apple diffusant en mode séparé.</li></ul>
 <h2>Pourquoi mon iPhone n&#x27;est-il pas signalé comme traceur ?</h2>
-<p>Parce qu'il n'en est pas un. L'identifiant Bluetooth <code>0x004C</code> appartient à Apple et se retrouve sur chaque iPhone, Mac, Apple Watch et paire d'AirPods. Les versions antérieures de GhostTooth signalaient tout appareil portant cet identifiant, ce qui remplissait l'écran de fausses alertes dans n'importe quel lieu public. GhostTooth décode désormais le contenu réel de la trame et ne signale qu'une véritable balise Find My — en particulier celle d'un accessoire <em>séparé de son propriétaire</em>, ce à quoi ressemble un traceur indésirable.</p>
+<p>Parce qu'il n'en est pas un. L'identifiant Bluetooth <code>0x004C</code> appartient à Apple et se retrouve sur chaque iPhone, Mac, Apple Watch et paire d'AirPods. Les versions antérieures de GhostTooth signalaient tout appareil portant cet identifiant, ce qui remplissait l'écran de fausses alertes dans n'importe quel lieu public. GhostTooth décode désormais le contenu réel de la trame et ne signale qu'une véritable balise Find My, en particulier celle d'un accessoire <em>séparé de son propriétaire</em>, ce à quoi ressemble un traceur indésirable.</p>
 <h2>Pourquoi la détection à 100 % est impossible</h2>
 <div class="card warn"><p>Aucun outil Bluetooth ne peut garantir de tout trouver. Un appareil éteint, déchargé, enfermé dans du métal, qui n'utilise pas le Bluetooth (GPS/GSM), qui ne se réveille qu'occasionnellement ou dont le modèle est absent de notre base ne sera pas détecté. Une analyse vierge n'est <strong>pas</strong> la preuve qu'il n'y a rien.</p></div>
-<h2>Skimmers bancaires — ce que nous voyons et ce que nous ne voyons pas</h2>
+<h2>Skimmers bancaires : ce que nous voyons et ce que nous ne voyons pas</h2>
 <p>Un skimmer Bluetooth est une petite carte dissimulée dans une pompe à carburant, un distributeur ou un terminal de paiement. Il copie les données de votre carte au moment où vous payez, et le criminel les récupère plus tard par Bluetooth depuis le parking. Ce n'est pas un produit de marque : c'est un simple <strong>module série-vers-Bluetooth</strong> relié au lecteur de carte, et ce module est la seule partie qui émet un signal radio.</p>
-<div class="card warn"><p><strong>La limite la plus importante : la plupart des skimmers retrouvés sur le terrain sont invisibles pour GhostTooth — comme pour toute autre application BLE de votre téléphone.</strong> L'étude de référence <a href="https://cns.ucsd.edu/bluetana/" rel="noopener" target="_blank">Bluetana</a> (UC San Diego / UIUC avec les services secrets américains, USENIX Security 2019) a identifié 44 skimmers réels. Mais ses signaux — une <em>Class-of-Device</em> « Uncategorized », des préfixes MAC comme <code>00:06:66</code>, des noms d'usine <code>HC-05</code>, <code>HC-06</code> ou <code>RNBT-*</code> — relèvent tous du <strong>Bluetooth Classic (BR/EDR)</strong>. La Class-of-Device n'existe pas dans une trame BLE, et Android ne signale pas les appareils Classic à un scanner BLE. Nous avons donc délibérément <strong>renoncé</strong> à ces règles : elles produiraient un détecteur incapable de se déclencher, ce qui serait pire que rien, car il afficherait un rassurant « rien trouvé ».</p></div>
-<p>Ce que GhostTooth <em>peut</em> voir, c'est la nouvelle génération <strong>BLE</strong>, documentée par John Passaro dans <a href="https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers" rel="noopener" target="_blank">« Forensic Investigation of Bluetooth-Based Credit Card Skimmers »</a> (SANS, 2025) : des modules de type <strong>HM-19</strong>, livrés avec un nom d'usine tel que <code>DSD-TECH</code> et exposant une liaison série transparente (service <code>0xFFE0</code>) que l'opérateur interroge pour vider les cartes volées. GhostTooth reconnaît désormais toute cette famille de modules par son nom — HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42 et similaires.</p>
+<div class="card warn"><p><strong>La limite la plus importante : la plupart des skimmers retrouvés sur le terrain sont invisibles pour GhostTooth, comme pour toute autre application BLE de votre téléphone.</strong> L'étude de référence <a href="https://cns.ucsd.edu/bluetana/" rel="noopener" target="_blank">Bluetana</a> (UC San Diego / UIUC avec les services secrets américains, USENIX Security 2019) a identifié 44 skimmers réels. Mais ses signaux (une <em>Class-of-Device</em> « Uncategorized », des préfixes MAC comme <code>00:06:66</code>, des noms d'usine <code>HC-05</code>, <code>HC-06</code> ou <code>RNBT-*</code>) relèvent tous du <strong>Bluetooth Classic (BR/EDR)</strong>. La Class-of-Device n'existe pas dans une trame BLE, et Android ne signale pas les appareils Classic à un scanner BLE. Nous avons donc délibérément <strong>renoncé</strong> à ces règles : elles produiraient un détecteur incapable de se déclencher, ce qui serait pire que rien, car il afficherait un rassurant « rien trouvé ».</p></div>
+<p>Ce que GhostTooth <em>peut</em> voir, c'est la nouvelle génération <strong>BLE</strong>, documentée par John Passaro dans <a href="https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers" rel="noopener" target="_blank">« Forensic Investigation of Bluetooth-Based Credit Card Skimmers »</a> (SANS, 2025) : des modules de type <strong>HM-19</strong>, livrés avec un nom d'usine tel que <code>DSD-TECH</code> et exposant une liaison série transparente (service <code>0xFFE0</code>) que l'opérateur interroge pour vider les cartes volées. GhostTooth reconnaît désormais toute cette famille de modules par son nom : HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42 et similaires.</p>
 <h3>Pourquoi une correspondance n&#x27;est pas une accusation</h3>
 <ul><li><strong>Ces modules sont partout, légitimement.</strong> Ils se vendent par millions pour les contrôleurs de vélos électriques, les lecteurs OBD-II, les rubans LED, les imprimantes 3D, la robotique de loisir et les kits électroniques scolaires. En voir un dans un atelier ou un garage est parfaitement normal.</li><li><strong>Le nom prouve un pont série, jamais un délit.</strong> La radio dit seulement « voici un module Bluetooth-série générique qui porte encore son nom d'usine ». Elle ne dit rien de ce qui est câblé de l'autre côté.</li><li><strong>Bluetana a rencontré la même limite.</strong> L'étude note que des équipements industriels et de gestion de flotte parfaitement légitimes portent ces mêmes noms par défaut et « ressembleraient exactement à des skimmers ».</li><li><strong>D'où le niveau « possible ».</strong> L'appareil apparaît dans votre liste avec son explication, mais il n'est <em>pas</em> compté dans le total de surveillance en haut de l'écran et ne déclenchera <strong>jamais</strong> d'alerte à lui seul.</li></ul>
 <h3>Ce qui rend la situation réellement suspecte</h3>
 <p>Le contexte, pas le nom. La question n'est jamais « ce module est-il un skimmer ? » mais <strong>« pourquoi un module série émet-il depuis l'intérieur d'une machine de paiement ? »</strong> Un signal le plus fort au niveau de la pompe elle-même, présent à une pompe mais pas à celle d'à côté, et qui persiste d'une visite à l'autre, mérite d'être signalé.</p>
-<div class="card warn"><p><strong>Si vous pensez en avoir trouvé un :</strong> n'ouvrez pas et ne manipulez pas la machine — c'est dangereux, c'est un délit dans la plupart des pays, et cela détruit les preuves. Prévenez l'<strong>exploitant du site</strong> et signalez-le à la <strong>police</strong>. Vérifiez ensuite vos relevés bancaires et, au moindre doute, demandez une nouvelle carte. Une lecture GhostTooth est une raison de poser une question, jamais une preuve de délit, et ne doit jamais servir à accuser un commerce ou une personne.</p></div>
+<div class="card warn"><p><strong>Si vous pensez en avoir trouvé un :</strong> n'ouvrez pas et ne manipulez pas la machine : c'est dangereux, c'est un délit dans la plupart des pays, et cela détruit les preuves. Prévenez l'<strong>exploitant du site</strong> et signalez-le à la <strong>police</strong>. Vérifiez ensuite vos relevés bancaires et, au moindre doute, demandez une nouvelle carte. Une lecture GhostTooth est une raison de poser une question, jamais une preuve de délit, et ne doit jamais servir à accuser un commerce ou une personne.</p></div>
 <h2>Autorisations</h2>
-<ul><li><strong>Appareils à proximité</strong> — obligatoire pour recevoir les trames BLE. GhostTooth la déclare avec <code>neverForLocation</code> : il n'en déduit aucune position.</li><li><strong>Notifications</strong> — uniquement pour la notification de surveillance et les alertes. Ce sont des notifications ordinaires, pas un service au premier plan.</li><li><strong>Démarrage au redémarrage</strong> — pour réactiver la surveillance après un redémarrage, si vous l'aviez activée.</li><li>Sur Android 11 et antérieur, le système exigeait l'autorisation de localisation pour toute analyse BLE. C'est une contrainte d'Android, pas un choix de GhostTooth.</li></ul>
+<ul><li><strong>Appareils à proximité</strong> : obligatoire pour recevoir les trames BLE. GhostTooth la déclare avec <code>neverForLocation</code> : il n'en déduit aucune position.</li><li><strong>Notifications</strong> : uniquement pour la notification de surveillance et les alertes. Ce sont des notifications ordinaires, pas un service au premier plan.</li><li><strong>Démarrage au redémarrage</strong> : pour réactiver la surveillance après un redémarrage, si vous l'aviez activée.</li><li>Sur Android 11 et antérieur, le système exigeait l'autorisation de localisation pour toute analyse BLE. C'est une contrainte d'Android, pas un choix de GhostTooth.</li></ul>
 <h2>La surveillance en arrière-plan ne fonctionne pas</h2>
 <p>C'est presque toujours la gestion agressive de la batterie du constructeur (Xiaomi, Huawei, Samsung, OnePlus, Oppo). Dans <em>Paramètres avancés</em>, lancez l'<strong>autotest en arrière-plan</strong> : il arme une analyse et attend un vrai résultat, ce qui prouve si votre téléphone livre les données quand l'application est fermée. Si ce n'est pas le cas, utilisez le bouton « Fiabiliser la surveillance » pour exclure GhostTooth de l'optimisation de la batterie.</p>
 <h2>Comment retrouver physiquement un appareil ?</h2>

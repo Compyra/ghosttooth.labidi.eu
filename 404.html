@@ -1,91 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>404 // Signal Lost — GHOSTTOOTH</title>
-    <meta name="description" content="The page you were looking for could not be found. Return to GHOSTTOOTH — the Bluetooth surveillance &amp; tracker detector.">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Page not found · GHOSTTOOTH</title>
+    <meta name="description" content="The page you were looking for could not be found.">
     <meta name="robots" content="noindex, follow">
     <meta name="theme-color" content="#0b0d1a">
     <meta name="color-scheme" content="dark light">
-    <link rel="canonical" href="https://ghosttooth.labidi.eu/404.html">
-
-    <!-- Favicons (based on the GHOSTTOOTH logo) -->
-    <link rel="icon" type="image/png" href="media/img/app-icon-512.png">
-    <link rel="apple-touch-icon" href="media/img/app-icon-512.png">
-
-    <!-- Open Graph -->
+    <link rel="icon" type="image/png" href="/media/img/app-icon-512.png">
+    <link rel="apple-touch-icon" href="/media/img/app-icon-512.png">
+    <link rel="manifest" href="/site.webmanifest">
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="GHOSTTOOTH">
-    <meta property="og:title" content="404 // Signal Lost — GHOSTTOOTH">
+    <meta property="og:title" content="Page not found · GHOSTTOOTH">
     <meta property="og:description" content="The page you were looking for could not be found.">
-    <meta property="og:url" content="https://ghosttooth.labidi.eu/404.html">
     <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-    <meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
-    <meta property="og:image:type" content="image/png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     <meta property="og:locale" content="en_US">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="404 // Signal Lost — GHOSTTOOTH">
-    <meta name="twitter:description" content="The page you were looking for could not be found.">
-    <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap">
-    <!-- Absolute so the stylesheet still resolves: GitHub Pages serves this file
-         for any unknown path, and the browser keeps that path as the base URL. -->
-    <link rel="stylesheet" href="/media/css/style.css">
+    <style>
+    :root {
+      --bg: #0b0d1a; --surface: #161a30; --surface-2: #1d2340;
+      --border: #2a3157; --ink: #e8e9f0; --ink-dim: #a7adc9; --ink-faint: #7b81a3;
+      --gold: #e3c46a; --gold-soft: #f0d98f; --accent: #8fb8ff;
+      --radius: 14px; --radius-sm: 10px;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f4f5fb; --surface: #ffffff; --surface-2: #f0f2fb;
+        --border: #d6d9ec; --ink: #191c2c; --ink-dim: #4a5170; --ink-faint: #6b7290;
+        --gold: #9a7b16; --gold-soft: #7d6410; --accent: #2f5fd0;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; background: radial-gradient(1200px 600px at 50% -10%, rgba(143,184,255,.08), transparent 60%), var(--bg);
+      color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.65;
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: clamp(16px,5vw,40px);
+    }
+    main {
+      max-width: 480px; width: 100%; text-align: center;
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: clamp(28px,6vw,48px) clamp(20px,5vw,40px);
+    }
+    img.logo { width: 72px; height: 72px; border-radius: 16px; }
+    .code { font-family: var(--mono); font-size: clamp(44px,10vw,64px); font-weight: 700; color: var(--gold); margin: 12px 0 0; line-height: 1.1; }
+    h1 { font-size: 20px; margin: 6px 0 10px; }
+    p { color: var(--ink-dim); margin: 0 0 22px; }
+    .btnrow { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 48px; padding: 12px 20px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--surface-2); color: var(--ink);
+      font-weight: 600; font-size: 15px; text-decoration: none;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
+    .btn.primary:hover { background: var(--gold-soft); }
+    footer { margin-top: 26px; font-size: 13px; color: var(--ink-faint); }
+    footer a { color: var(--ink-faint); }
+    </style>
 </head>
-<body class="terminal-bg">
-    <div class="terminal-window">
-
-        <!-- Header -->
-        <header class="terminal-header">
-            <a href="/" class="back-link">← ghosttooth.labidi.eu</a>
-            <span class="prompt-title">ghosttooth:~$</span>
-            <span class="prompt-blink" aria-hidden="true">█</span>
-        </header>
-
-        <main class="terminal-body">
-
-            <section class="notfound">
-                <img src="/media/img/GhostTooth-mascot.png" alt="GHOSTTOOTH logo" class="notfound-logo" width="96" height="96">
-                <h1 class="notfound-code">404</h1>
-                <p class="notfound-title">// SIGNAL LOST</p>
-                <p class="dim notfound-msg">
-                    The page you were scanning for isn't advertising anymore — it may have moved,
-                    been renamed, or never existed. No packets received on this address.
-                </p>
-
-                <div class="notfound-actions">
-                    <a class="terminal-btn primary" href="/">[ ▸ RETURN HOME ]</a>
-                    <a class="terminal-btn secondary" href="/faq/">[ ? HELP &amp; FAQ ]</a>
-                    <a class="terminal-btn secondary" href="/safety/">[ ! FOUND A TRACKER? ]</a>
-                </div>
-            </section>
-
-        </main><!-- /terminal-body -->
-
-        <!-- Footer -->
-        <footer class="site-footer">
-            <nav class="footer-nav" aria-label="Site links">
-                <a href="/" class="terminal-link">HOME</a>
-                <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="/faq/" class="terminal-link">HELP &amp; FAQ</a>
-                <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="/privacy/" class="terminal-link">PRIVACY</a>
-                <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="/terms/" class="terminal-link">TERMS</a>
-                <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="/fr/" class="terminal-link" hreflang="fr" lang="fr">FR</a>
-                <span class="footer-sep" aria-hidden="true">·</span>
-                <a href="/nl/" class="terminal-link" hreflang="nl" lang="nl">NL</a>
-            </nav>
+<body>
+    <main>
+        <img class="logo" src="/media/img/GhostTooth-mascot.png" alt="" width="72" height="72">
+        <p class="code">404</p>
+        <h1>Page not found</h1>
+        <p>This page may have moved, been renamed, or never existed.</p>
+        <div class="btnrow">
+            <a class="btn primary" href="/">Home</a>
+            <a class="btn" href="/faq/">Help &amp; FAQ</a>
+            <a class="btn" href="/safety/">Found a tracker?</a>
+        </div>
+        <footer>
+            <a href="/fr/" hreflang="fr" lang="fr">Français</a> ·
+            <a href="/nl/" hreflang="nl" lang="nl">Nederlands</a> ·
+            <a href="/privacy/">Privacy</a>
         </footer>
-    </div><!-- /terminal-window -->
+    </main>
 </body>
 </html>

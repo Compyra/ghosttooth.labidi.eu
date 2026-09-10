@@ -6,12 +6,13 @@ deliberate: when a sentence changes in English, the French and Dutch versions
 that need changing with it are three lines away rather than three files away.
 
 Text in `p`, `card`, `ul`, `ol` and table cells is treated as raw HTML so links
-and emphasis work. Anything interpolated from user input would need escaping —
+and emphasis work. Anything interpolated from user input would need escaping -
 there is none here, this is all hand-written editorial copy.
 """
 
 BASE_URL = "https://ghosttooth.labidi.eu/"
 PLAY_URL = "https://play.google.com/store/apps/details?id=com.compyra.ghosttooth"
+PRO_URL = "https://play.google.com/store/apps/details?id=com.compyra.ghosttooth.pro"
 SUPPORT_EMAIL = "ghosttooth@labidi.eu"
 SECURITY_EMAIL = "security@compyra.com"
 
@@ -76,7 +77,7 @@ UI = {
     },
 }
 
-UPDATED = "2026-09-07"
+UPDATED = "2026-09-11"
 
 # ---------------------------------------------------------------------------
 # Shared building blocks
@@ -120,37 +121,37 @@ def _play_block(lang):
 
 
 # ---------------------------------------------------------------------------
-# /safety/ — the page the app deep-links to from a follow alert
+# /safety/ - the page the app deep-links to from a follow alert
 # ---------------------------------------------------------------------------
 
 SAFETY = {
     "updated": UPDATED,
     "langs": {
         "en": {
-            "title": "Found a tracker? What to do next — GHOSTTOOTH",
+            "title": "Found a tracker? What to do next · GHOSTTOOTH",
             "og_title": "Found a tracker? What to do next",
             "heading": "You found something. What now?",
             "description": "Practical, calm guidance for anyone who thinks a Bluetooth tracker is following them: preserve the evidence, stay safe, rule out innocent explanations, and find real support.",
             "blocks": [
-                {"type": "lede", "text": "If GhostTooth has flagged a device that seems to be travelling with you, take a breath. Most flagged devices turn out to be harmless. But if this one is not, what you do in the next few minutes matters — and the obvious reactions are usually the wrong ones."},
+                {"type": "lede", "text": "If GhostTooth has flagged a device that seems to be travelling with you, take a breath. Most flagged devices turn out to be harmless. But if this one is not, what you do in the next few minutes matters, and the obvious reactions are usually the wrong ones."},
                 {"type": "card", "variant": "warn", "title": "If you are in immediate danger", "text": "Stop reading and call your local emergency number. In the EU and the UK that is <strong>112</strong> (999 also works in the UK). This page is for planning, not for emergencies."},
                 {"type": "step", "title": "Do not destroy it yet", "text": "A tracker is evidence. Smashing it or throwing it away destroys the record of who put it there, and it tells whoever is watching that they have been found. Leave it where it is for now and photograph it in place, with something for scale."},
                 {"type": "step", "title": "Get somewhere safe first", "text": "If you think someone may be tracking you, do not start searching your car or your bag in an isolated place, at night, alone. Go somewhere public and well-lit, or somewhere you trust, and investigate there."},
-                {"type": "step", "title": "Save what the app recorded", "text": "The timestamps are the evidence: they show that the same device was near you at separate times and in separate places. In GhostTooth, open <em>Notifications → Export monitoring report</em> and keep a copy somewhere the other person cannot reach — a work account, a friend's device, printed paper."},
+                {"type": "step", "title": "Save what the app recorded", "text": "The timestamps are the evidence: they show that the same device was near you at separate times and in separate places. In GhostTooth, open <em>Notifications → Export monitoring report</em> and keep a copy somewhere the other person cannot reach: a work account, a friend's device, printed paper."},
                 {"type": "step", "title": "Rule out the innocent explanations", "text": "Before assuming the worst, work through these. They account for most findings."},
                 {"type": "ul", "items": [
                     "A family tag in a shared car, or on a set of keys you both use.",
                     "A tracker in a borrowed bag, coat, pushchair or bike.",
                     "A tag belonging to a hotel, rental car, workplace or delivery.",
-                    "A device you own and forgot about — luggage tags are easy to lose track of.",
+                    "A device you own and forgot about: luggage tags are easy to lose track of.",
                     "Someone else's phone or earbuds that happen to be on the same commute as you.",
                 ]},
-                {"type": "step", "title": "Consider reporting it", "text": "In many countries, tracking a person without their consent is a criminal offence, and may also breach data-protection law. You can contact your local police non-emergency line and show them the exported report. Ask for the report to be logged even if no further action is taken — a paper trail matters if the behaviour continues."},
+                {"type": "step", "title": "Consider reporting it", "text": "In many countries, tracking a person without their consent is a criminal offence, and may also breach data-protection law. You can contact your local police non-emergency line and show them the exported report. Ask for the report to be logged even if no further action is taken; a paper trail matters if the behaviour continues."},
                 {"type": "step", "title": "Talk to someone who does this every day", "text": "Domestic-abuse and stalking support services deal with exactly this and can help you plan safely. They are free and confidential, and contacting them commits you to nothing."},
                 {"type": "h2", "text": "Where to find support"},
                 {"type": "p", "text": "These are national starting points. If your country is not listed, search for your national domestic-abuse or victim-support helpline, or ask your GP or local police for a referral."},
                 {"type": "table", "head": ["Country", "Service", "Contact"], "rows": [
-                    ["Belgium (NL)", "1712 — violence, abuse and child abuse helpline", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
+                    ["Belgium (NL)", "1712: violence, abuse and child abuse helpline", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
                     ["Belgium (FR)", "Écoute Violences Conjugales", "<strong>0800 30 030</strong> · <a href=\"https://www.ecouteviolencesconjugales.be\" rel=\"noopener nofollow\" target=\"_blank\">ecouteviolencesconjugales.be</a>"],
                     ["Netherlands", "Veilig Thuis", "<strong>0800-2000</strong> · <a href=\"https://veiligthuis.nl\" rel=\"noopener nofollow\" target=\"_blank\">veiligthuis.nl</a>"],
                     ["France", "Violences Femmes Info", "<strong>3919</strong> · <a href=\"https://arretonslesviolences.gouv.fr\" rel=\"noopener nofollow\" target=\"_blank\">arretonslesviolences.gouv.fr</a>"],
@@ -159,11 +160,11 @@ SAFETY = {
                     ["EU-wide", "Victim Support Europe", "<a href=\"https://victim-support.eu\" rel=\"noopener nofollow\" target=\"_blank\">victim-support.eu</a>"],
                 ]},
                 {"type": "h2", "text": "A note on digital safety"},
-                {"type": "card", "variant": "danger", "text": "If the person you are worried about has access to your phone, your accounts, or your family plan, they may be able to see your browsing history, your installed apps and your location. GhostTooth keeps its safety screen out of your recent-apps list, but it cannot protect your browser history. If that is a risk for you, use a device they cannot reach — a library computer, or a friend's phone."},
+                {"type": "card", "variant": "danger", "text": "If the person you are worried about has access to your phone, your accounts, or your family plan, they may be able to see your browsing history, your installed apps and your location. GhostTooth keeps its safety screen out of your recent-apps list, but it cannot protect your browser history. If that is a risk for you, use a device they cannot reach: a library computer, or a friend's phone."},
                 {"type": "h2", "text": "How to physically find the device"},
                 {"type": "p", "text": "GhostTooth has a hot/cold locator: long-press a device in the list and choose <em>Locate this device</em>. It shows one large signal percentage that rises as you get closer, and beeps faster the warmer you get."},
                 {"type": "ul", "items": [
-                    "Move slowly and pause every few steps — the signal needs a moment to settle.",
+                    "Move slowly and pause every few steps; the signal needs a moment to settle.",
                     "Bluetooth passes through fabric and plastic, but not metal or water. Your own body blocks it, so the number drops when you turn around.",
                     "Common hiding places: wheel arches, under bumpers, inside seat gaps, in bag linings, under insoles, in coat hems, inside a pushchair frame.",
                     "If a tag has been separated from its owner for long enough, many models start beeping on their own. Silence in a quiet room does not mean nothing is there.",
@@ -183,22 +184,22 @@ SAFETY = {
             ],
         },
         "fr": {
-            "title": "Traceur trouvé ? Que faire ensuite — GHOSTTOOTH",
+            "title": "Traceur trouvé ? Que faire ensuite · GHOSTTOOTH",
             "og_title": "Traceur trouvé ? Que faire ensuite",
             "heading": "Vous avez trouvé quelque chose. Et maintenant ?",
             "description": "Des conseils concrets et posés si vous pensez qu'un traceur Bluetooth vous suit : préserver les preuves, rester en sécurité, écarter les explications innocentes et trouver de l'aide.",
             "blocks": [
-                {"type": "lede", "text": "Si GhostTooth a signalé un appareil qui semble vous suivre, respirez. La plupart des appareils signalés se révèlent inoffensifs. Mais si ce n'est pas le cas, ce que vous faites dans les prochaines minutes compte — et les réactions les plus évidentes sont généralement les mauvaises."},
+                {"type": "lede", "text": "Si GhostTooth a signalé un appareil qui semble vous suivre, respirez. La plupart des appareils signalés se révèlent inoffensifs. Mais si ce n'est pas le cas, ce que vous faites dans les prochaines minutes compte, et les réactions les plus évidentes sont généralement les mauvaises."},
                 {"type": "card", "variant": "warn", "title": "En cas de danger immédiat", "text": "Arrêtez de lire et appelez le numéro d'urgence. Dans l'Union européenne, c'est le <strong>112</strong>. Cette page sert à préparer, pas à gérer une urgence."},
                 {"type": "step", "title": "Ne le détruisez pas encore", "text": "Un traceur est une preuve. Le casser ou le jeter détruit la trace de qui l'a placé là, et prévient la personne qui vous surveille qu'elle a été découverte. Laissez-le en place pour l'instant et photographiez-le là où il se trouve, avec un objet pour l'échelle."},
                 {"type": "step", "title": "Mettez-vous d'abord en sécurité", "text": "Si vous pensez que quelqu'un vous suit, ne commencez pas à fouiller votre voiture ou votre sac dans un endroit isolé, la nuit, seul·e. Rendez-vous dans un lieu public et bien éclairé, ou chez quelqu'un de confiance, et cherchez là-bas."},
-                {"type": "step", "title": "Enregistrez ce que l'application a relevé", "text": "Les horodatages sont la preuve : ils montrent que le même appareil se trouvait près de vous à des moments et des endroits différents. Dans GhostTooth, ouvrez <em>Paramètres avancés → Exporter le rapport de surveillance</em> et gardez une copie hors de portée de l'autre personne — un compte professionnel, l'appareil d'un ami, une impression papier."},
+                {"type": "step", "title": "Enregistrez ce que l'application a relevé", "text": "Les horodatages sont la preuve : ils montrent que le même appareil se trouvait près de vous à des moments et des endroits différents. Dans GhostTooth, ouvrez <em>Paramètres avancés → Exporter le rapport de surveillance</em> et gardez une copie hors de portée de l'autre personne : un compte professionnel, l'appareil d'un ami, une impression papier."},
                 {"type": "step", "title": "Écartez les explications innocentes", "text": "Avant d'imaginer le pire, passez en revue cette liste. Elle explique la majorité des cas."},
                 {"type": "ul", "items": [
                     "Une balise familiale dans une voiture partagée, ou sur un trousseau commun.",
                     "Un traceur dans un sac, un manteau, une poussette ou un vélo empruntés.",
                     "Une balise appartenant à un hôtel, une voiture de location, un employeur ou un colis.",
-                    "Un appareil à vous que vous aviez oublié — les étiquettes de bagage se perdent de vue facilement.",
+                    "Un appareil à vous que vous aviez oublié : les étiquettes de bagage se perdent de vue facilement.",
                     "Le téléphone ou les écouteurs de quelqu'un qui fait simplement le même trajet que vous.",
                 ]},
                 {"type": "step", "title": "Envisagez de le signaler", "text": "Dans de nombreux pays, suivre une personne sans son consentement est une infraction pénale et peut aussi violer le droit de la protection des données. Vous pouvez contacter le numéro non urgent de votre police locale et lui montrer le rapport exporté. Demandez que le signalement soit consigné même si rien d'autre n'est fait : une trace écrite compte si le comportement se poursuit."},
@@ -207,18 +208,18 @@ SAFETY = {
                 {"type": "p", "text": "Voici des points de départ nationaux. Si votre pays n'y figure pas, cherchez la ligne d'écoute nationale pour les violences conjugales ou l'aide aux victimes, ou demandez une orientation à votre médecin ou à la police locale."},
                 {"type": "table", "head": ["Pays", "Service", "Contact"], "rows": [
                     ["Belgique", "Écoute Violences Conjugales", "<strong>0800 30 030</strong> · <a href=\"https://www.ecouteviolencesconjugales.be\" rel=\"noopener nofollow\" target=\"_blank\">ecouteviolencesconjugales.be</a>"],
-                    ["Belgique (NL)", "1712 — geweld en misbruik", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
+                    ["Belgique (NL)", "1712 : geweld en misbruik", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
                     ["France", "Violences Femmes Info", "<strong>3919</strong> · <a href=\"https://arretonslesviolences.gouv.fr\" rel=\"noopener nofollow\" target=\"_blank\">arretonslesviolences.gouv.fr</a>"],
                     ["France", "France Victimes", "<strong>116 006</strong> · <a href=\"https://www.france-victimes.fr\" rel=\"noopener nofollow\" target=\"_blank\">france-victimes.fr</a>"],
                     ["Suisse", "Aide aux victimes", "<a href=\"https://www.aide-aux-victimes.ch\" rel=\"noopener nofollow\" target=\"_blank\">aide-aux-victimes.ch</a>"],
                     ["Union européenne", "Victim Support Europe", "<a href=\"https://victim-support.eu\" rel=\"noopener nofollow\" target=\"_blank\">victim-support.eu</a>"],
                 ]},
                 {"type": "h2", "text": "À propos de la sécurité numérique"},
-                {"type": "card", "variant": "danger", "text": "Si la personne qui vous inquiète a accès à votre téléphone, à vos comptes ou à votre abonnement familial, elle peut voir votre historique de navigation, vos applications installées et votre position. GhostTooth garde son écran de sécurité hors de la liste des applications récentes, mais ne peut pas protéger l'historique de votre navigateur. Si c'est un risque pour vous, utilisez un appareil hors de sa portée — un ordinateur de bibliothèque, ou le téléphone d'un ami."},
+                {"type": "card", "variant": "danger", "text": "Si la personne qui vous inquiète a accès à votre téléphone, à vos comptes ou à votre abonnement familial, elle peut voir votre historique de navigation, vos applications installées et votre position. GhostTooth garde son écran de sécurité hors de la liste des applications récentes, mais ne peut pas protéger l'historique de votre navigateur. Si c'est un risque pour vous, utilisez un appareil hors de sa portée : un ordinateur de bibliothèque, ou le téléphone d'un ami."},
                 {"type": "h2", "text": "Comment retrouver physiquement l'appareil"},
                 {"type": "p", "text": "GhostTooth intègre une localisation chaud/froid : appuyez longuement sur un appareil dans la liste et choisissez <em>Localiser cet appareil</em>. Un grand pourcentage de signal augmente à mesure que vous approchez, et les bips s'accélèrent."},
                 {"type": "ul", "items": [
-                    "Avancez lentement et faites une pause tous les quelques pas — le signal a besoin d'un instant pour se stabiliser.",
+                    "Avancez lentement et faites une pause tous les quelques pas ; le signal a besoin d'un instant pour se stabiliser.",
                     "Le Bluetooth traverse le tissu et le plastique, mais pas le métal ni l'eau. Votre propre corps le bloque : le chiffre baisse quand vous vous retournez.",
                     "Cachettes fréquentes : passages de roue, sous les pare-chocs, interstices des sièges, doublures de sac, sous les semelles, ourlets de manteau, châssis de poussette.",
                     "Séparés assez longtemps de leur propriétaire, beaucoup de modèles se mettent à sonner d'eux-mêmes. Le silence dans une pièce calme ne prouve rien.",
@@ -238,22 +239,22 @@ SAFETY = {
             ],
         },
         "nl": {
-            "title": "Tracker gevonden? Wat nu — GHOSTTOOTH",
+            "title": "Tracker gevonden? Wat nu · GHOSTTOOTH",
             "og_title": "Tracker gevonden? Wat nu",
             "heading": "Je hebt iets gevonden. Wat nu?",
             "description": "Rustige, praktische stappen als je denkt dat een bluetooth-tracker je volgt: bewijs bewaren, veilig blijven, onschuldige verklaringen uitsluiten en echte hulp vinden.",
             "blocks": [
-                {"type": "lede", "text": "Als GhostTooth een apparaat heeft gemarkeerd dat met je mee lijkt te reizen: haal even adem. De meeste gemarkeerde apparaten blijken onschuldig. Maar als dit er geen van is, telt wat je de komende minuten doet — en de voor de hand liggende reacties zijn meestal de verkeerde."},
+                {"type": "lede", "text": "Als GhostTooth een apparaat heeft gemarkeerd dat met je mee lijkt te reizen: haal even adem. De meeste gemarkeerde apparaten blijken onschuldig. Maar als dit er geen van is, telt wat je de komende minuten doet, en de voor de hand liggende reacties zijn meestal de verkeerde."},
                 {"type": "card", "variant": "warn", "title": "Bij direct gevaar", "text": "Stop met lezen en bel het alarmnummer. In de EU is dat <strong>112</strong>. Deze pagina is bedoeld om een plan te maken, niet voor noodgevallen."},
                 {"type": "step", "title": "Vernietig hem nog niet", "text": "Een tracker is bewijs. Hem kapotmaken of weggooien vernietigt het spoor naar wie hem geplaatst heeft, en waarschuwt degene die meekijkt dat hij ontdekt is. Laat hem voorlopig liggen en fotografeer hem waar hij ligt, met iets erbij voor de schaal."},
                 {"type": "step", "title": "Zorg eerst dat je veilig bent", "text": "Als je denkt dat iemand je volgt, ga dan niet 's avonds in je eentje op een afgelegen plek je auto of tas doorzoeken. Ga naar een openbare, goed verlichte plaats of naar iemand die je vertrouwt, en zoek daar verder."},
-                {"type": "step", "title": "Bewaar wat de app heeft vastgelegd", "text": "De tijdstempels zijn het bewijs: ze laten zien dat hetzelfde apparaat op verschillende momenten en plaatsen bij je in de buurt was. Open in GhostTooth <em>Geavanceerde instellingen → Monitoringrapport exporteren</em> en bewaar een kopie waar de ander niet bij kan — een werkaccount, het toestel van een vriend, of op papier."},
+                {"type": "step", "title": "Bewaar wat de app heeft vastgelegd", "text": "De tijdstempels zijn het bewijs: ze laten zien dat hetzelfde apparaat op verschillende momenten en plaatsen bij je in de buurt was. Open in GhostTooth <em>Geavanceerde instellingen → Monitoringrapport exporteren</em> en bewaar een kopie waar de ander niet bij kan: een werkaccount, het toestel van een vriend, of op papier."},
                 {"type": "step", "title": "Sluit de onschuldige verklaringen uit", "text": "Loop deze lijst eerst langs. Hij verklaart de meeste vondsten."},
                 {"type": "ul", "items": [
                     "Een tag van een gezinslid in een gedeelde auto of aan een gezamenlijke sleutelbos.",
                     "Een tracker in een geleende tas, jas, kinderwagen of fiets.",
                     "Een tag van een hotel, huurauto, werkgever of pakketbezorger.",
-                    "Een apparaat van jezelf dat je vergeten was — bagagetags raken snel uit beeld.",
+                    "Een apparaat van jezelf dat je vergeten was: bagagetags raken snel uit beeld.",
                     "Iemands telefoon of oordopjes die simpelweg dezelfde route rijden als jij.",
                 ]},
                 {"type": "step", "title": "Overweeg aangifte te doen", "text": "In veel landen is het volgen van een persoon zonder toestemming strafbaar, en kan het ook in strijd zijn met de privacywetgeving. Je kunt het niet-spoednummer van de lokale politie bellen en het geëxporteerde rapport laten zien. Vraag of de melding wordt geregistreerd, ook als er verder niets gebeurt: een papieren spoor telt als het gedrag doorgaat."},
@@ -263,16 +264,16 @@ SAFETY = {
                 {"type": "table", "head": ["Land", "Dienst", "Contact"], "rows": [
                     ["Nederland", "Veilig Thuis", "<strong>0800-2000</strong> · <a href=\"https://veiligthuis.nl\" rel=\"noopener nofollow\" target=\"_blank\">veiligthuis.nl</a>"],
                     ["Nederland", "Slachtofferhulp Nederland", "<strong>0900-0101</strong> · <a href=\"https://www.slachtofferhulp.nl\" rel=\"noopener nofollow\" target=\"_blank\">slachtofferhulp.nl</a>"],
-                    ["België", "1712 — geweld, misbruik en kindermishandeling", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
+                    ["België", "1712: geweld, misbruik en kindermishandeling", "<strong>1712</strong> · <a href=\"https://1712.be\" rel=\"noopener nofollow\" target=\"_blank\">1712.be</a>"],
                     ["België", "Tele-Onthaal", "<strong>106</strong> · <a href=\"https://www.tele-onthaal.be\" rel=\"noopener nofollow\" target=\"_blank\">tele-onthaal.be</a>"],
                     ["Europa", "Victim Support Europe", "<a href=\"https://victim-support.eu\" rel=\"noopener nofollow\" target=\"_blank\">victim-support.eu</a>"],
                 ]},
                 {"type": "h2", "text": "Over digitale veiligheid"},
-                {"type": "card", "variant": "danger", "text": "Als de persoon over wie je je zorgen maakt toegang heeft tot je telefoon, je accounts of je gezinsabonnement, kan die je browsegeschiedenis, geïnstalleerde apps en locatie zien. GhostTooth houdt het veiligheidsscherm buiten je lijst met recente apps, maar kan je browsergeschiedenis niet beschermen. Als dat voor jou een risico is, gebruik dan een apparaat waar die persoon niet bij kan — een computer in de bibliotheek, of de telefoon van een vriend."},
+                {"type": "card", "variant": "danger", "text": "Als de persoon over wie je je zorgen maakt toegang heeft tot je telefoon, je accounts of je gezinsabonnement, kan die je browsegeschiedenis, geïnstalleerde apps en locatie zien. GhostTooth houdt het veiligheidsscherm buiten je lijst met recente apps, maar kan je browsergeschiedenis niet beschermen. Als dat voor jou een risico is, gebruik dan een apparaat waar die persoon niet bij kan: een computer in de bibliotheek, of de telefoon van een vriend."},
                 {"type": "h2", "text": "Het apparaat fysiek terugvinden"},
                 {"type": "p", "text": "GhostTooth heeft een warm/koud-locator: houd een apparaat in de lijst ingedrukt en kies <em>Dit apparaat lokaliseren</em>. Eén groot signaalpercentage loopt op naarmate je dichterbij komt, en het piepen gaat sneller."},
                 {"type": "ul", "items": [
-                    "Loop langzaam en pauzeer om de paar stappen — het signaal heeft even nodig om te stabiliseren.",
+                    "Loop langzaam en pauzeer om de paar stappen; het signaal heeft even nodig om te stabiliseren.",
                     "Bluetooth gaat door stof en plastic heen, maar niet door metaal of water. Je eigen lichaam blokkeert het, dus het getal zakt als je je omdraait.",
                     "Veelgebruikte plekken: wielkasten, onder bumpers, spleten in stoelen, voeringen van tassen, onder inlegzolen, jaszomen, het frame van een kinderwagen.",
                     "Als een tag lang genoeg van zijn eigenaar gescheiden is, gaan veel modellen vanzelf piepen. Stilte in een rustige kamer bewijst niets.",
@@ -313,7 +314,7 @@ TERMS_COMMON_EN = [
     {"type": "h2", "text": "6. Not legal advice"},
     {"type": "p", "text": "The guidance on our <a href=\"{root}safety/\">safety page</a> is general information, not legal advice. Laws about tracking, evidence and privacy vary widely. Speak to the police, a lawyer or a support service about your specific situation."},
     {"type": "h2", "text": "7. Detection definitions"},
-    {"type": "p", "text": "The app periodically downloads updated detection definitions from this website. These are best-effort, curated from public sources and real-world findings. They may be incomplete or occasionally wrong. No scan data or personal data is ever uploaded — see the <a href=\"{root}privacy/\">privacy policy</a>."},
+    {"type": "p", "text": "The app periodically downloads updated detection definitions from this website. These are best-effort, curated from public sources and real-world findings. They may be incomplete or occasionally wrong. No scan data or personal data is ever uploaded; see the <a href=\"{root}privacy/\">privacy policy</a>."},
     {"type": "h2", "text": "8. Changes"},
     {"type": "p", "text": "We may update these terms. Material changes will be noted on the <a href=\"{root}changelog/\">changelog</a>, and the date at the top of this page will change."},
     {"type": "h2", "text": "9. Governing law and contact"},
@@ -324,15 +325,15 @@ TERMS = {
     "updated": UPDATED,
     "langs": {
         "en": {
-            "title": "Terms of Use — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Terms of Use",
+            "title": "Terms of Use · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Terms of Use",
             "heading": "Terms of use",
             "description": "Plain-language terms for the GhostTooth Bluetooth tracker detector: what it is, what it is not, acceptable use, and the limits of what a detection tool can promise.",
             "blocks": TERMS_COMMON_EN,
         },
         "fr": {
-            "title": "Conditions d'utilisation — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Conditions d'utilisation",
+            "title": "Conditions d'utilisation · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Conditions d'utilisation",
             "heading": "Conditions d'utilisation",
             "description": "Conditions en langage clair pour le détecteur de traceurs Bluetooth GhostTooth : ce qu'il est, ce qu'il n'est pas, l'usage acceptable et les limites d'un outil de détection.",
             "blocks": [
@@ -350,7 +351,7 @@ TERMS = {
                 {"type": "h2", "text": "6. Pas un conseil juridique"},
                 {"type": "p", "text": "Les conseils de notre <a href=\"{root}fr/safety/\">page sécurité</a> sont des informations générales, pas un conseil juridique. Les lois sur le suivi, la preuve et la vie privée varient fortement. Parlez de votre situation précise à la police, à un avocat ou à un service d'aide."},
                 {"type": "h2", "text": "7. Définitions de détection"},
-                {"type": "p", "text": "L'application télécharge régulièrement des définitions de détection mises à jour depuis ce site. Elles sont établies au mieux, à partir de sources publiques et de constats de terrain. Elles peuvent être incomplètes ou parfois erronées. Aucune donnée d'analyse ni donnée personnelle n'est jamais envoyée — voir la <a href=\"{root}fr/privacy/\">politique de confidentialité</a>."},
+                {"type": "p", "text": "L'application télécharge régulièrement des définitions de détection mises à jour depuis ce site. Elles sont établies au mieux, à partir de sources publiques et de constats de terrain. Elles peuvent être incomplètes ou parfois erronées. Aucune donnée d'analyse ni donnée personnelle n'est jamais envoyée ; voir la <a href=\"{root}fr/privacy/\">politique de confidentialité</a>."},
                 {"type": "h2", "text": "8. Modifications"},
                 {"type": "p", "text": "Nous pouvons mettre à jour ces conditions. Les changements importants seront indiqués dans le <a href=\"{root}changelog/\">journal des versions</a>, et la date en haut de cette page changera."},
                 {"type": "h2", "text": "9. Droit applicable et contact"},
@@ -358,8 +359,8 @@ TERMS = {
             ],
         },
         "nl": {
-            "title": "Gebruiksvoorwaarden — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Gebruiksvoorwaarden",
+            "title": "Gebruiksvoorwaarden · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Gebruiksvoorwaarden",
             "heading": "Gebruiksvoorwaarden",
             "description": "Voorwaarden in gewone taal voor de GhostTooth bluetooth-trackerdetector: wat het is, wat het niet is, acceptabel gebruik en de grenzen van wat een detectietool kan beloven.",
             "blocks": [
@@ -377,7 +378,7 @@ TERMS = {
                 {"type": "h2", "text": "6. Geen juridisch advies"},
                 {"type": "p", "text": "De informatie op onze <a href=\"{root}nl/safety/\">veiligheidspagina</a> is algemene voorlichting, geen juridisch advies. Wetgeving over volgen, bewijs en privacy verschilt sterk. Bespreek jouw specifieke situatie met de politie, een advocaat of een hulpdienst."},
                 {"type": "h2", "text": "7. Detectiedefinities"},
-                {"type": "p", "text": "De app downloadt periodiek bijgewerkte detectiedefinities van deze website. Die zijn naar beste vermogen samengesteld uit openbare bronnen en waarnemingen in het veld. Ze kunnen onvolledig of soms onjuist zijn. Er worden nooit scangegevens of persoonsgegevens geüpload — zie het <a href=\"{root}nl/privacy/\">privacybeleid</a>."},
+                {"type": "p", "text": "De app downloadt periodiek bijgewerkte detectiedefinities van deze website. Die zijn naar beste vermogen samengesteld uit openbare bronnen en waarnemingen in het veld. Ze kunnen onvolledig of soms onjuist zijn. Er worden nooit scangegevens of persoonsgegevens geüpload; zie het <a href=\"{root}nl/privacy/\">privacybeleid</a>."},
                 {"type": "h2", "text": "8. Wijzigingen"},
                 {"type": "p", "text": "We kunnen deze voorwaarden bijwerken. Belangrijke wijzigingen worden vermeld in het <a href=\"{root}changelog/\">wijzigingslog</a>, en de datum bovenaan deze pagina verandert."},
                 {"type": "h2", "text": "9. Toepasselijk recht en contact"},
@@ -395,8 +396,8 @@ ACCESSIBILITY = {
     "updated": UPDATED,
     "langs": {
         "en": {
-            "title": "Accessibility statement — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Accessibility statement",
+            "title": "Accessibility statement · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Accessibility statement",
             "heading": "Accessibility statement",
             "description": "How accessible the GhostTooth app and website are, what we have done, what we know is still imperfect, and how to tell us when something does not work for you.",
             "blocks": [
@@ -409,7 +410,7 @@ ACCESSIBILITY = {
                     "Dark and light themes both meet AA contrast; the site follows your system preference rather than forcing one.",
                     "Semantic landmarks, a logical heading order, and a skip-to-content link on every page.",
                     "Touch targets of at least 48×48 px throughout the app and the site.",
-                    "In the app, threat badges carry spoken descriptions — a screen reader announces \"Surveillance device, confirmed confidence\" rather than reading out a coloured symbol.",
+                    "In the app, threat badges carry spoken descriptions: a screen reader announces \"Surveillance device, confirmed confidence\" rather than reading out a coloured symbol.",
                     "The hot/cold locator gives both sound and haptic feedback, pulsing faster and harder as you close in, so it works if you cannot hear the beeps or cannot make a sound while searching.",
                     "Threat level is never conveyed by colour alone: each badge also carries a symbol and a word.",
                     "Text scales with your system font size without clipping.",
@@ -425,8 +426,8 @@ ACCESSIBILITY = {
             ],
         },
         "fr": {
-            "title": "Déclaration d'accessibilité — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Déclaration d'accessibilité",
+            "title": "Déclaration d'accessibilité · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Déclaration d'accessibilité",
             "heading": "Déclaration d'accessibilité",
             "description": "Le niveau d'accessibilité de l'application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.",
             "blocks": [
@@ -439,7 +440,7 @@ ACCESSIBILITY = {
                     "Les thèmes sombre et clair respectent tous deux le contraste AA ; le site suit votre préférence système au lieu d'en imposer une.",
                     "Repères sémantiques, hiérarchie de titres logique et lien « aller au contenu » sur chaque page.",
                     "Zones tactiles d'au moins 48 × 48 px dans l'application comme sur le site.",
-                    "Dans l'application, les badges de menace portent une description vocale — un lecteur d'écran annonce « Appareil de surveillance, confiance confirmée » au lieu de lire un symbole coloré.",
+                    "Dans l'application, les badges de menace portent une description vocale : un lecteur d'écran annonce « Appareil de surveillance, confiance confirmée » au lieu de lire un symbole coloré.",
                     "Le niveau de menace n'est jamais transmis par la couleur seule : chaque badge porte aussi un symbole et un mot.",
                     "Le texte suit la taille de police du système sans être tronqué.",
                 ]},
@@ -455,8 +456,8 @@ ACCESSIBILITY = {
             ],
         },
         "nl": {
-            "title": "Toegankelijkheidsverklaring — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Toegankelijkheidsverklaring",
+            "title": "Toegankelijkheidsverklaring · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Toegankelijkheidsverklaring",
             "heading": "Toegankelijkheidsverklaring",
             "description": "Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.",
             "blocks": [
@@ -469,7 +470,7 @@ ACCESSIBILITY = {
                     "Donker en licht thema voldoen allebei aan AA-contrast; de site volgt je systeemvoorkeur in plaats van er één op te leggen.",
                     "Semantische landmarks, een logische kopstructuur en een 'naar de inhoud'-link op elke pagina.",
                     "Aanraakdoelen van minimaal 48 × 48 px in zowel de app als de site.",
-                    "In de app hebben dreigingsbadges een gesproken omschrijving — een schermlezer meldt \"Surveillanceapparaat, bevestigde zekerheid\" in plaats van een gekleurd symbool voor te lezen.",
+                    "In de app hebben dreigingsbadges een gesproken omschrijving: een schermlezer meldt \"Surveillanceapparaat, bevestigde zekerheid\" in plaats van een gekleurd symbool voor te lezen.",
                     "Het dreigingsniveau wordt nooit alleen met kleur aangegeven: elke badge heeft ook een symbool en een woord.",
                     "Tekst schaalt mee met je systeemlettergrootte zonder weg te vallen.",
                 ]},
@@ -488,86 +489,86 @@ ACCESSIBILITY = {
 }
 
 # ---------------------------------------------------------------------------
-# /changelog/  (English only — a technical record)
+# /changelog/  (English only - a technical record)
 # ---------------------------------------------------------------------------
 
 CHANGELOG = {
     "updated": UPDATED,
     "langs": {
         "en": {
-            "title": "Changelog — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Changelog",
+            "title": "Changelog · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Changelog",
             "heading": "Changelog",
             "description": "What changed in each release of the GhostTooth Bluetooth tracker detector, including detection-definition updates.",
             "blocks": [
                 {"type": "lede", "text": "What changed, when, and why. Detection-definition updates are listed too, because for a detector that is the part users actually care about."},
-                {"type": "h2", "text": "1.12.0 — 30 August 2026"},
+                {"type": "h2", "text": "1.12.0 · 30 August 2026"},
                 {"type": "ul", "items": [
-                    "<strong>The alert-device list explains before it deletes.</strong> Under Notifications ▸ Alert devices, entries now show the device name, and tapping one opens its details — maker, why it was flagged, first and last seen, how often, your note, whether it is in range right now — and only then asks whether to remove it from the list or keep it. Previously a single tap removed the device immediately, from a list that showed nothing but addresses.",
+                    "<strong>The alert-device list explains before it deletes.</strong> Under Notifications ▸ Alert devices, entries now show the device name, and tapping one opens its details (maker, why it was flagged, first and last seen, how often, your note, whether it is in range right now) and only then asks whether to remove it from the list or keep it. Previously a single tap removed the device immediately, from a list that showed nothing but addresses.",
                 ]},
-                {"type": "h2", "text": "1.11.0 — 30 August 2026"},
+                {"type": "h2", "text": "1.11.0 · 30 August 2026"},
                 {"type": "ul", "items": [
-                    "<strong>The notification tells the truth about being stopped.</strong> If the system drops the background scan, the notification used to say “Reacquiring…” and still offer a <em>Stop</em> button for something that was not running. It now says <strong>Stopped — not scanning</strong> and offers <strong>Restart</strong> instead. “Registered but quiet” and “not registered at all” are finally two different states with two different words.",
-                    "<strong>The counts mean “around you now”.</strong> The notification, the home-screen widget and the in-app monitoring card counted everything seen in the last 24 hours. They now count only devices still in range — the same out-of-range window the device list uses — so the figure answers “what is near me?” rather than “what has passed me since yesterday?”. The window setting was renamed to <em>Remember devices seen in the last</em>, which is what it actually governs.",
-                    "<strong>The category tabs stay with you when you scroll.</strong> Once the header scrolls away, the toolbar shows the live category between the GHOSTTOOTH title and the start/stop buttons — selected one centred, the others smaller either side — and you can switch straight from there.",
+                    "<strong>The notification tells the truth about being stopped.</strong> If the system drops the background scan, the notification used to say “Reacquiring…” and still offer a <em>Stop</em> button for something that was not running. It now says <strong>Stopped, not scanning</strong> and offers <strong>Restart</strong> instead. “Registered but quiet” and “not registered at all” are finally two different states with two different words.",
+                    "<strong>The counts mean “around you now”.</strong> The notification, the home-screen widget and the in-app monitoring card counted everything seen in the last 24 hours. They now count only devices still in range (the same out-of-range window the device list uses), so the figure answers “what is near me?” rather than “what has passed me since yesterday?”. The window setting was renamed to <em>Remember devices seen in the last</em>, which is what it actually governs.",
+                    "<strong>The category tabs stay with you when you scroll.</strong> Once the header scrolls away, the toolbar shows the live category between the GHOSTTOOTH title and the start/stop buttons (selected one centred, the others smaller either side), and you can switch straight from there.",
                     "<strong>Definitions: Bluetooth card-skimmer modules.</strong> See the entry below; it reached every installed app on 29 August without an update.",
                 ]},
-                {"type": "h2", "text": "Definitions — 29 August 2026"},
+                {"type": "h2", "text": "Definitions · 29 August 2026"},
                 {"type": "ul", "items": [
-                    "<strong>Bluetooth card skimmers: the modules they are built from are now recognised.</strong> Skimmers are not a branded product — they are a generic serial-to-Bluetooth module wired to a card reader, and it usually still carries its factory name. GhostTooth now names that whole family (HM-10/11/16/17/19, DSD-TECH, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42) and explains the transparent serial service in plain language. <strong>Every entry is graded “possible” on purpose:</strong> these modules sell by the million for e-bikes, OBD readers and hobby electronics, so a match is never counted in the totals and never raises an alert — it only shows the row and the reason. Two honest limits are written up in the <a href=\"{root}faq/#skimmers\">FAQ</a>: most skimmers found in the field so far are Bluetooth Classic and therefore invisible to any BLE app, and a factory name proves a serial bridge, never a crime. Based on <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (USENIX Security 2019) and <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">Passaro</a> (SANS, 2025). Reaches every installed app within 12 hours, with no app update.",
+                    "<strong>Bluetooth card skimmers: the modules they are built from are now recognised.</strong> Skimmers are not a branded product: they are a generic serial-to-Bluetooth module wired to a card reader, and it usually still carries its factory name. GhostTooth now names that whole family (HM-10/11/16/17/19, DSD-TECH, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42) and explains the transparent serial service in plain language. <strong>Every entry is graded “possible” on purpose:</strong> these modules sell by the million for e-bikes, OBD readers and hobby electronics, so a match is never counted in the totals and never raises an alert; it only shows the row and the reason. Two honest limits are written up in the <a href=\"{root}faq/#skimmers\">FAQ</a>: most skimmers found in the field so far are Bluetooth Classic and therefore invisible to any BLE app, and a factory name proves a serial bridge, never a crime. Based on <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (USENIX Security 2019) and <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">Passaro</a> (SANS, 2025). Reaches every installed app within 12 hours, with no app update.",
                 ]},
-                {"type": "h2", "text": "1.8.0 — 22 August 2026"},
+                {"type": "h2", "text": "1.8.0 · 22 August 2026"},
                 {"type": "ul", "items": [
                     "<strong>Reorganised menu.</strong> A new <em>Notifications</em> screen gathers everything that decides when the app speaks up: background monitoring, alert sensitivity, notification categories, your alert list, the Notable rules and the “last seen” display. The View menu now also holds the distance unit, the stale-device timeout and the device-count window.",
-                    "<strong>Report &amp; support in the menu.</strong> Reporting an unrecognised device, a bug, a crash, a feature request or unknown identifiers is now one tap from the main menu — with a new option to copy your tracking code. Reports are politely rate-limited on the device.",
-                    "<strong>Much richer device reports.</strong> Reports now include the manufacturer payload bytes, service data, GATT findings, signal context and timestamps that identification actually needs — still never an address.",
-                    "<strong>Definitions: LE Audio services named.</strong> The registry now names the Bluetooth LE Audio services (media control, telephony, hearing access…) that modern phones, tablets and earbuds expose, plus another Google service UUID — all verified against the Bluetooth SIG assigned numbers. GATT display data (appearance categories, characteristic names, service notes) is now delivered through the registry too, so those identifications can improve without an app update.",
+                    "<strong>Report &amp; support in the menu.</strong> Reporting an unrecognised device, a bug, a crash, a feature request or unknown identifiers is now one tap from the main menu, with a new option to copy your tracking code. Reports are politely rate-limited on the device.",
+                    "<strong>Much richer device reports.</strong> Reports now include the manufacturer payload bytes, service data, GATT findings, signal context and timestamps that identification actually needs, still never an address.",
+                    "<strong>Definitions: LE Audio services named.</strong> The registry now names the Bluetooth LE Audio services (media control, telephony, hearing access…) that modern phones, tablets and earbuds expose, plus another Google service UUID, all verified against the Bluetooth SIG assigned numbers. GATT display data (appearance categories, characteristic names, service notes) is now delivered through the registry too, so those identifications can improve without an app update.",
                 ]},
-                {"type": "h2", "text": "1.7.1 — 22 August 2026"},
+                {"type": "h2", "text": "1.7.1 · 22 August 2026"},
                 {"type": "ul", "items": [
                     "<strong>Crash fix.</strong> Asking Android to switch Bluetooth on could crash on the newest Android builds; the app now uses the permission-aware request path everywhere.",
                 ]},
-                {"type": "h2", "text": "1.7.0 — 21 August 2026"},
+                {"type": "h2", "text": "1.7.0 · 21 August 2026"},
                 {"type": "ul", "items": [
-                    "<strong>The device probe identifies far more.</strong> It now also reads what a device declares itself to be (its Bluetooth category — watch, tag, keyboard…), its serial number and firmware/hardware versions, and it explains notable services in plain language: “this device can be reprogrammed over the air”, “it can act as a keyboard”. A serial number is a persistent identity that survives address rotation — exactly what an evidence trail needs.",
+                    "<strong>The device probe identifies far more.</strong> It now also reads what a device declares itself to be (its Bluetooth category: watch, tag, keyboard…), its serial number and firmware/hardware versions, and it explains notable services in plain language: “this device can be reprogrammed over the air”, “it can act as a keyboard”. A serial number is a persistent identity that survives address rotation, exactly what an evidence trail needs.",
                     "<strong>The probe's documentation is now honest about visibility.</strong> Connecting is not passive listening: some devices answer a connection by asking to pair, which their owner can see. The setting says so, and advises against probing a device you believe is following you.",
                     "<strong>Help grow the registry (experimental).</strong> One tap reports the service UUIDs and manufacturer IDs in your list that GhostTooth cannot name yet, so they can be identified and added for everyone. No addresses are included, you see exactly what goes out before sending, and you get an anonymous tracking code.",
                     "New identifications from the field: HPE Aruba access-point services and the Universal Electronics UE878 module (Daikin thermostat controllers) now show by name.",
                     "Reliability: definition-cache writes are now atomic, so an interrupted update can no longer leave a corrupted file (1.6.1).",
                 ]},
-                {"type": "h2", "text": "1.6.0 — 18 August 2026"},
-                {"type": "h3", "text": "Devices get named from their MAC address — carefully"},
+                {"type": "h2", "text": "1.6.0 · 18 August 2026"},
+                {"type": "h3", "text": "Devices get named from their MAC address, carefully"},
                 {"type": "ul", "items": [
-                    "<strong>Hardware that broadcasts nothing identifying is now named from the IEEE manufacturer registry</strong> when its address is genuinely public, and shown as “Vendor (MAC)” so you can see where the name came from. On Android 15+ the Bluetooth controller itself says whether an address is real or randomised; on older versions only addresses that provably cannot be randomised are looked up. A randomised address never gets a name — inventing a manufacturer would be worse than saying nothing.",
+                    "<strong>Hardware that broadcasts nothing identifying is now named from the IEEE manufacturer registry</strong> when its address is genuinely public, and shown as “Vendor (MAC)” so you can see where the name came from. On Android 15+ the Bluetooth controller itself says whether an address is real or randomised; on older versions only addresses that provably cannot be randomised are looked up. A randomised address never gets a name: inventing a manufacturer would be worse than saying nothing.",
                     "<strong>Devices found by background monitoring keep their manufacturer.</strong> They previously lost it on the way to the screen, which filed Apple Find My devices under “No manufacturer data” while their own description said Apple.",
-                    "<strong>Anonymous devices stay anonymous, honestly.</strong> Many devices broadcast no name, no manufacturer and no services on a rotating address — that is Bluetooth privacy working, and no list anywhere can name them. GhostTooth watches whether they <em>travel with you</em> instead, which is the only signal that matters.",
+                    "<strong>Anonymous devices stay anonymous, honestly.</strong> Many devices broadcast no name, no manufacturer and no services on a rotating address; that is Bluetooth privacy working, and no list anywhere can name them. GhostTooth watches whether they <em>travel with you</em> instead, which is the only signal that matters.",
                 ]},
                 {"type": "h3", "text": "Fixed"},
                 {"type": "ul", "items": [
-                    "<strong>Two false “Flock camera” sightings in a living room.</strong> A contract manufacturer's MAC range is no longer enough on its own to claim ALPR hardware — those builders also make everyday laptops, printers and TVs. The MAC range now only corroborates the actual Flock radio beacon.",
+                    "<strong>Two false “Flock camera” sightings in a living room.</strong> A contract manufacturer's MAC range is no longer enough on its own to claim ALPR hardware; those builders also make everyday laptops, printers and TVs. The MAC range now only corroborates the actual Flock radio beacon.",
                     "<strong>A device no longer blinks in time with the refresh rate.</strong> Two causes: list rows re-animated on every update, and a device whose rotating addresses were merged could flip its identity on each refresh. Rows now update in place and merged identities stay put.",
-                    "<strong>Clear now really clears.</strong> It also resets the background-monitoring store and the notification's counters, so the numbers on screen and in the notification can no longer drift apart — and cleared devices stop reappearing on the next app start.",
+                    "<strong>Clear now really clears.</strong> It also resets the background-monitoring store and the notification's counters, so the numbers on screen and in the notification can no longer drift apart, and cleared devices stop reappearing on the next app start.",
                     "The proximity locator and the experimental device probe now talk to the address a rotating device is actually using.",
                 ]},
                 {"type": "h3", "text": "New"},
                 {"type": "ul", "items": [
-                    "<strong>Report an issue from inside the app</strong> — an unrecognised device, a bug, a crash or a request. You see exactly what will be sent, nothing goes out until you confirm, and you get an anonymous tracking code to check for a reply. Crash reports can include the actual error, recorded on your device when it happened.",
+                    "<strong>Report an issue from inside the app</strong>: an unrecognised device, a bug, a crash or a request. You see exactly what will be sent, nothing goes out until you confirm, and you get an anonymous tracking code to check for a reply. Crash reports can include the actual error, recorded on your device when it happened.",
                     "<strong>“Only show devices close to me”</strong> (experimental) declutters crowded places by hiding ordinary devices beyond a distance you choose. Trackers, surveillance devices, anything following you and your own marked devices are always shown, and searching always finds everything.",
                     "<strong>“Alert on every device found”</strong> (experimental) posts a silent notification for each new device background monitoring discovers.",
                     "A lifetime <strong>“devices seen since install”</strong> counter in Settings, and the collapsed screen keeps a small Start/Stop button. Tapping the GHOSTTOOTH title reopens the summary.",
                 ]},
-                {"type": "h2", "text": "1.5.1 — 16 August 2026"},
+                {"type": "h2", "text": "1.5.1 · 16 August 2026"},
                 {"type": "ul", "items": [
-                    "<strong>Correct edge-to-edge display on Android 15 and 16.</strong> The platform libraries that draw behind the system bars were updated to the releases built for Android 15's enforced edge-to-edge, following Google Play's recommendation, so the app fills the whole screen properly on every device — including small ones, where the summary panel already collapses while you scroll.",
-                    "<strong>Faster startup.</strong> The app now ships a compilation profile, so the code that runs when you open it — the scanner, the registries, the device list — is compiled ahead of time on every Android version instead of being interpreted on early launches.",
+                    "<strong>Correct edge-to-edge display on Android 15 and 16.</strong> The platform libraries that draw behind the system bars were updated to the releases built for Android 15's enforced edge-to-edge, following Google Play's recommendation, so the app fills the whole screen properly on every device, including small ones, where the summary panel already collapses while you scroll.",
+                    "<strong>Faster startup.</strong> The app now ships a compilation profile, so the code that runs when you open it (the scanner, the registries, the device list) is compiled ahead of time on every Android version instead of being interpreted on early launches.",
                     "Under the hood: Kotlin 2.2 and updated Room, Material and AndroidX libraries.",
                 ]},
-                {"type": "h2", "text": "1.5.0 — 15 August 2026"},
+                {"type": "h2", "text": "1.5.0 · 15 August 2026"},
                 {"type": "h3", "text": "New"},
                 {"type": "ul", "items": [
-                    "<strong>Devices are named from their MAC address.</strong> A new registry carries all 53,000 IEEE manufacturer assignments, so hardware whose Bluetooth data says nothing — an ESP32 module, a camera, a no-name tag — is still identified when it uses a public address. Randomised addresses, which most phones and trackers use precisely so they cannot be followed, are never looked up: those bytes are generated, not assigned, and naming a vendor from them would be invention. The registry ships inside the app and works fully offline.",
+                    "<strong>Devices are named from their MAC address.</strong> A new registry carries all 53,000 IEEE manufacturer assignments, so hardware whose Bluetooth data says nothing (an ESP32 module, a camera, a no-name tag) is still identified when it uses a public address. Randomised addresses, which most phones and trackers use precisely so they cannot be followed, are never looked up: those bytes are generated, not assigned, and naming a vendor from them would be invention. The registry ships inside the app and works fully offline.",
                     "<strong>Alert list.</strong> Long-press any device and choose “Alert me when seen” to be notified whenever it turns up, whoever made it and whatever it is. Alert devices carry a bell and their own colour, re-alert only after they have been away a while, and can be muted for 30 minutes, 1, 8 or 24 hours without being forgotten. The list is managed from Settings.",
-                    "<strong>The Notable tab is now yours to edit.</strong> Remove a device permanently — it never comes back on its own — or add one by hand. An optional notification tells you when something newly qualifies for the tab.",
+                    "<strong>The Notable tab is now yours to edit.</strong> Remove a device permanently (it never comes back on its own) or add one by hand. An optional notification tells you when something newly qualifies for the tab.",
                     "<strong>Copy MAC address</strong> from the long-press menu, for looking a device up elsewhere.",
                     "<strong>Reset all settings</strong>, at the bottom of Settings. Notes, Notable choices and the alert list are kept, and no scan history is touched.",
                 ]},
@@ -581,7 +582,7 @@ CHANGELOG = {
                     "Two notifications about different devices could previously overwrite each other; every alert kind now has its own slot per device.",
                     "Resetting settings while background monitoring ran could leave the scan running with the switch showing off. The scan is now stopped first.",
                 ]},
-                {"type": "h2", "text": "1.4.2 — 13 August 2026"},
+                {"type": "h2", "text": "1.4.2 · 13 August 2026"},
                 {"type": "p", "text": "The releases between 1.3.1 and this one went to testers only, so everything they contained is listed here."},
                 {"type": "h3", "text": "Fixed"},
                 {"type": "ul", "items": [
@@ -589,14 +590,14 @@ CHANGELOG = {
                     "<strong>JBL speakers were reported as surveillance devices.</strong> Bluetooth company ID <code>0x0057</code> was labelled as a smart-glasses maker in our tables. It actually belongs to Harman, the maker of JBL audio gear; the glasses maker is <code>0x060C</code>. Corrected.",
                     "<strong>Apple devices no longer flip between “tracker” and ordinary.</strong> Trackers rotate their Bluetooth address to avoid being followed, so GhostTooth stitches those identities back together. It was taking the verdict from whichever frame arrived last, and Apple hardware alternates between two kinds of frame. It now keeps the strongest verdict it has seen.",
                     "<strong>The locator now really does beep faster as you close in.</strong> The beeping was tied to the scan refresh, which is slower than the fastest beep interval, so the acceleration you were promised could never happen.",
-                    "<strong>“Check for new definitions” always failed.</strong> The published checksums were generated from files saved with Windows line endings while the server sends Unix ones, so every download failed its integrity check and was discarded — correctly, but for the wrong reason. Definition updates work again.",
+                    "<strong>“Check for new definitions” always failed.</strong> The published checksums were generated from files saved with Windows line endings while the server sends Unix ones, so every download failed its integrity check and was discarded: correctly, but for the wrong reason. Definition updates work again.",
                 ]},
                 {"type": "h3", "text": "New"},
                 {"type": "ul", "items": [
-                    "<strong>A Notable tab.</strong> One place for the findings that actually warrant a look — something travelling with you, surveillance hardware close by — instead of scrolling a list of everything in range. You choose what qualifies, including how near counts as near.",
+                    "<strong>A Notable tab.</strong> One place for the findings that actually warrant a look (something travelling with you, surveillance hardware close by) instead of scrolling a list of everything in range. You choose what qualifies, including how near counts as near.",
                     "<strong>Distances in metres or feet.</strong>",
                     "<strong>Alerts for particular kinds of device.</strong> Ask to be told when a camera, a microphone or a tag appears, without being told about everything else.",
-                    "<strong>Automatic licence-plate-reader (ALPR) camera detection.</strong> GhostTooth recognises the Bluetooth signature of Flock Safety camera hardware. The radio module and the manufacturing MAC ranges this hardware uses are also sold to other companies, so a match on those alone is reported as <em>possible</em> and never raises an alarm — only the vendor's own name, or two independent signals together, counts as a firm finding. Published prefix lists were checked against the official IEEE registry first, and the entries belonging to mass-market parts were discarded rather than copied.",
+                    "<strong>Automatic licence-plate-reader (ALPR) camera detection.</strong> GhostTooth recognises the Bluetooth signature of Flock Safety camera hardware. The radio module and the manufacturing MAC ranges this hardware uses are also sold to other companies, so a match on those alone is reported as <em>possible</em> and never raises an alarm; only the vendor's own name, or two independent signals together, counts as a firm finding. Published prefix lists were checked against the official IEEE registry first, and the entries belonging to mass-market parts were discarded rather than copied.",
                     "<strong>Optional automatic definition checks.</strong> Off unless you turn it on, and it asks once.",
                 ]},
                 {"type": "h3", "text": "Changed"},
@@ -604,31 +605,31 @@ CHANGELOG = {
                     "New installations now start grouped by manufacturer and collapsed, which is far easier to read in a busy place. Existing settings are untouched.",
                     "Built for Android 16.",
                 ]},
-                {"type": "h2", "text": "1.3.1 — 30 July 2026"},
+                {"type": "h2", "text": "1.3.1 · 30 July 2026"},
                 {"type": "ul", "items": [
-                    "<strong>Nearby phones no longer inflate the tracker count.</strong> An Apple device sitting beside its owner broadcasts the same Find My frame whether it is an iPhone or a tag, so it is still listed — as a <em>possible</em> match that says in plain words it is most likely simply someone's phone. What changed is that weak matches like these are no longer counted in the headline “trackers” number and never raise an alarm. The number now only ever counts firm matches.",
+                    "<strong>Nearby phones no longer inflate the tracker count.</strong> An Apple device sitting beside its owner broadcasts the same Find My frame whether it is an iPhone or a tag, so it is still listed, as a <em>possible</em> match that says in plain words it is most likely simply someone's phone. What changed is that weak matches like these are no longer counted in the headline “trackers” number and never raise an alarm. The number now only ever counts firm matches.",
                     "<strong>Samsung Find on a Samsung device is now “possible”, not “likely”.</strong> Galaxy phones, watches and earbuds take part in Samsung Find too, not only SmartTags.",
                     "<strong>You choose how readily something counts as travelling with you.</strong> Three settings, because only you know your situation: <em>fewer alerts</em> if you are around the same people every day, <em>balanced</em>, or <em>more alerts</em> if you are usually alone. The alert now also requires the device to have been genuinely close by, not merely somewhere within Bluetooth range.",
                     "<strong>Your history is safe across updates.</strong> The sighting timeline could previously have been wiped by a routine app update. It cannot be any more.",
                     "<strong>Hostile device names can no longer cause trouble.</strong> Device names come off the air and can contain anything at all. They are now length-limited and stripped of hidden characters that could disguise what you are reading, and the downloaded detection definitions are size-capped and screened.",
                     "<strong>The locator now vibrates as well as beeps</strong>, so it works when you cannot hear it or cannot make a sound.",
-                    "<strong>Every explanation is now translated.</strong> The app was already in English, French and Dutch, but the sentence explaining <em>why</em> a device was flagged was always written in English, as were the device-type guesses and the “why is monitoring not working” panel. All of it now follows your phone's language — including findings that were already saved, and the CSV you export.",
-                    "<strong>“Tile” in a device name is no longer enough on its own</strong> — it is an ordinary English word and appeared in smart-home product names.",
+                    "<strong>Every explanation is now translated.</strong> The app was already in English, French and Dutch, but the sentence explaining <em>why</em> a device was flagged was always written in English, as were the device-type guesses and the “why is monitoring not working” panel. All of it now follows your phone's language, including findings that were already saved, and the CSV you export.",
+                    "<strong>“Tile” in a device name is no longer enough on its own</strong>: it is an ordinary English word and appeared in smart-home product names.",
                 ]},
-                {"type": "h2", "text": "1.3.0 — 28 July 2026"},
-                {"type": "h3", "text": "Detection accuracy — the big one"},
+                {"type": "h2", "text": "1.3.0 · 28 July 2026"},
+                {"type": "h3", "text": "Detection accuracy: the big one"},
                 {"type": "ul", "items": [
-                    "<strong>Apple and Samsung devices are no longer flagged from the maker ID alone.</strong> Classification previously keyed off the manufacturer company ID, and <code>0x004C</code> is broadcast by every iPhone, iPad, Mac, Apple Watch and set of AirPods ever made. A train carriage produced a screen full of red badges. GhostTooth now decodes the Apple payload and distinguishes an accessory that is <em>separated from its owner</em> — what an unwanted tracker looks like — from an ordinary Apple device beside its owner.",
-                    "<strong>Google Find My Device Network detection.</strong> Chipolo, Pebblebee, Moto Tag and the rest of the fastest-growing tracker ecosystem are now recognised from their broadcast frames — including the frame a tag sends once it has been <em>separated from its owner</em> and has stopped rotating its address so that detectors can find it. That is the exact signal an unwanted tag gives off, and it is the one that matters most.",
+                    "<strong>Apple and Samsung devices are no longer flagged from the maker ID alone.</strong> Classification previously keyed off the manufacturer company ID, and <code>0x004C</code> is broadcast by every iPhone, iPad, Mac, Apple Watch and set of AirPods ever made. A train carriage produced a screen full of red badges. GhostTooth now decodes the Apple payload and distinguishes an accessory that is <em>separated from its owner</em>, which is what an unwanted tracker looks like, from an ordinary Apple device beside its owner.",
+                    "<strong>Google Find My Device Network detection.</strong> Chipolo, Pebblebee, Moto Tag and the rest of the fastest-growing tracker ecosystem are now recognised from their broadcast frames, including the frame a tag sends once it has been <em>separated from its owner</em> and has stopped rotating its address so that detectors can find it. That is the exact signal an unwanted tag gives off, and it is the one that matters most.",
                     "<strong>Eddystone beacons are no longer trackers.</strong> Google's tracker network shares a service UUID with ordinary retail beacons, so every shop display used to be a false positive. Decided by frame type now.",
                     "<strong>Samsung SmartTag</strong> is detected via the Samsung Find service rather than the Samsung company ID.",
-                    "<strong>Confidence levels.</strong> Every finding is now rated Possible, Likely or Confirmed, and says in plain language what that means. Weak evidence is never enough on its own to raise an alarm, and from 1.3.1 it is not counted in the headline totals either — it is shown in the list with its explanation.",
+                    "<strong>Confidence levels.</strong> Every finding is now rated Possible, Likely or Confirmed, and says in plain language what that means. Weak evidence is never enough on its own to raise an alarm, and from 1.3.1 it is not counted in the headline totals either; it is shown in the list with its explanation.",
                     "<strong>Unidentified-tracker heuristic.</strong> An anonymous device with no name and no vendor that stays with you across several separate time windows is now surfaced, which is the only way to catch cheap unbranded tags.",
                     "<strong>Far more known devices</strong>: wearable AI recorders, camera glasses, body cameras, and a much wider range of tracking tags.",
                 ]},
                 {"type": "h3", "text": "New"},
                 {"type": "ul", "items": [
-                    "<strong>Safety guidance.</strong> A dedicated, fully offline screen explaining what to do if you find a tracker — preserve evidence, stay safe, rule out innocent explanations, get real support. Reachable from the follow alert itself.",
+                    "<strong>Safety guidance.</strong> A dedicated, fully offline screen explaining what to do if you find a tracker: preserve evidence, stay safe, rule out innocent explanations, get real support. Reachable from the follow alert itself.",
                     "<strong>Hot/cold locator.</strong> Long-press any device to open a full-screen proximity finder with a large signal reading and audio feedback that speeds up as you get closer.",
                     "<strong>Definition freshness.</strong> Advanced settings now show how old your detection definitions are and let you force a check. Failed updates are no longer silent.",
                 ]},
@@ -658,28 +659,29 @@ CHANGELOG = {
                 ]},
                 {"type": "h2", "text": "Detection definitions"},
                 {"type": "p", "text": "The app checks for updated definitions roughly every 12 hours and applies them without needing an app update. Current definitions and their checksums are published at <code>/media/registry-index.json</code>."},
-                {"type": "card", "variant": "ok", "title": "Know a device we should recognise?", "text": "If you have found a tracker or recording device GhostTooth does not flag, tell us what it advertises and we will add it — usually within a day, and it reaches every installed app without an update. <a href=\"mailto:" + SUPPORT_EMAIL + "\">" + SUPPORT_EMAIL + "</a>"},
+                {"type": "card", "variant": "ok", "title": "Know a device we should recognise?", "text": "If you have found a tracker or recording device GhostTooth does not flag, tell us what it advertises and we will add it, usually within a day, and it reaches every installed app without an update. <a href=\"mailto:" + SUPPORT_EMAIL + "\">" + SUPPORT_EMAIL + "</a>"},
             ],
         },
     },
 }
 
 # ---------------------------------------------------------------------------
-# Landing pages (/, /fr/, /nl/) — information and links.
+# Landing pages (/, /fr/, /nl/) - information and links.
 # ---------------------------------------------------------------------------
 
 LANDING = {
     "updated": UPDATED,
     "langs": {
         "en": {
-            "title": "GHOSTTOOTH — Bluetooth tracker and surveillance-device detector",
-            "og_title": "GHOSTTOOTH — Bluetooth tracker detector",
+            "title": "GHOSTTOOTH · Bluetooth tracker and surveillance-device detector",
+            "og_title": "GHOSTTOOTH · Bluetooth tracker detector",
             "heading": "Find trackers and surveillance devices around you",
             "description": "GhostTooth finds Bluetooth trackers (AirTag, Tile, SmartTag, Find My Device) and recording devices nearby. Free, no ads, no data collection, works offline.",
             "blocks": [
                 {"type": "lede", "text": "GhostTooth listens to the Bluetooth advertisements around you and flags what looks like a tracker or recording hardware. Free, no ads, no account, and <strong>nothing ever leaves your phone</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Get it on Google Play", "primary": True, "external": True},
+                    {"href": PRO_URL, "label": "GhostTooth Pro for investigators", "external": True},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["en"]},
                 {"type": "h2", "text": "What it detects"},
@@ -691,11 +693,20 @@ LANDING = {
                 {"type": "h2", "text": "Every verdict explains itself"},
                 {"type": "p", "text": "A red badge without an explanation helps nobody. GhostTooth tells you why a device was flagged and how strong the evidence is: <em>possible</em> (a single weak hint), <em>likely</em> (corroborated by the maker or the advertised service) or <em>confirmed</em> (read straight from the tracking protocol). Only strong evidence raises an alert."},
                 {"type": "h2", "text": "Background monitoring"},
-                {"type": "p", "text": "Switch monitoring on and GhostTooth keeps looking while the app is closed, with a notification carrying live counts. It tells you when a device is <em>travelling with you</em> — the signal that actually matters."},
+                {"type": "p", "text": "Switch monitoring on and GhostTooth keeps looking while the app is closed, with a notification carrying live counts. It tells you when a device is <em>travelling with you</em>: the signal that actually matters."},
                 {"type": "h2", "text": "Your phone is the detector"},
-                {"type": "p", "text": "Professional sweep gear such as the <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> exists for teams that inspect rooms for a living — and costs thousands. We do not think you should have to buy a dedicated device to find out whether a tracker is riding along in your bag. The phone in your pocket carries the same Bluetooth radio; GhostTooth turns it into the detector."},
-                {"type": "h2", "text": "Free to help, Pro to support"},
-                {"type": "p", "text": "GhostTooth exists to help people, so the detector is free: no ads, no account, no data for sale. To keep the work going, a <strong>GhostTooth Pro</strong> edition is coming soon for everyone who wants to support the project. The free app stays free."},
+                {"type": "p", "text": "Professional sweep gear such as the <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> exists for teams that inspect rooms for a living, and costs thousands. We do not think you should have to buy a dedicated device to find out whether a tracker is riding along in your bag. The phone in your pocket carries the same Bluetooth radio; GhostTooth turns it into the detector."},
+                {"type": "h2", "text": "Support the work with GhostTooth Pro"},
+                {"type": "p", "text": "GhostTooth is free and built to help people; I make it in my own time and give it away. If you want to support the work, or you investigate for a living, there is <strong>GhostTooth Pro: Investigate</strong>. It is the same detector plus the investigator toolkit:"},
+                {"type": "ul", "items": [
+                    "<strong>Make a found tracker ring</strong>, so the beep leads you to the device itself.",
+                    "<strong>Read a device's battery level</strong> without pairing with it.",
+                    "<strong>Read out the services a device exposes</strong>, the clearest fingerprint of what it really is.",
+                ]},
+                {"type": "p", "text": "More investigator features are on the way. The free app stays free."},
+                {"type": "buttons", "items": [
+                    {"href": PRO_URL, "label": "Get GhostTooth Pro on Google Play", "primary": True, "external": True},
+                ]},
                 {"type": "h2", "text": "Privacy"},
                 {"type": "p", "text": "No scan data, no personal data and no location ever leaves your device. No ads, no trackers, no account. The only network connection fetches detection definitions from this site. See the <a href=\"{root}privacy/\">privacy policy</a>."},
                 {"type": "h2", "text": "Found something?"},
@@ -707,14 +718,15 @@ LANDING = {
             ],
         },
         "fr": {
-            "title": "GHOSTTOOTH — Détecteur de traceurs et d'appareils de surveillance Bluetooth",
-            "og_title": "GHOSTTOOTH — Détecteur de traceurs Bluetooth",
+            "title": "GHOSTTOOTH · Détecteur de traceurs et d'appareils de surveillance Bluetooth",
+            "og_title": "GHOSTTOOTH · Détecteur de traceurs Bluetooth",
             "heading": "Détectez les traceurs et les appareils de surveillance autour de vous",
             "description": "GhostTooth repère les traceurs Bluetooth (AirTag, Tile, SmartTag, Find My Device) et les appareils d'enregistrement à proximité. Gratuit, sans publicité, sans collecte de données, fonctionne hors ligne.",
             "blocks": [
                 {"type": "lede", "text": "GhostTooth écoute les trames Bluetooth autour de vous et signale ce qui ressemble à un traceur ou à du matériel d'enregistrement. Gratuit, sans publicité, sans compte, et <strong>aucune donnée ne quitte votre téléphone</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Télécharger sur Google Play", "primary": True, "external": True},
+                    {"href": PRO_URL, "label": "GhostTooth Pro pour enquêteurs", "external": True},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["fr"]},
                 {"type": "h2", "text": "Ce qu'il détecte"},
@@ -726,11 +738,20 @@ LANDING = {
                 {"type": "h2", "text": "Chaque verdict s'explique"},
                 {"type": "p", "text": "Un badge rouge sans explication n'aide personne. GhostTooth indique pourquoi un appareil est signalé et à quel point la preuve est solide : <em>possible</em> (un seul indice faible), <em>probable</em> (confirmé par le fabricant ou le service annoncé) ou <em>confirmé</em> (lu directement dans le protocole de suivi). Seules les preuves solides déclenchent une alerte."},
                 {"type": "h2", "text": "Surveillance en arrière-plan"},
-                {"type": "p", "text": "Activez la surveillance et GhostTooth continue de chercher quand l'application est fermée, avec une notification qui affiche les compteurs en direct. Il vous prévient quand un appareil <em>voyage avec vous</em> — le signal qui compte vraiment."},
+                {"type": "p", "text": "Activez la surveillance et GhostTooth continue de chercher quand l'application est fermée, avec une notification qui affiche les compteurs en direct. Il vous prévient quand un appareil <em>voyage avec vous</em> : le signal qui compte vraiment."},
                 {"type": "h2", "text": "Votre téléphone est le détecteur"},
-                {"type": "p", "text": "Le matériel professionnel comme le <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> existe pour les équipes qui inspectent des locaux à longueur de journée — et coûte plusieurs milliers d'euros. Vous ne devriez pas avoir à acheter un appareil dédié pour savoir si un traceur voyage dans votre sac : le téléphone dans votre poche embarque la même radio Bluetooth, et GhostTooth en fait le détecteur."},
-                {"type": "h2", "text": "Gratuit pour aider, Pro pour soutenir"},
-                {"type": "p", "text": "GhostTooth existe pour aider : le détecteur est gratuit, sans publicité, sans compte, sans données à vendre. Pour faire vivre le projet, une édition <strong>GhostTooth Pro</strong> arrive bientôt, pour celles et ceux qui veulent nous soutenir. L'application gratuite reste gratuite."},
+                {"type": "p", "text": "Le matériel professionnel comme le <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> existe pour les équipes qui inspectent des locaux à longueur de journée, et coûte plusieurs milliers d'euros. Vous ne devriez pas avoir à acheter un appareil dédié pour savoir si un traceur voyage dans votre sac : le téléphone dans votre poche embarque la même radio Bluetooth, et GhostTooth en fait le détecteur."},
+                {"type": "h2", "text": "Soutenez le travail avec GhostTooth Pro"},
+                {"type": "p", "text": "GhostTooth est gratuit et fait pour aider ; je le développe sur mon temps libre. Pour soutenir le projet, ou si vous enquêtez professionnellement, il y a <strong>GhostTooth Pro : Investigate</strong>. C'est le même détecteur, plus les outils d'enquête :"},
+                {"type": "ul", "items": [
+                    "<strong>Faire sonner un traceur retrouvé</strong>, pour que le bip vous mène à l'appareil lui-même.",
+                    "<strong>Lire le niveau de batterie d'un appareil</strong> sans appairage.",
+                    "<strong>Lire les services qu'un appareil expose</strong>, l'empreinte la plus claire de ce qu'il est vraiment.",
+                ]},
+                {"type": "p", "text": "D'autres fonctions d'enquête suivront. L'application gratuite reste gratuite."},
+                {"type": "buttons", "items": [
+                    {"href": PRO_URL, "label": "GhostTooth Pro sur Google Play", "primary": True, "external": True},
+                ]},
                 {"type": "h2", "text": "Vie privée"},
                 {"type": "p", "text": "Aucune donnée d'analyse, aucune donnée personnelle, aucune position ne quitte votre appareil. Aucune publicité, aucun traceur, aucun compte. La seule connexion réseau sert à télécharger les définitions de détection depuis ce site. Voir la <a href=\"{root}fr/privacy/\">politique de confidentialité</a>."},
                 {"type": "h2", "text": "Vous avez trouvé quelque chose ?"},
@@ -742,14 +763,15 @@ LANDING = {
             ],
         },
         "nl": {
-            "title": "GHOSTTOOTH — Bluetooth-tracker- en surveillancedetector",
-            "og_title": "GHOSTTOOTH — Bluetooth-trackerdetector",
+            "title": "GHOSTTOOTH · Bluetooth-tracker- en surveillancedetector",
+            "og_title": "GHOSTTOOTH · Bluetooth-trackerdetector",
             "heading": "Vind trackers en surveillanceapparaten in je omgeving",
             "description": "GhostTooth spoort bluetooth-trackers op (AirTag, Tile, SmartTag, Find My Device) en opnameapparatuur in de buurt. Gratis, zonder advertenties, zonder dataverzameling, werkt offline.",
             "blocks": [
                 {"type": "lede", "text": "GhostTooth luistert naar de bluetooth-berichten om je heen en markeert wat op een tracker of opnameapparaat lijkt. Gratis, zonder advertenties, zonder account, en <strong>er verlaat geen enkel gegeven je telefoon</strong>."},
                 {"type": "buttons", "items": [
                     {"href": PLAY_URL, "label": "Downloaden in Google Play", "primary": True, "external": True},
+                    {"href": PRO_URL, "label": "GhostTooth Pro voor onderzoekers", "external": True},
                 ]},
                 {"type": "shots", "items": SCREENSHOTS["nl"]},
                 {"type": "h2", "text": "Wat het vindt"},
@@ -761,11 +783,20 @@ LANDING = {
                 {"type": "h2", "text": "Elk oordeel legt zichzelf uit"},
                 {"type": "p", "text": "Een rode badge zonder uitleg helpt niemand. GhostTooth vertelt waarom een apparaat is gemarkeerd en hoe sterk het bewijs is: <em>mogelijk</em> (één zwakke aanwijzing), <em>waarschijnlijk</em> (bevestigd door de fabrikant of de aangekondigde service) of <em>bevestigd</em> (rechtstreeks uit het volgprotocol gelezen). Alleen sterk bewijs geeft een melding."},
                 {"type": "h2", "text": "Monitoring op de achtergrond"},
-                {"type": "p", "text": "Zet monitoring aan en GhostTooth blijft zoeken als de app dicht is, met een melding die de tellers live bijhoudt. Je krijgt bericht wanneer een apparaat <em>met je meereist</em> — het signaal dat er echt toe doet."},
+                {"type": "p", "text": "Zet monitoring aan en GhostTooth blijft zoeken als de app dicht is, met een melding die de tellers live bijhoudt. Je krijgt bericht wanneer een apparaat <em>met je meereist</em>: het signaal dat er echt toe doet."},
                 {"type": "h2", "text": "Je telefoon is de detector"},
-                {"type": "p", "text": "Professionele apparatuur zoals de <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> bestaat voor teams die beroepsmatig ruimtes doorzoeken — en kost duizenden euro's. Wij vinden niet dat je een apart apparaat zou moeten kopen om te weten of er een tracker in je tas meereist: de telefoon in je zak heeft dezelfde bluetooth-radio, en GhostTooth maakt er de detector van."},
-                {"type": "h2", "text": "Gratis om te helpen, Pro om te steunen"},
-                {"type": "p", "text": "GhostTooth bestaat om mensen te helpen: de detector is gratis, zonder advertenties, zonder account, zonder handel in gegevens. Om het werk mogelijk te maken komt er binnenkort een <strong>GhostTooth Pro</strong>-editie, voor wie het project wil steunen. De gratis app blijft gratis."},
+                {"type": "p", "text": "Professionele apparatuur zoals de <a href=\"https://www.bvsystems.com/product/bluesleuth-pro-bluetooth-and-ble-device-locator/\" rel=\"noopener\" target=\"_blank\">BlueSleuth-Pro</a> bestaat voor teams die beroepsmatig ruimtes doorzoeken, en kost duizenden euro's. Wij vinden niet dat je een apart apparaat zou moeten kopen om te weten of er een tracker in je tas meereist: de telefoon in je zak heeft dezelfde bluetooth-radio, en GhostTooth maakt er de detector van."},
+                {"type": "h2", "text": "Steun het werk met GhostTooth Pro"},
+                {"type": "p", "text": "GhostTooth is gratis en gemaakt om mensen te helpen; ik bouw het in mijn vrije tijd. Wil je het werk steunen, of doe je beroepsmatig onderzoek, dan is er <strong>GhostTooth Pro: Investigate</strong>. Dezelfde detector, plus de onderzoekersfuncties:"},
+                {"type": "ul", "items": [
+                    "<strong>Laat een gevonden tracker rinkelen</strong>, zodat de pieptoon je naar het apparaat zelf leidt.",
+                    "<strong>Lees het batterijniveau van een apparaat</strong> zonder ermee te koppelen.",
+                    "<strong>Lees uit welke services een apparaat aanbiedt</strong>, de duidelijkste vingerafdruk van wat het echt is.",
+                ]},
+                {"type": "p", "text": "Meer onderzoekersfuncties volgen. De gratis app blijft gratis."},
+                {"type": "buttons", "items": [
+                    {"href": PRO_URL, "label": "GhostTooth Pro in Google Play", "primary": True, "external": True},
+                ]},
                 {"type": "h2", "text": "Privacy"},
                 {"type": "p", "text": "Er verlaten geen scangegevens, persoonsgegevens of locatiegegevens je toestel. Geen advertenties, geen trackers, geen account. De enige netwerkverbinding haalt de detectiedefinities van deze site. Zie het <a href=\"{root}nl/privacy/\">privacybeleid</a>."},
                 {"type": "h2", "text": "Iets gevonden?"},
@@ -787,12 +818,12 @@ FAQ = {
     "updated": UPDATED,
     "langs": {
         "fr": {
-            "title": "Aide & FAQ — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Aide & FAQ",
+            "title": "Aide & FAQ · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Aide & FAQ",
             "heading": "Aide & questions fréquentes",
             "description": "Comment fonctionne GhostTooth, comment lire les résultats, pourquoi la détection à 100 % est impossible, et comment résoudre les problèmes d'analyse.",
             "blocks": [
-                {"type": "lede", "text": "Comment GhostTooth fonctionne, comment lire ce qu'il affiche et — tout aussi important — ce qu'il ne peut honnêtement pas voir."},
+                {"type": "lede", "text": "Comment GhostTooth fonctionne, comment lire ce qu'il affiche et, tout aussi important, ce qu'il ne peut honnêtement pas voir."},
                 {"type": "h2", "text": "Qu'est-ce que GhostTooth ?"},
                 {"type": "p", "text": "Un scanner Bluetooth Low Energy. Les appareils BLE diffusent en permanence de petits paquets d'annonce pour se faire connaître. GhostTooth écoute ces paquets et compare ce qu'ils contiennent à une base d'appareils connus. Il ne se connecte à rien et ne s'appaire avec rien : il écoute uniquement."},
                 {"type": "h2", "text": "Comment lire un résultat"},
@@ -807,18 +838,18 @@ FAQ = {
                 ]},
                 {"type": "h2", "text": "Que signifient les niveaux de confiance ?"},
                 {"type": "ul", "items": [
-                    "<strong>Possible</strong> — un seul indice faible, par exemple un nom contenant « tile », ou un appareil Apple ou Samsung à côté de son propriétaire. Ces appareils apparaissent dans la liste avec leur explication, mais ne sont <em>pas</em> comptés dans le total des traceurs et ne déclenchent d'alerte que s'ils vous suivent durablement.",
-                    "<strong>Probable</strong> — confirmé par un fabricant qui ne produit que des traceurs, ou par le service annoncé.",
-                    "<strong>Confirmé</strong> — lu directement dans le protocole de suivi, par exemple une balise Find My d'Apple diffusant en mode séparé.",
+                    "<strong>Possible</strong> : un seul indice faible, par exemple un nom contenant « tile », ou un appareil Apple ou Samsung à côté de son propriétaire. Ces appareils apparaissent dans la liste avec leur explication, mais ne sont <em>pas</em> comptés dans le total des traceurs et ne déclenchent d'alerte que s'ils vous suivent durablement.",
+                    "<strong>Probable</strong> : confirmé par un fabricant qui ne produit que des traceurs, ou par le service annoncé.",
+                    "<strong>Confirmé</strong> : lu directement dans le protocole de suivi, par exemple une balise Find My d'Apple diffusant en mode séparé.",
                 ]},
                 {"type": "h2", "text": "Pourquoi mon iPhone n'est-il pas signalé comme traceur ?"},
-                {"type": "p", "text": "Parce qu'il n'en est pas un. L'identifiant Bluetooth <code>0x004C</code> appartient à Apple et se retrouve sur chaque iPhone, Mac, Apple Watch et paire d'AirPods. Les versions antérieures de GhostTooth signalaient tout appareil portant cet identifiant, ce qui remplissait l'écran de fausses alertes dans n'importe quel lieu public. GhostTooth décode désormais le contenu réel de la trame et ne signale qu'une véritable balise Find My — en particulier celle d'un accessoire <em>séparé de son propriétaire</em>, ce à quoi ressemble un traceur indésirable."},
+                {"type": "p", "text": "Parce qu'il n'en est pas un. L'identifiant Bluetooth <code>0x004C</code> appartient à Apple et se retrouve sur chaque iPhone, Mac, Apple Watch et paire d'AirPods. Les versions antérieures de GhostTooth signalaient tout appareil portant cet identifiant, ce qui remplissait l'écran de fausses alertes dans n'importe quel lieu public. GhostTooth décode désormais le contenu réel de la trame et ne signale qu'une véritable balise Find My, en particulier celle d'un accessoire <em>séparé de son propriétaire</em>, ce à quoi ressemble un traceur indésirable."},
                 {"type": "h2", "text": "Pourquoi la détection à 100 % est impossible"},
                 {"type": "card", "variant": "warn", "text": "Aucun outil Bluetooth ne peut garantir de tout trouver. Un appareil éteint, déchargé, enfermé dans du métal, qui n'utilise pas le Bluetooth (GPS/GSM), qui ne se réveille qu'occasionnellement ou dont le modèle est absent de notre base ne sera pas détecté. Une analyse vierge n'est <strong>pas</strong> la preuve qu'il n'y a rien."},
-                {"type": "h2", "text": "Skimmers bancaires — ce que nous voyons et ce que nous ne voyons pas"},
+                {"type": "h2", "text": "Skimmers bancaires : ce que nous voyons et ce que nous ne voyons pas"},
                 {"type": "p", "text": "Un skimmer Bluetooth est une petite carte dissimulée dans une pompe à carburant, un distributeur ou un terminal de paiement. Il copie les données de votre carte au moment où vous payez, et le criminel les récupère plus tard par Bluetooth depuis le parking. Ce n'est pas un produit de marque : c'est un simple <strong>module série-vers-Bluetooth</strong> relié au lecteur de carte, et ce module est la seule partie qui émet un signal radio."},
-                {"type": "card", "variant": "warn", "text": "<strong>La limite la plus importante : la plupart des skimmers retrouvés sur le terrain sont invisibles pour GhostTooth — comme pour toute autre application BLE de votre téléphone.</strong> L'étude de référence <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (UC San Diego / UIUC avec les services secrets américains, USENIX Security 2019) a identifié 44 skimmers réels. Mais ses signaux — une <em>Class-of-Device</em> « Uncategorized », des préfixes MAC comme <code>00:06:66</code>, des noms d'usine <code>HC-05</code>, <code>HC-06</code> ou <code>RNBT-*</code> — relèvent tous du <strong>Bluetooth Classic (BR/EDR)</strong>. La Class-of-Device n'existe pas dans une trame BLE, et Android ne signale pas les appareils Classic à un scanner BLE. Nous avons donc délibérément <strong>renoncé</strong> à ces règles : elles produiraient un détecteur incapable de se déclencher, ce qui serait pire que rien, car il afficherait un rassurant « rien trouvé »."},
-                {"type": "p", "text": "Ce que GhostTooth <em>peut</em> voir, c'est la nouvelle génération <strong>BLE</strong>, documentée par John Passaro dans <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">« Forensic Investigation of Bluetooth-Based Credit Card Skimmers »</a> (SANS, 2025) : des modules de type <strong>HM-19</strong>, livrés avec un nom d'usine tel que <code>DSD-TECH</code> et exposant une liaison série transparente (service <code>0xFFE0</code>) que l'opérateur interroge pour vider les cartes volées. GhostTooth reconnaît désormais toute cette famille de modules par son nom — HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42 et similaires."},
+                {"type": "card", "variant": "warn", "text": "<strong>La limite la plus importante : la plupart des skimmers retrouvés sur le terrain sont invisibles pour GhostTooth, comme pour toute autre application BLE de votre téléphone.</strong> L'étude de référence <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (UC San Diego / UIUC avec les services secrets américains, USENIX Security 2019) a identifié 44 skimmers réels. Mais ses signaux (une <em>Class-of-Device</em> « Uncategorized », des préfixes MAC comme <code>00:06:66</code>, des noms d'usine <code>HC-05</code>, <code>HC-06</code> ou <code>RNBT-*</code>) relèvent tous du <strong>Bluetooth Classic (BR/EDR)</strong>. La Class-of-Device n'existe pas dans une trame BLE, et Android ne signale pas les appareils Classic à un scanner BLE. Nous avons donc délibérément <strong>renoncé</strong> à ces règles : elles produiraient un détecteur incapable de se déclencher, ce qui serait pire que rien, car il afficherait un rassurant « rien trouvé »."},
+                {"type": "p", "text": "Ce que GhostTooth <em>peut</em> voir, c'est la nouvelle génération <strong>BLE</strong>, documentée par John Passaro dans <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">« Forensic Investigation of Bluetooth-Based Credit Card Skimmers »</a> (SANS, 2025) : des modules de type <strong>HM-19</strong>, livrés avec un nom d'usine tel que <code>DSD-TECH</code> et exposant une liaison série transparente (service <code>0xFFE0</code>) que l'opérateur interroge pour vider les cartes volées. GhostTooth reconnaît désormais toute cette famille de modules par son nom : HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08…31, HC-08, HC-42 et similaires."},
                 {"type": "h3", "text": "Pourquoi une correspondance n'est pas une accusation"},
                 {"type": "ul", "items": [
                     "<strong>Ces modules sont partout, légitimement.</strong> Ils se vendent par millions pour les contrôleurs de vélos électriques, les lecteurs OBD-II, les rubans LED, les imprimantes 3D, la robotique de loisir et les kits électroniques scolaires. En voir un dans un atelier ou un garage est parfaitement normal.",
@@ -828,12 +859,12 @@ FAQ = {
                 ]},
                 {"type": "h3", "text": "Ce qui rend la situation réellement suspecte"},
                 {"type": "p", "text": "Le contexte, pas le nom. La question n'est jamais « ce module est-il un skimmer ? » mais <strong>« pourquoi un module série émet-il depuis l'intérieur d'une machine de paiement ? »</strong> Un signal le plus fort au niveau de la pompe elle-même, présent à une pompe mais pas à celle d'à côté, et qui persiste d'une visite à l'autre, mérite d'être signalé."},
-                {"type": "card", "variant": "warn", "text": "<strong>Si vous pensez en avoir trouvé un :</strong> n'ouvrez pas et ne manipulez pas la machine — c'est dangereux, c'est un délit dans la plupart des pays, et cela détruit les preuves. Prévenez l'<strong>exploitant du site</strong> et signalez-le à la <strong>police</strong>. Vérifiez ensuite vos relevés bancaires et, au moindre doute, demandez une nouvelle carte. Une lecture GhostTooth est une raison de poser une question, jamais une preuve de délit, et ne doit jamais servir à accuser un commerce ou une personne."},
+                {"type": "card", "variant": "warn", "text": "<strong>Si vous pensez en avoir trouvé un :</strong> n'ouvrez pas et ne manipulez pas la machine : c'est dangereux, c'est un délit dans la plupart des pays, et cela détruit les preuves. Prévenez l'<strong>exploitant du site</strong> et signalez-le à la <strong>police</strong>. Vérifiez ensuite vos relevés bancaires et, au moindre doute, demandez une nouvelle carte. Une lecture GhostTooth est une raison de poser une question, jamais une preuve de délit, et ne doit jamais servir à accuser un commerce ou une personne."},
                 {"type": "h2", "text": "Autorisations"},
                 {"type": "ul", "items": [
-                    "<strong>Appareils à proximité</strong> — obligatoire pour recevoir les trames BLE. GhostTooth la déclare avec <code>neverForLocation</code> : il n'en déduit aucune position.",
-                    "<strong>Notifications</strong> — uniquement pour la notification de surveillance et les alertes. Ce sont des notifications ordinaires, pas un service au premier plan.",
-                    "<strong>Démarrage au redémarrage</strong> — pour réactiver la surveillance après un redémarrage, si vous l'aviez activée.",
+                    "<strong>Appareils à proximité</strong> : obligatoire pour recevoir les trames BLE. GhostTooth la déclare avec <code>neverForLocation</code> : il n'en déduit aucune position.",
+                    "<strong>Notifications</strong> : uniquement pour la notification de surveillance et les alertes. Ce sont des notifications ordinaires, pas un service au premier plan.",
+                    "<strong>Démarrage au redémarrage</strong> : pour réactiver la surveillance après un redémarrage, si vous l'aviez activée.",
                     "Sur Android 11 et antérieur, le système exigeait l'autorisation de localisation pour toute analyse BLE. C'est une contrainte d'Android, pas un choix de GhostTooth.",
                 ]},
                 {"type": "h2", "text": "La surveillance en arrière-plan ne fonctionne pas"},
@@ -851,12 +882,12 @@ FAQ = {
             ],
         },
         "nl": {
-            "title": "Help & FAQ — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Help & FAQ",
+            "title": "Help & FAQ · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Help & FAQ",
             "heading": "Help & veelgestelde vragen",
             "description": "Hoe GhostTooth werkt, hoe je de resultaten leest, waarom 100% detectie onmogelijk is, en hoe je scanproblemen oplost.",
             "blocks": [
-                {"type": "lede", "text": "Hoe GhostTooth werkt, hoe je leest wat het laat zien en — net zo belangrijk — wat het eerlijk gezegd niet kan zien."},
+                {"type": "lede", "text": "Hoe GhostTooth werkt, hoe je leest wat het laat zien en, net zo belangrijk, wat het eerlijk gezegd niet kan zien."},
                 {"type": "h2", "text": "Wat is GhostTooth?"},
                 {"type": "p", "text": "Een Bluetooth Low Energy-scanner. BLE-apparaten zenden continu kleine advertentiepakketjes uit om zich kenbaar te maken. GhostTooth luistert naar die pakketjes en vergelijkt de inhoud met een database van bekende apparaten. Het maakt nooit verbinding en koppelt nooit: het luistert alleen."},
                 {"type": "h2", "text": "Hoe lees je een resultaat?"},
@@ -871,18 +902,18 @@ FAQ = {
                 ]},
                 {"type": "h2", "text": "Wat betekenen de zekerheidsniveaus?"},
                 {"type": "ul", "items": [
-                    "<strong>Mogelijk</strong> — één zwakke aanwijzing, bijvoorbeeld een naam met 'tile' erin, of een Apple- of Samsung-apparaat naast zijn eigenaar. Die apparaten staan met uitleg in de lijst, maar tellen <em>niet</em> mee in het totaal aantal trackers en geven alleen een melding als ze ook langere tijd met u meereizen.",
-                    "<strong>Waarschijnlijk</strong> — bevestigd door een fabrikant die alleen trackers maakt, of door de aangekondigde service.",
-                    "<strong>Bevestigd</strong> — rechtstreeks uit het volgprotocol gelezen, bijvoorbeeld een Apple Find My-baken dat in gescheiden toestand uitzendt.",
+                    "<strong>Mogelijk</strong>: één zwakke aanwijzing, bijvoorbeeld een naam met 'tile' erin, of een Apple- of Samsung-apparaat naast zijn eigenaar. Die apparaten staan met uitleg in de lijst, maar tellen <em>niet</em> mee in het totaal aantal trackers en geven alleen een melding als ze ook langere tijd met u meereizen.",
+                    "<strong>Waarschijnlijk</strong>: bevestigd door een fabrikant die alleen trackers maakt, of door de aangekondigde service.",
+                    "<strong>Bevestigd</strong>: rechtstreeks uit het volgprotocol gelezen, bijvoorbeeld een Apple Find My-baken dat in gescheiden toestand uitzendt.",
                 ]},
                 {"type": "h2", "text": "Waarom wordt mijn iPhone niet als tracker gemarkeerd?"},
-                {"type": "p", "text": "Omdat het er geen is. Bluetooth-code <code>0x004C</code> is van Apple en zit op elke iPhone, Mac, Apple Watch en set AirPods. Oudere versies van GhostTooth markeerden alles met die code, waardoor het scherm in elke openbare ruimte vol stond met valse meldingen. GhostTooth decodeert nu de werkelijke inhoud van het bericht en markeert alleen een echt Find My-baken — met name dat van een accessoire dat <em>gescheiden is van zijn eigenaar</em>, wat precies is hoe een ongewenste tracker eruitziet."},
+                {"type": "p", "text": "Omdat het er geen is. Bluetooth-code <code>0x004C</code> is van Apple en zit op elke iPhone, Mac, Apple Watch en set AirPods. Oudere versies van GhostTooth markeerden alles met die code, waardoor het scherm in elke openbare ruimte vol stond met valse meldingen. GhostTooth decodeert nu de werkelijke inhoud van het bericht en markeert alleen een echt Find My-baken, met name dat van een accessoire dat <em>gescheiden is van zijn eigenaar</em>, wat precies is hoe een ongewenste tracker eruitziet."},
                 {"type": "h2", "text": "Waarom 100% detectie onmogelijk is"},
                 {"type": "card", "variant": "warn", "text": "Geen enkel bluetooth-hulpmiddel kan garanderen dat het alles vindt. Een apparaat dat uit staat, leeg is, in metaal is weggewerkt, geen bluetooth gebruikt (GPS/GSM), maar af en toe wakker wordt, of waarvan het model niet in onze database staat, wordt niet gevonden. Een schone scan is <strong>geen</strong> bewijs dat er niets is."},
-                {"type": "h2", "text": "Skimmers \u2014 wat we wel en niet kunnen zien"},
+                {"type": "h2", "text": "Skimmers: wat we wel en niet kunnen zien"},
                 {"type": "p", "text": "Een bluetooth-skimmer is een klein printplaatje dat verstopt zit in een brandstofpomp, geldautomaat of betaalterminal. Het kopieert je kaartgegevens terwijl je betaalt; de crimineel haalt ze later via bluetooth op vanaf de parkeerplaats. Het is geen merkproduct: het is een goedkope <strong>serieel-naar-bluetooth-module</strong> die aan de kaartlezer is gesoldeerd, en die module is het enige onderdeel dat een radiosignaal uitzendt."},
-                {"type": "card", "variant": "warn", "text": "<strong>De belangrijkste beperking: de meeste skimmers die tot nu toe in het veld zijn gevonden, zijn onzichtbaar voor GhostTooth \u2014 en voor elke andere BLE-app op je telefoon.</strong> Het referentieonderzoek is <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (UC San Diego / UIUC samen met de Amerikaanse Secret Service, USENIX Security 2019), dat 44 echte skimmers vond. Maar de signalen waarop het steunt \u2014 een <em>Class-of-Device</em> \u201cUncategorized\u201d, MAC-prefixen zoals <code>00:06:66</code> en fabrieksnamen als <code>HC-05</code>, <code>HC-06</code> of <code>RNBT-*</code> \u2014 horen allemaal bij <strong>Bluetooth Classic (BR/EDR)</strong>. Class-of-Device bestaat niet in een BLE-bericht, en Android meldt Classic-apparaten helemaal niet aan een BLE-scanner. We hebben die regels daarom bewust <strong>niet</strong> overgenomen: ze zouden een detector opleveren die nooit kan afgaan, en dat is erger dan geen detector \u2014 want hij zou een geruststellend \u201cniets gevonden\u201d tonen."},
-                {"type": "p", "text": "Wat GhostTooth <em>wel</em> ziet, is de nieuwere <strong>BLE</strong>-generatie, beschreven door John Passaro in <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">\u201cForensic Investigation of Bluetooth-Based Credit Card Skimmers\u201d</a> (SANS, 2025): modules uit de <strong>HM-19</strong>-familie, met een fabrieksnaam als <code>DSD-TECH</code> en een transparante seri\u00eble verbinding (service <code>0xFFE0</code>) waarmee de dader de gestolen kaarten uitleest. GhostTooth herkent die hele modulefamilie nu op naam \u2014 HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08\u202631, HC-08, HC-42 en soortgelijke."},
+                {"type": "card", "variant": "warn", "text": "<strong>De belangrijkste beperking: de meeste skimmers die tot nu toe in het veld zijn gevonden, zijn onzichtbaar voor GhostTooth, en voor elke andere BLE-app op je telefoon.</strong> Het referentieonderzoek is <a href=\"https://cns.ucsd.edu/bluetana/\" rel=\"noopener\" target=\"_blank\">Bluetana</a> (UC San Diego / UIUC samen met de Amerikaanse Secret Service, USENIX Security 2019), dat 44 echte skimmers vond. Maar de signalen waarop het steunt (een <em>Class-of-Device</em> \u201cUncategorized\u201d, MAC-prefixen zoals <code>00:06:66</code> en fabrieksnamen als <code>HC-05</code>, <code>HC-06</code> of <code>RNBT-*</code>) horen allemaal bij <strong>Bluetooth Classic (BR/EDR)</strong>. Class-of-Device bestaat niet in een BLE-bericht, en Android meldt Classic-apparaten helemaal niet aan een BLE-scanner. We hebben die regels daarom bewust <strong>niet</strong> overgenomen: ze zouden een detector opleveren die nooit kan afgaan, en dat is erger dan geen detector, want hij zou een geruststellend \u201cniets gevonden\u201d tonen."},
+                {"type": "p", "text": "Wat GhostTooth <em>wel</em> ziet, is de nieuwere <strong>BLE</strong>-generatie, beschreven door John Passaro in <a href=\"https://www.sans.edu/cyber-research/forensic-investigation-bluetooth-based-credit-card-skimmers\" rel=\"noopener\" target=\"_blank\">\u201cForensic Investigation of Bluetooth-Based Credit Card Skimmers\u201d</a> (SANS, 2025): modules uit de <strong>HM-19</strong>-familie, met een fabrieksnaam als <code>DSD-TECH</code> en een transparante seri\u00eble verbinding (service <code>0xFFE0</code>) waarmee de dader de gestolen kaarten uitleest. GhostTooth herkent die hele modulefamilie nu op naam: HM-10/11/16/17/19, CC41-A, AT-09, MLT-BT05, BT05, JDY-08\u202631, HC-08, HC-42 en soortgelijke."},
                 {"type": "h3", "text": "Waarom een match geen beschuldiging is"},
                 {"type": "ul", "items": [
                     "<strong>Deze modules zitten overal, volkomen legitiem.</strong> Ze worden met miljoenen verkocht voor e-bikecontrollers, OBD-II-lezers, ledstrips, 3D-printers, hobbyrobotica en elektronicasets voor school. E\u00e9n zien in een werkplaats of garage is volstrekt normaal.",
@@ -892,12 +923,12 @@ FAQ = {
                 ]},
                 {"type": "h3", "text": "Wat het w\u00e9l verdacht maakt"},
                 {"type": "p", "text": "De context, niet de naam. De vraag is nooit \u201cis deze module een skimmer?\u201d maar <strong>\u201cwaarom zendt een seri\u00eble module uit vanuit een betaalautomaat?\u201d</strong> Een signaal dat het sterkst is bij de pomp zelf, dat bij \u00e9\u00e9n pomp aanwezig is en bij de identieke pomp ernaast niet, en dat bij een volgend bezoek terugkomt, is het melden waard."},
-                {"type": "card", "variant": "warn", "text": "<strong>Denk je er een gevonden te hebben?</strong> Open of demonteer de automaat <strong>niet</strong> \u2014 dat is gevaarlijk, in de meeste landen strafbaar, en het vernietigt het bewijs. Waarschuw de <strong>uitbater of het personeel</strong> en meld het bij de <strong>politie</strong>. Controleer daarna je eigen rekeningafschriften en vraag bij twijfel een nieuwe kaart aan. Een GhostTooth-melding is een reden om een vraag te stellen, nooit een bewijs van een misdrijf, en mag nooit gebruikt worden om een zaak of persoon te beschuldigen."},
+                {"type": "card", "variant": "warn", "text": "<strong>Denk je er een gevonden te hebben?</strong> Open of demonteer de automaat <strong>niet</strong>: dat is gevaarlijk, in de meeste landen strafbaar, en het vernietigt het bewijs. Waarschuw de <strong>uitbater of het personeel</strong> en meld het bij de <strong>politie</strong>. Controleer daarna je eigen rekeningafschriften en vraag bij twijfel een nieuwe kaart aan. Een GhostTooth-melding is een reden om een vraag te stellen, nooit een bewijs van een misdrijf, en mag nooit gebruikt worden om een zaak of persoon te beschuldigen."},
                 {"type": "h2", "text": "Machtigingen"},
                 {"type": "ul", "items": [
-                    "<strong>Apparaten in de buurt</strong> — nodig om BLE-berichten te ontvangen. GhostTooth vraagt die met <code>neverForLocation</code>: er wordt geen locatie uit afgeleid.",
-                    "<strong>Meldingen</strong> — alleen voor de monitoringmelding en waarschuwingen. Dat zijn gewone meldingen, geen foreground service.",
-                    "<strong>Starten bij opstarten</strong> — om monitoring na een herstart weer aan te zetten als je die had ingeschakeld.",
+                    "<strong>Apparaten in de buurt</strong>: nodig om BLE-berichten te ontvangen. GhostTooth vraagt die met <code>neverForLocation</code>: er wordt geen locatie uit afgeleid.",
+                    "<strong>Meldingen</strong>: alleen voor de monitoringmelding en waarschuwingen. Dat zijn gewone meldingen, geen foreground service.",
+                    "<strong>Starten bij opstarten</strong>: om monitoring na een herstart weer aan te zetten als je die had ingeschakeld.",
                     "Op Android 11 en ouder eiste het systeem locatietoestemming voor elke BLE-scan. Dat is een beperking van Android, geen keuze van GhostTooth.",
                 ]},
                 {"type": "h2", "text": "Monitoring op de achtergrond werkt niet"},
@@ -925,8 +956,8 @@ PRIVACY = {
     "updated": UPDATED,
     "langs": {
         "fr": {
-            "title": "Politique de confidentialité — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Politique de confidentialité",
+            "title": "Politique de confidentialité · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Politique de confidentialité",
             "heading": "Politique de confidentialité",
             "description": "GhostTooth ne collecte, ne stocke et ne partage aucune donnée personnelle. Tout le traitement est local et l'application fonctionne hors ligne.",
             "blocks": [
@@ -936,7 +967,7 @@ PRIVACY = {
                 {"type": "h2", "text": "2. Ce qui reste sur votre appareil"},
                 {"type": "p", "text": "Les appareils détectés, vos notes, les appareils que vous avez masqués et l'historique de surveillance sont enregistrés dans le stockage interne privé de l'application. Ils sont supprimés lorsque vous videz la liste, effacez les données de l'application ou la désinstallez."},
                 {"type": "h2", "text": "3. Activité réseau"},
-                {"type": "p", "text": "L'application télécharge périodiquement les définitions de détection depuis <code>ghosttooth.labidi.eu</code>. Comme pour toute requête web, notre hébergeur voit l'adresse IP publique qui la formule. Nous n'établissons pas de profil et ne relions cette requête à rien. Aucun résultat d'analyse n'est envoyé — la requête est en lecture seule."},
+                {"type": "p", "text": "L'application télécharge périodiquement les définitions de détection depuis <code>ghosttooth.labidi.eu</code>. Comme pour toute requête web, notre hébergeur voit l'adresse IP publique qui la formule. Nous n'établissons pas de profil et ne relions cette requête à rien. Aucun résultat d'analyse n'est envoyé ; la requête est en lecture seule."},
                 {"type": "p", "text": "L'application propose un épinglage de certificat facultatif pour cette connexion. Il est désactivé par défaut car un renouvellement légitime de certificat interromprait les mises à jour ; il est utile si vous craignez une interception."},
                 {"type": "h2", "text": "4. Fonctionnement hors ligne"},
                 {"type": "p", "text": "Toutes les fonctions de détection marchent sans connexion. Les définitions fournies avec l'application servent tant qu'aucune mise à jour n'a été téléchargée."},
@@ -961,8 +992,8 @@ PRIVACY = {
             ],
         },
         "nl": {
-            "title": "Privacybeleid — GHOSTTOOTH",
-            "og_title": "GHOSTTOOTH — Privacybeleid",
+            "title": "Privacybeleid · GHOSTTOOTH",
+            "og_title": "GHOSTTOOTH · Privacybeleid",
             "heading": "Privacybeleid",
             "description": "GhostTooth verzamelt, bewaart en deelt geen persoonsgegevens. Alle verwerking gebeurt lokaal en de app werkt offline.",
             "blocks": [
@@ -972,7 +1003,7 @@ PRIVACY = {
                 {"type": "h2", "text": "2. Wat op je toestel blijft"},
                 {"type": "p", "text": "Gevonden apparaten, je notities, gedempte apparaten en de monitoringgeschiedenis staan in de privéopslag van de app. Ze verdwijnen als je de lijst wist, de app-gegevens wist of de app verwijdert."},
                 {"type": "h2", "text": "3. Netwerkverkeer"},
-                {"type": "p", "text": "De app haalt periodiek detectiedefinities op van <code>ghosttooth.labidi.eu</code>. Zoals bij elk webverzoek ziet onze hostingprovider het publieke IP-adres dat het verzoek doet. We stellen geen profiel op en koppelen dat verzoek nergens aan. Er worden geen scanresultaten verstuurd — het verzoek is alleen-lezen."},
+                {"type": "p", "text": "De app haalt periodiek detectiedefinities op van <code>ghosttooth.labidi.eu</code>. Zoals bij elk webverzoek ziet onze hostingprovider het publieke IP-adres dat het verzoek doet. We stellen geen profiel op en koppelen dat verzoek nergens aan. Er worden geen scanresultaten verstuurd; het verzoek is alleen-lezen."},
                 {"type": "p", "text": "De app biedt optionele certificate pinning voor die verbinding. Die staat standaard uit omdat een legitieme certificaatvernieuwing de updates zou stoppen; hij is nuttig als je bang bent voor onderschepping."},
                 {"type": "h2", "text": "4. Werking zonder internet"},
                 {"type": "p", "text": "Alle detectiefuncties werken offline. De met de app meegeleverde definities worden gebruikt zolang er nog geen update is gedownload."},

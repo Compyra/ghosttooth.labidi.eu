@@ -19,23 +19,23 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GHOSTTOOTH">
-<meta property="og:title" content="GHOSTTOOTH — Déclaration d&#x27;accessibilité">
+<meta property="og:title" content="GHOSTTOOTH · Déclaration d&#x27;accessibilité">
 <meta property="og:description" content="Le niveau d&#x27;accessibilité de l&#x27;application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/fr/accessibility/">
 <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="fr_FR">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOSTTOOTH — Déclaration d&#x27;accessibilité">
+<meta name="twitter:title" content="GHOSTTOOTH · Déclaration d&#x27;accessibilité">
 <meta name="twitter:description" content="Le niveau d&#x27;accessibilité de l&#x27;application et du site GhostTooth, ce qui est en place, ce qui reste imparfait, et comment nous signaler un problème.">
 <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
-<title>Déclaration d&#x27;accessibilité — GHOSTTOOTH</title>
+<title>Déclaration d&#x27;accessibilité · GHOSTTOOTH</title>
 <style>
   :root {
     --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
@@ -111,7 +111,8 @@
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -146,7 +147,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Déclaration d'accessibilité — GHOSTTOOTH",
+      "name": "Déclaration d'accessibilité · GHOSTTOOTH",
       "item": "https://ghosttooth.labidi.eu/fr/accessibility/"
     }
   ]
@@ -165,12 +166,12 @@
 
 <main id="content">
 <h1>Déclaration d&#x27;accessibilité</h1>
-<p class="updated">Dernière mise à jour 2026-09-07</p>
+<p class="updated">Dernière mise à jour 2026-09-11</p>
 <p class="lede">Un outil de sécurité qui ne fonctionne que pour certaines personnes n'est pas un outil de sécurité. Cette page dit clairement où en est GhostTooth, y compris ce qui n'est pas encore satisfaisant.</p>
 <h2>Objectif</h2>
 <p>Nous visons le niveau <strong>AA des WCAG 2.1</strong> sur ce site, et le respect des recommandations d'accessibilité Android dans l'application. Aucun audit externe formel n'a été commandé : il s'agit donc d'une auto-évaluation.</p>
 <h2>Ce qui est en place</h2>
-<ul><li>Chaque page est un fichier unique sans police ni script externe : elle s'affiche même sur une connexion lente ou filtrée.</li><li>Les thèmes sombre et clair respectent tous deux le contraste AA ; le site suit votre préférence système au lieu d'en imposer une.</li><li>Repères sémantiques, hiérarchie de titres logique et lien « aller au contenu » sur chaque page.</li><li>Zones tactiles d'au moins 48 × 48 px dans l'application comme sur le site.</li><li>Dans l'application, les badges de menace portent une description vocale — un lecteur d'écran annonce « Appareil de surveillance, confiance confirmée » au lieu de lire un symbole coloré.</li><li>Le niveau de menace n'est jamais transmis par la couleur seule : chaque badge porte aussi un symbole et un mot.</li><li>Le texte suit la taille de police du système sans être tronqué.</li></ul>
+<ul><li>Chaque page est un fichier unique sans police ni script externe : elle s'affiche même sur une connexion lente ou filtrée.</li><li>Les thèmes sombre et clair respectent tous deux le contraste AA ; le site suit votre préférence système au lieu d'en imposer une.</li><li>Repères sémantiques, hiérarchie de titres logique et lien « aller au contenu » sur chaque page.</li><li>Zones tactiles d'au moins 48 × 48 px dans l'application comme sur le site.</li><li>Dans l'application, les badges de menace portent une description vocale : un lecteur d'écran annonce « Appareil de surveillance, confiance confirmée » au lieu de lire un symbole coloré.</li><li>Le niveau de menace n'est jamais transmis par la couleur seule : chaque badge porte aussi un symbole et un mot.</li><li>Le texte suit la taille de police du système sans être tronqué.</li></ul>
 <h2>Limites connues</h2>
 <p>Nous préférons les lister plutôt que faire comme si elles n'existaient pas :</p>
 <ul><li>La frise de présence expérimentale est un graphique purement visuel, sans équivalent textuel pour l'instant.</li><li>La localisation chaud/froid est utilisable au lecteur d'écran et avec retour sonore, mais n'a pas encore de retour haptique pour les personnes qui n'entendent pas les bips.</li><li>Certains textes explicatifs longs n'ont pas encore fait l'objet d'une relecture en langage clair.</li></ul>

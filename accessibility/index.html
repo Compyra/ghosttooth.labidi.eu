@@ -19,23 +19,23 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GHOSTTOOTH">
-<meta property="og:title" content="GHOSTTOOTH — Accessibility statement">
+<meta property="og:title" content="GHOSTTOOTH · Accessibility statement">
 <meta property="og:description" content="How accessible the GhostTooth app and website are, what we have done, what we know is still imperfect, and how to tell us when something does not work for you.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/accessibility/">
 <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="en_US">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOSTTOOTH — Accessibility statement">
+<meta name="twitter:title" content="GHOSTTOOTH · Accessibility statement">
 <meta name="twitter:description" content="How accessible the GhostTooth app and website are, what we have done, what we know is still imperfect, and how to tell us when something does not work for you.">
 <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
-<title>Accessibility statement — GHOSTTOOTH</title>
+<title>Accessibility statement · GHOSTTOOTH</title>
 <style>
   :root {
     --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
@@ -111,7 +111,8 @@
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -146,7 +147,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Accessibility statement — GHOSTTOOTH",
+      "name": "Accessibility statement · GHOSTTOOTH",
       "item": "https://ghosttooth.labidi.eu/accessibility/"
     }
   ]
@@ -165,12 +166,12 @@
 
 <main id="content">
 <h1>Accessibility statement</h1>
-<p class="updated">Last updated 2026-09-07</p>
+<p class="updated">Last updated 2026-09-11</p>
 <p class="lede">A safety tool that only works for some people is not a safety tool. This page says plainly where GhostTooth stands, including the parts that are not good enough yet.</p>
 <h2>Target</h2>
 <p>We aim to meet <strong>WCAG 2.1 level AA</strong> on this website, and to follow the Android accessibility guidelines in the app. We have not commissioned a formal third-party audit, so this is a self-assessment.</p>
 <h2>What is in place</h2>
-<ul><li>Every page is a single file with no external fonts or scripts, so it renders and reflows even on a slow or blocked connection.</li><li>Dark and light themes both meet AA contrast; the site follows your system preference rather than forcing one.</li><li>Semantic landmarks, a logical heading order, and a skip-to-content link on every page.</li><li>Touch targets of at least 48×48 px throughout the app and the site.</li><li>In the app, threat badges carry spoken descriptions — a screen reader announces "Surveillance device, confirmed confidence" rather than reading out a coloured symbol.</li><li>The hot/cold locator gives both sound and haptic feedback, pulsing faster and harder as you close in, so it works if you cannot hear the beeps or cannot make a sound while searching.</li><li>Threat level is never conveyed by colour alone: each badge also carries a symbol and a word.</li><li>Text scales with your system font size without clipping.</li></ul>
+<ul><li>Every page is a single file with no external fonts or scripts, so it renders and reflows even on a slow or blocked connection.</li><li>Dark and light themes both meet AA contrast; the site follows your system preference rather than forcing one.</li><li>Semantic landmarks, a logical heading order, and a skip-to-content link on every page.</li><li>Touch targets of at least 48×48 px throughout the app and the site.</li><li>In the app, threat badges carry spoken descriptions: a screen reader announces "Surveillance device, confirmed confidence" rather than reading out a coloured symbol.</li><li>The hot/cold locator gives both sound and haptic feedback, pulsing faster and harder as you close in, so it works if you cannot hear the beeps or cannot make a sound while searching.</li><li>Threat level is never conveyed by colour alone: each badge also carries a symbol and a word.</li><li>Text scales with your system font size without clipping.</li></ul>
 <h2>Known gaps</h2>
 <p>We would rather list these than pretend they do not exist:</p>
 <ul><li>The experimental presence timeline in the app is a purely visual chart with no textual equivalent yet.</li><li>Some longer explanatory text has not been through a plain-language review.</li></ul>

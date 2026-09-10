@@ -19,23 +19,23 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GHOSTTOOTH">
-<meta property="og:title" content="GHOSTTOOTH — Privacybeleid">
+<meta property="og:title" content="GHOSTTOOTH · Privacybeleid">
 <meta property="og:description" content="GhostTooth verzamelt, bewaart en deelt geen persoonsgegevens. Alle verwerking gebeurt lokaal en de app werkt offline.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/nl/privacy/">
 <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="nl_NL">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOSTTOOTH — Privacybeleid">
+<meta name="twitter:title" content="GHOSTTOOTH · Privacybeleid">
 <meta name="twitter:description" content="GhostTooth verzamelt, bewaart en deelt geen persoonsgegevens. Alle verwerking gebeurt lokaal en de app werkt offline.">
 <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
-<title>Privacybeleid — GHOSTTOOTH</title>
+<title>Privacybeleid · GHOSTTOOTH</title>
 <style>
   :root {
     --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
@@ -111,7 +111,8 @@
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -146,7 +147,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Privacybeleid — GHOSTTOOTH",
+      "name": "Privacybeleid · GHOSTTOOTH",
       "item": "https://ghosttooth.labidi.eu/nl/privacy/"
     }
   ]
@@ -165,14 +166,14 @@
 
 <main id="content">
 <h1>Privacybeleid</h1>
-<p class="updated">Laatst bijgewerkt 2026-09-07</p>
+<p class="updated">Laatst bijgewerkt 2026-09-11</p>
 <div class="card ok"><h3>In het kort</h3><p>Geen dataverzameling. Geen account. Geen advertenties. Geen analytics. Er verlaten geen scanresultaten je toestel. De enige netwerkverbinding haalt openbare detectiedefinities van deze site.</p></div>
 <h2>1. Wat we niet verzamelen</h2>
 <p>We verzamelen, bewaren en versturen niet: welke apparaten je detecteert, MAC-adressen, apparaatnamen, je locatie, je advertentie-ID, je e-mailadres, je contacten of gebruiksstatistieken. Er is geen server die deze gegevens zou ontvangen.</p>
 <h2>2. Wat op je toestel blijft</h2>
 <p>Gevonden apparaten, je notities, gedempte apparaten en de monitoringgeschiedenis staan in de privéopslag van de app. Ze verdwijnen als je de lijst wist, de app-gegevens wist of de app verwijdert.</p>
 <h2>3. Netwerkverkeer</h2>
-<p>De app haalt periodiek detectiedefinities op van <code>ghosttooth.labidi.eu</code>. Zoals bij elk webverzoek ziet onze hostingprovider het publieke IP-adres dat het verzoek doet. We stellen geen profiel op en koppelen dat verzoek nergens aan. Er worden geen scanresultaten verstuurd — het verzoek is alleen-lezen.</p>
+<p>De app haalt periodiek detectiedefinities op van <code>ghosttooth.labidi.eu</code>. Zoals bij elk webverzoek ziet onze hostingprovider het publieke IP-adres dat het verzoek doet. We stellen geen profiel op en koppelen dat verzoek nergens aan. Er worden geen scanresultaten verstuurd; het verzoek is alleen-lezen.</p>
 <p>De app biedt optionele certificate pinning voor die verbinding. Die staat standaard uit omdat een legitieme certificaatvernieuwing de updates zou stoppen; hij is nuttig als je bang bent voor onderschepping.</p>
 <h2>4. Werking zonder internet</h2>
 <p>Alle detectiefuncties werken offline. De met de app meegeleverde definities worden gebruikt zolang er nog geen update is gedownload.</p>

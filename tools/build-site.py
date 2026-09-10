@@ -4,7 +4,7 @@
 WHY A GENERATOR
 ---------------
 The app ships in English, French and Dutch. The site did not, which meant a
-Dutch or French user got a localised app and an English help page — landing on
+Dutch or French user got a localised app and an English help page - landing on
 English exactly when they were most confused. Hand-maintaining three copies of
 every page guarantees they drift apart, so the copy lives in `site_content.py`
 and this script renders it into standalone, offline-safe HTML.
@@ -117,7 +117,8 @@ CSS = """
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -259,7 +260,7 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 
     # Languages this page is reachable in. The English landing page, FAQ and
     # privacy policy are hand-written files this generator does not produce, so
-    # they are absent from page["langs"] — but they exist, and a French reader
+    # they are absent from page["langs"] - but they exist, and a French reader
     # must still be able to switch to English. Without this the generated pages
     # offered FR/NL only and stranded anyone who wanted English.
     available = [c for c in LANGS if c in page["langs"] or (c == "en" and slug in HANDWRITTEN_EN)]
@@ -330,7 +331,7 @@ def render_page(lang: str, slug: str, page: dict) -> str:
 <meta property="og:description" content="{esc(meta['description'])}">
 <meta property="og:url" content="{url}">
 <meta property="og:image" content="{BASE_URL}media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -389,7 +390,7 @@ if ('serviceWorker' in navigator) {{
 ALL_SLUGS_FOR: dict[str, set[str]] = {}
 
 # The English FAQ and privacy policy are hand-written files that this
-# generator deliberately does not own — but they still belong in the sitemap,
+# generator deliberately does not own - but they still belong in the sitemap,
 # so they are declared here.
 HANDWRITTEN_EN = {"faq", "privacy"}
 
@@ -473,7 +474,7 @@ def main() -> int:
     print(f"\ngenerated {written} page(s)")
 
     urls = write_sitemap()
-    print(f"sitemap.xml — {urls} url(s)")
+    print(f"sitemap.xml - {urls} url(s)")
 
     if MISSING_SHOTS:
         print(

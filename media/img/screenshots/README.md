@@ -18,14 +18,14 @@ Portrait, ideally 1080×2280 or similar 9:19.5. Keep them under ~300 KB each
 ## Why this folder is empty
 
 The screenshots on the Play listing were captured from **1.2.0**, before the
-detection rework in 1.3.0. They show the false positives that release fixed —
+detection rework in 1.3.0. They show the false positives that release fixed -
 one has a status bar reading `3040 devices · 3 surveillance · 1803 trackers`
 (nearly every Apple and Samsung device in range counted as a tracker) and a JBL
 speaker badged `SURVEILLANCE`. Re-publishing them here would advertise the bug
 we just removed, so they were deliberately not carried over.
 
 **Capture fresh ones from a 1.3.0 build**, and update the Play listing with the
-same set while you are there — the store screenshots have the same problem.
+same set while you are there - the store screenshots have the same problem.
 
 Do not crop or retouch a screenshot to hide a verdict. If the app gets a call
 wrong in the shot, fix the app.

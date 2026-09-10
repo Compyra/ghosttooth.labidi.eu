@@ -19,23 +19,23 @@
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GHOSTTOOTH">
-<meta property="og:title" content="GHOSTTOOTH — Toegankelijkheidsverklaring">
+<meta property="og:title" content="GHOSTTOOTH · Toegankelijkheidsverklaring">
 <meta property="og:description" content="Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.">
 <meta property="og:url" content="https://ghosttooth.labidi.eu/nl/accessibility/">
 <meta property="og:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
-<meta property="og:image:alt" content="GHOSTTOOTH — Bluetooth surveillance and tracker detector">
+<meta property="og:image:alt" content="GHOSTTOOTH - Bluetooth surveillance and tracker detector">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="nl_NL">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GHOSTTOOTH — Toegankelijkheidsverklaring">
+<meta name="twitter:title" content="GHOSTTOOTH · Toegankelijkheidsverklaring">
 <meta name="twitter:description" content="Hoe toegankelijk de GhostTooth-app en -website zijn, wat er is gedaan, wat nog niet goed genoeg is, en hoe je ons laat weten dat iets niet werkt.">
 <meta name="twitter:image" content="https://ghosttooth.labidi.eu/media/img/og-1200x630.png">
 <meta name="twitter:image:alt" content="GHOSTTOOTH logo">
 
-<title>Toegankelijkheidsverklaring — GHOSTTOOTH</title>
+<title>Toegankelijkheidsverklaring · GHOSTTOOTH</title>
 <style>
   :root {
     --bg: #0b0d1a; --bg-2: #12152a; --surface: #161a30; --surface-2: #1d2340;
@@ -111,7 +111,8 @@
   .btn:hover { text-decoration: none; border-color: var(--accent); }
   .btn.primary { background: var(--gold); color: #191c2c; border-color: var(--gold); }
   .btn.primary:hover { background: var(--gold-soft); }
-  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; }
+  /* display:block lets a wide helpline table scroll inside its own box on phones */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 15px; display: block; overflow-x: auto; }
   th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
   th { color: var(--gold-soft); font-weight: 600; }
   code { font-family: var(--mono); font-size: .92em; background: var(--surface-2); padding: 2px 6px; border-radius: 6px; }
@@ -146,7 +147,7 @@
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Toegankelijkheidsverklaring — GHOSTTOOTH",
+      "name": "Toegankelijkheidsverklaring · GHOSTTOOTH",
       "item": "https://ghosttooth.labidi.eu/nl/accessibility/"
     }
   ]
@@ -165,12 +166,12 @@
 
 <main id="content">
 <h1>Toegankelijkheidsverklaring</h1>
-<p class="updated">Laatst bijgewerkt 2026-09-07</p>
+<p class="updated">Laatst bijgewerkt 2026-09-11</p>
 <p class="lede">Een veiligheidshulpmiddel dat maar voor sommige mensen werkt, is geen veiligheidshulpmiddel. Deze pagina zegt eerlijk waar GhostTooth staat, inclusief wat nog niet goed genoeg is.</p>
 <h2>Doel</h2>
 <p>We streven op deze website naar <strong>WCAG 2.1 niveau AA</strong>, en in de app naar de Android-richtlijnen voor toegankelijkheid. Er is geen formele externe audit uitgevoerd; dit is dus een zelfbeoordeling.</p>
 <h2>Wat er is geregeld</h2>
-<ul><li>Elke pagina is één bestand zonder externe lettertypen of scripts, dus hij laadt ook op een trage of geblokkeerde verbinding.</li><li>Donker en licht thema voldoen allebei aan AA-contrast; de site volgt je systeemvoorkeur in plaats van er één op te leggen.</li><li>Semantische landmarks, een logische kopstructuur en een 'naar de inhoud'-link op elke pagina.</li><li>Aanraakdoelen van minimaal 48 × 48 px in zowel de app als de site.</li><li>In de app hebben dreigingsbadges een gesproken omschrijving — een schermlezer meldt "Surveillanceapparaat, bevestigde zekerheid" in plaats van een gekleurd symbool voor te lezen.</li><li>Het dreigingsniveau wordt nooit alleen met kleur aangegeven: elke badge heeft ook een symbool en een woord.</li><li>Tekst schaalt mee met je systeemlettergrootte zonder weg te vallen.</li></ul>
+<ul><li>Elke pagina is één bestand zonder externe lettertypen of scripts, dus hij laadt ook op een trage of geblokkeerde verbinding.</li><li>Donker en licht thema voldoen allebei aan AA-contrast; de site volgt je systeemvoorkeur in plaats van er één op te leggen.</li><li>Semantische landmarks, een logische kopstructuur en een 'naar de inhoud'-link op elke pagina.</li><li>Aanraakdoelen van minimaal 48 × 48 px in zowel de app als de site.</li><li>In de app hebben dreigingsbadges een gesproken omschrijving: een schermlezer meldt "Surveillanceapparaat, bevestigde zekerheid" in plaats van een gekleurd symbool voor te lezen.</li><li>Het dreigingsniveau wordt nooit alleen met kleur aangegeven: elke badge heeft ook een symbool en een woord.</li><li>Tekst schaalt mee met je systeemlettergrootte zonder weg te vallen.</li></ul>
 <h2>Bekende tekortkomingen</h2>
 <p>We noemen ze liever dan te doen alsof ze er niet zijn:</p>
 <ul><li>De experimentele aanwezigheidstijdlijn in de app is een puur visuele grafiek zonder tekstueel alternatief.</li><li>De warm/koud-locator is bruikbaar met een schermlezer en met geluid, maar heeft nog geen trilpatroon voor wie het piepen niet hoort.</li><li>Sommige langere uitlegteksten zijn nog niet op begrijpelijke taal nagekeken.</li></ul>

@@ -5,7 +5,7 @@ WHY THIS EXISTS
 ---------------
 The Android app used to re-download every registry file on a fixed 12-hour
 timer: roughly 170 KB per install, per refresh, whether or not anything had
-changed. It also had no way to tell a truncated download from a good one — and a
+changed. It also had no way to tell a truncated download from a good one - and a
 half-written registry is a silent detection outage, which is the worst possible
 failure mode for a detector.
 
@@ -19,7 +19,7 @@ LAYOUT (since the 2026-08 media split)
 Canonical registry sources live in media/identifiers/. Every deployed app
 version before the split fetches the OLD paths (media/<name> and
 media/registry-index.json), so this script also writes byte-identical legacy
-copies there. Never hand-edit the legacy copies — edit media/identifiers/ and
+copies there. Never hand-edit the legacy copies - edit media/identifiers/ and
 re-run:
 
     python tools/build-registry-index.py
@@ -80,7 +80,7 @@ def main() -> int:
         # Hash what GitHub Pages will actually serve: the committed blob, which
         # git normalises to LF. On a Windows checkout (core.autocrlf=true) the
         # working tree is CRLF, and hashing it raw published digests that never
-        # matched the served bytes — every app refresh failed its integrity check.
+        # matched the served bytes - every app refresh failed its integrity check.
         data = data.replace(b"\r\n", b"\n")
 
         # Legacy copy for pre-split app versions, byte-identical to canonical.

@@ -4,7 +4,7 @@
 WHY A SCRIPT
 ------------
 The fixture is ~11 MB of raw device-list markup with no <head>, no <body> and no
-doctype — it was captured straight out of the DOM. Rewriting it through an
+doctype - it was captured straight out of the DOM. Rewriting it through an
 editor risks re-encoding 11 MB of UTF-8, so this splices a header and footer
 around the existing bytes and leaves the payload untouched.
 
@@ -34,7 +34,7 @@ HEADER = """<!DOCTYPE html>
 <meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="googlebot" content="noindex, nofollow">
 
-<title>[TEST FIXTURE] Mock device list — GHOSTTOOTH</title>
+<title>[TEST FIXTURE] Mock device list - GHOSTTOOTH</title>
 <link rel="stylesheet" href="/media/css/style.css">
 <style>
   .fixture-note {
@@ -104,7 +104,7 @@ def main() -> int:
 
     payload = TARGET.read_bytes()
     if MARKER in payload[:400]:
-        print(f"{TARGET.name} already wrapped — no change")
+        print(f"{TARGET.name} already wrapped - no change")
         return 0
 
     TARGET.write_bytes(

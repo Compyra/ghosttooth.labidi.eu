@@ -57,7 +57,7 @@ def main() -> int:
         m = re.search(r"^communication:\s*$(.*)", text, re.M | re.S)
         block = m.group(1) if m else text
         names = re.findall(r"^\s*-\s*([A-Za-z0-9 ._\'&+()\[\]*-]+?)\s*$", block, re.M)
-        # names list: lines under "names:" — refine by scanning explicitly.
+        # names list: lines under "names:" - refine by scanning explicitly.
         names = []
         nm = re.search(r"^\s*names:\s*$(.*?)(?=^\s*(?:advertised_services|services|manufacturer_data|characteristics)\s*:|\Z)", block, re.M | re.S)
         if nm:

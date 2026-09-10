@@ -7,7 +7,7 @@
  *   1. Someone troubleshooting "my Bluetooth will not scan", who is by
  *      definition having a bad time with their device.
  *   2. Someone who has just been told they may be carrying a tracker and is
- *      opening /safety/ — possibly having deliberately turned off mobile data,
+ *      opening /safety/ - possibly having deliberately turned off mobile data,
  *      possibly somewhere with no signal.
  *
  * Both need the page to open anyway. The site is a handful of self-contained
@@ -26,7 +26,7 @@
  * that does not match, so old assets never linger.
  */
 
-const CACHE_VERSION = 'ghosttooth-v13-2026-09-07';
+const CACHE_VERSION = 'ghosttooth-v14-2026-09-11';
 const RUNTIME = `${CACHE_VERSION}-runtime`;
 
 /* Kept deliberately small: the pages a stranded reader actually needs. Anything
@@ -46,7 +46,6 @@ const SHELL = [
   '/nl/faq/',
   '/nl/safety/',
   '/404.html',
-  '/media/css/style.css',
   '/media/img/GhostTooth-mascot.png',
   '/media/img/GhostTooth-mascot-512.png',
   '/media/img/app-icon-512.png',
