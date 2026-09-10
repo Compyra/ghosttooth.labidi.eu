@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="color-scheme" content="dark light">
-<meta name="description" content="GHOSTTOOTH privacy policy: we do not collect, store, or share personal data. The app works fully offline; your public IP is only ever visible if you choose to fetch optional definition updates.">
+<meta name="description" content="GHOSTTOOTH privacy policy: no personal data collected, everything stays on your phone. The only network use is downloading the detection definitions that let the app recognise trackers and surveillance devices.">
 <meta name="author" content="labidi.eu">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="theme-color" content="#0b0d1a">
@@ -373,7 +373,7 @@
   <!-- ===================== INTRO ===================== -->
   <div class="intro">
     <p>GHOSTTOOTH is developed with a commitment to user privacy and transparency. <strong>We do not track you, we do not collect personal data, and we do not use analytics.</strong> The application runs entirely on your device and is fully functional offline.</p>
-    <p>This policy explains, in plain language, what the app does and does not do with your information, and the one optional situation in which any data leaves your device.</p>
+    <p>This policy explains, in plain language, what the app does and does not do with your information, and what the one thing it downloads actually is: the detection definitions that tell it which devices are trackers, which are surveillance hardware, and which are ordinary gadgets.</p>
   </div>
 
   <!-- ===================== TOC ===================== -->
@@ -382,7 +382,7 @@
     <ol>
       <li><a href="#glance">At a glance</a></li>
       <li><a href="#collection">Data we collect</a></li>
-      <li><a href="#network">Network activity</a></li>
+      <li><a href="#network">Detection definitions &amp; updates</a></li>
       <li><a href="#offline">Offline functionality</a></li>
       <li><a href="#permissions">Device permissions</a></li>
       <li><a href="#third-parties">Third parties &amp; sharing</a></li>
@@ -404,7 +404,7 @@
         <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>No tracking cookies, no analytics, no advertising IDs.</strong></span></div>
         <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>No user profiling and no data sharing</strong> with third parties.</span></div>
         <div class="row"><span class="mark no" aria-hidden="true">✓</span><span class="txt"><strong>Works fully offline.</strong> All core features function with no internet connection.</span></div>
-        <div class="row"><span class="mark opt" aria-hidden="true">◐</span><span class="txt"><strong>One exception:</strong> the first time you run the app, it will, automatically if a network connection is possible, fetch the latest device definitions from our servers. During this, our server momentarily sees your device’s public IP address, as any server does when you connect to it. Without these definitions the app still works, but cannot recognise what each device is.</span></div>
+        <div class="row"><span class="mark opt" aria-hidden="true">◐</span><span class="txt"><strong>One download:</strong> the app fetches its <strong>detection definitions</strong> from this website. Those are the regularly updated lists that let it recognise what each device is. The request carries no personal data and no scan results, and the definitions built into the app keep working even if it never connects.</span></div>
       </div>
     </section>
 
@@ -429,20 +429,19 @@
 
     <!-- ============ NETWORK ACTIVITY ============ -->
     <section id="network">
-      <h2><span class="num">03</span> Network activity</h2>
-      <p class="section-lead">The app works without a network, but the first launch reaches out once, if it can.</p>
-      <p>GHOSTTOOTH does <strong>not</strong> need a network connection to work. The first time you run the app, it will, automatically if a network connection is possible, fetch the latest device <strong>definitions</strong> (the reference lists used to recognise device makers and signal types) from our servers.</p>
-      <p>If no network is available, the app still works and scans normally; it simply cannot recognise what each detected device is until it is able to fetch these definitions.</p>
+      <h2><span class="num">03</span> Detection definitions &amp; updates</h2>
+      <p class="section-lead">The one thing the app downloads, and why it exists.</p>
+      <p>GHOSTTOOTH recognises devices by comparing what they broadcast against its <strong>detection definitions</strong>: curated lists of Bluetooth signatures that say which devices are <strong>trackers</strong> (AirTag and Find My accessories, Tile, SmartTag, Find My Device tags), which are <strong>surveillance hardware</strong> (camera glasses, wearable recorders, body cameras), and which are <strong>ordinary devices</strong> (earbuds, watches, TVs, sensors). Without these lists a scanner can only show anonymous radio signals; with them, it can tell you what something actually is.</p>
+      <p>New devices reach the market all the time, so <strong>we update these lists regularly</strong> and publish them on this website. A copy ships inside the app, so it recognises devices out of the box. The app offers once to keep the lists fresh automatically (your choice), and you can always fetch the newest ones yourself via <em>Check for new definitions</em>. Every download is verified against a published checksum before it is used.</p>
       <div class="callout honesty">
         <span class="tag">Full transparency</span>
-        <p style="margin-top:0">When the app fetches definitions, your device connects to our server over the internet. As with any web request, our server can momentarily see your device’s <strong>public IP address</strong>. This is a technical necessity of any internet connection, not something we track or profile.</p>
-        <p style="margin-bottom:0">We do not use this IP address to identify you, build a profile, or link requests together. No personal data and no scan results are ever sent.</p>
+        <p style="margin-top:0;margin-bottom:0">Fetching the lists is an ordinary file download from this website. It contains no personal data and no scan results, and we do not use it to identify anyone, build profiles, or link requests together.</p>
       </div>
       <div class="fields">
-        <div class="field"><span class="k">What is sent</span><span class="v">A standard request for the current definition files. No personal data or scan results are included.</span></div>
-        <div class="field"><span class="k">What is visible</span><span class="v">Your device’s public IP address, inherent to any internet connection.</span></div>
-        <div class="field"><span class="k">Purpose</span><span class="v">Solely to deliver the device definitions used for recognition.</span></div>
-        <div class="field"><span class="k">When</span><span class="v">On first launch, automatically if a network is possible, and thereafter to refresh definitions. The app runs fully without it.</span></div>
+        <div class="field"><span class="k">What is sent</span><span class="v">A request for the current definition files. Nothing else: no personal data, no scan results.</span></div>
+        <div class="field"><span class="k">What is received</span><span class="v">The latest lists of known trackers, surveillance devices and ordinary devices.</span></div>
+        <div class="field"><span class="k">What the server sees</span><span class="v">The same as for any website visit, including the network address the request came from. We keep no profiles and link nothing together.</span></div>
+        <div class="field"><span class="k">When</span><span class="v">Automatically only if you allowed it (the app asks once), or whenever you check by hand. The app runs fully without it.</span></div>
         <div class="field"><span class="k">Legal basis (GDPR)</span><span class="v">Our legitimate interest in delivering the definitions that make the app useful (Art. 6(1)(f)).</span></div>
       </div>
     </section>
@@ -450,7 +449,7 @@
     <!-- ============ OFFLINE ============ -->
     <section id="offline">
       <h2><span class="num">04</span> Offline functionality</h2>
-      <p>GHOSTTOOTH is designed to work completely offline. All core features (scanning for nearby Bluetooth devices, reading signal strength, and reviewing results) are available without any internet connection. Server connectivity is optional and used only for definition updates at your discretion.</p>
+      <p>GHOSTTOOTH is designed to work completely offline. All core features (scanning for nearby Bluetooth devices, reading signal strength, and reviewing results) are available without any internet connection, and the definitions built into the app keep recognising devices. Updates simply arrive the next time you allow a check.</p>
     </section>
 
     <!-- ============ PERMISSIONS ============ -->
@@ -511,7 +510,7 @@
       <a href="../changelog/">Changelog</a>
     </nav>
     <p><span class="pill">Privacy-first · offline by design</span></p>
-    <p>Last updated: 2026-07-28</p>
+    <p>Last updated: 2026-09-11</p>
   </footer>
 
 </div>
